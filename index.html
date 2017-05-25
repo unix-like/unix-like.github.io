@@ -1,254 +1,968 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+
+  
+  <title>Linux运维装逼指南</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Linux运维装逼指南">
 <meta property="og:url" content="http://www.unix-like.com/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维装逼指南">
+  
+    <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
     
     
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>Linux运维装逼指南</title>
-    <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- rss -->
-    
-    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
 </head>
-
 <body>
-    
-    <div class="content index width mx-auto px2 my4">
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">肖星</a></h1>
+        </hgroup>
+
         
-          <header id="header">
-  <a href="/">
-  
-    
-      <div id="logo" style="background-image: url(/images/logo.png);"></div>
-    
-  
-    <div id="title">
-      <h1>Linux运维装逼指南</h1>
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder=" Search...">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a rel="external nofollow" href="/archives/">所有文章</a></li>
+                        
+                            <li><a rel="external nofollow" href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a rel="external nofollow" href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a rel="external nofollow" href="/categories/cognition">认知提升</a></li>
+                        
+                            <li><a rel="external nofollow" href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" rel="external nofollow" target="_blank" href="https://github.com/maochunguang" title="github">github</a>
+                            
+                                <a class="fl weibo" rel="external nofollow" target="_blank" href="http://weibo.com/p/1005055620854238/home" title="weibo">weibo</a>
+                            
+                                <a class="fl rss" rel="external nofollow" target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/system/" style="font-size: 20px;">system</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a>
+                    </div>
+                </section>
+                
+
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" rel="external nofollow" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank" rel="external nofollow" class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank" rel="external nofollow" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
     </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#"><i class="fa fa-bars fa-2x"></i></a>
-      </li>
-       
-        <li><a href="/">Home</a></li>
-       
-        <li><a href="/about.html">About</a></li>
-       
-        <li><a href="/archives/">Writing</a></li>
-       
-        <li><a href="https://github.com/unix-like">Projects</a></li>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">肖星</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">肖星</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/cognition">认知提升</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/maochunguang" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/p/1005055620854238/home" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-redis 模糊删除key" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/redis 模糊删除key/" class="article-date">
+      <time datetime="2017-05-25T09:02:28.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/redis 模糊删除key/">redis模糊删除key</a>
+    </h1>
+  
+
+
+      </header>
       
-    </ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"pattern"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure>
+<p>其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。</p>
+<p>所有的Redis命令可以在这里找到：<a href="http://redis.io/commands" target="_blank" rel="external">http://redis.io/commands</a></p>
+<p>KEYS命令：<a href="http://redis.io/commands/keys" target="_blank" rel="external">http://redis.io/commands/keys</a></p>
+<p>DEL命令: <a href="http://redis.io/commands/del" target="_blank" rel="external">http://redis.io/commands/del</a></p>
+<p><strong>my demo:</strong></p>
+<p>prefix_: 需要删除key的匹配的前缀名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"prefix_"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
-</header>
-
-        
-        <section id="about">
   
-  <p style="display: inline">
-    
-      Find me on
-      <ul id="sociallinks">
-        
-          <li><a class="icon" target="_blank" href="https://github.com/unix-like" title="github"><i class="fa fa-github"></i></a></li>
-        
-          <li><a class="icon" target="_blank" href="/" title="facebook"><i class="fa fa-facebook"></i></a></li>
-        
-          <li><a class="icon" target="_blank" href="/root@unix-like.com" title="skype"><i class="fa fa-skype"></i></a></li>
-        
-      </ul>.
-    
-  </p>
-</section>
+</article>
 
-<section id="writing">
-  <span class="h1"><a href="/archives">Writing</a></span>
-  <ul class="post-list">
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-pdflush进程详解与优化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/pdflush进程详解与优化/" class="article-date">
+      <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
     
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/pdflush进程详解与优化/">pdflush进程详解与优化</a>
+    </h1>
+  
+
+
+      </header>
       
     
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。</p>
+<p>在以下两种情况发生时，脏页被写回磁盘：</p>
+<ul>
+<li><p>当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。</p>
+</li>
+<li><p>当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。</p>
+</li>
+</ul>
+<p>　　上面两种工作的目的完全不同。实际上，在老内核中，这是由两个独立的内核线程分别完成的。但是在2.6内核中，由一群内核线程—pdflush后台回写例程—统一执行两种工作。</p>
+<p>　　我们来看看这两个目标是如何具体实现的。首先，当系统中的空闲内存低于一个特定的阈值时，pdflush线程将脏页刷新回磁盘。该后台回写例程的目的在于在可用物理内存过低时，释放脏页以重新获得内存。特定的内存阈值可以通过<code>dirty_background_ratio</code>参数设置。当空闲内存比阈值<code>dirty_ background_ratio</code>还低时，内核便会调用函数<code>wakeup_bdflush()</code>唤醒一个pdflush线程，随后pdflush线程进一步调用函数<code>background_writeout()</code>开始将脏页写回磁盘。函数<code>background_ writeout()</code>需要一个长整型参数，该参数指定试图回写的页面数目。</p>
+<p>　　函数<code>background_writeout()</code>会连续地写出数据，直到满足以下两个条件：</p>
+<ul>
+<li><p>已经有指定的最小数目的页被写出到磁盘。</p>
+</li>
+<li><p>空闲内存数已经回升，超过了阈值dirty_background_ratio。</p>
+</li>
+</ul>
+<p>　　上述条件确保了pdflush操作可以减轻系统中内存不足的压力。回写操作不会在达到这两个条件前停止，除非pdflush写回了所有的脏页，没有剩下的脏页可再被写回了。</p>
+<p>　　要满足第二个目标，pdflush后台例程会被周期性唤醒（和空闲内存是否过低无关），将那些在内存中驻留时间过长的脏页写出，确保内存中不会有长期存在的脏页。假如系统发生崩溃，则内存会处于混乱之中，而那些在内存中还没来得及写回磁盘的脏页就会丢失，所以周期性同步回写非常重要。</p>
+<p>　　在系统启动时，内核初始化一个定时器，让它周期地唤醒pdflush线程，随后使其运行函数<code>wb_kupdate()</code>。该函数将把所有驻留时间超过百分之<code>dirty_expire_centisecs</code>秒的脏页写回。然后定时器将再次被初始化为百分之<code>dirty_expire_ centisecs</code>秒后唤醒pdflush线程。</p>
+<p>　　总而言之，pdflush线程周期地被唤醒并且把超过特定期限的脏页写回磁盘。</p>
+<h1 id="二、proc下的相关控制参数"><a href="#二、proc下的相关控制参数" class="headerlink" title="二、proc下的相关控制参数"></a>二、proc下的相关控制参数</h1><p>　　系统管理员可以在/proc/sys/vm中设置回写相关的参数，也可以通过sysctl系统调用设置它们。</p>
+<ul>
+<li>/proc/sys/vm/dirty_ratio</li>
+</ul>
+<p>　　这个参数控制一个进程在文件系统中的文件系统写缓冲区的大小，单位是百分比，表示系统内存的百分比，表示当一个进程中写缓冲使用到系统内存多少的时候，再有磁盘写操作时开始向磁盘写出数据。增大之会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是 40。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 30 &gt;/proc/sys/vm/dirty_ratio</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>/proc/sys/vm/dirty_background_ratio</li>
+</ul>
+<p>　　这个参数控制文件系统的pdflush进程，在何时刷新磁盘。单位是百分比，表示系统总内存的百分比，意思是当磁盘的脏数据缓冲到系统内存多少的时候，pdflush开始把脏数据刷新到磁盘。增大会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是10。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 8 &gt;/proc/sys/vm/dirty_background_ratio</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>/proc/sys/vm/dirty_writeback_centisecs</li>
+</ul>
+<p>　　Pdflush写后台进程每隔多久被唤醒并执行把脏数据写出到硬盘。单位是 1/100 秒。如果你的系统是持续地写入动作，那么实际上还是降低这个数值比较好，这样可以把尖峰的写操作削平成多次写操作。缺省数值是500，也就是 5 秒。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 200 &gt;/proc/sys/vm/dirty_writeback_centisecs</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>/proc/sys/vm/dirty_expire_centisecs</li>
+</ul>
+<p>　　这个参数声明Linux内核写缓冲区里面的脏数据多“旧”了之后，pdflush 进程就开始考虑写到磁盘中去。单位是 1/100秒。对于特别重载的写操作来说，这个值适当缩小也是好的，但也不能缩小太多，因为缩小太多也会导致IO提高太快。缺省是 30000，也就是 30 秒的数据就算旧了，将会刷新磁盘。建议设置为 1500，也就是15秒算旧。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 1500 &gt;/proc/sys/vm/dirty_expire_centisecs</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="三、内核参数修改后的生效"><a href="#三、内核参数修改后的生效" class="headerlink" title="三、内核参数修改后的生效"></a>三、内核参数修改后的生效</h1><p>　　Linux在系统运行时修改内核参数(/proc/sys与/etc/sysctl.conf)，而不需要重新引导系统，这个功能是通过/proc虚拟文件系统实现的。</p>
+<p>　　在/proc/sys目录下存放着大多数的内核参数，并且设计成可以在系统运行的同时进行更改,可以通过更改/proc/sys中内核参数对应的文件达到修改内核参数的目的(修改过后，保存配置文件就马上自动生效)，不过重新启动机器后之前修改的参数值会失效，所以只能是一种临时参数变更方案。(适合调试内核参数优化值的时候使用，如果设置值有问题，重启服务器还原原来的设置参数值了。简单方便。)</p>
+<p>　　但是如果调试内核参数优化值结束后，需要永久保存参数值，就要通过修改/etc/sysctl.conf内的内核参数来永久保存更改。但只是修改sysctl文件内的参数值，确认保存修改文件后，设定的参数值并不会马上生效，如果想使参数值修改马上生效，并且不重启服务器，可以执行下面的命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –p</div></pre></td></tr></table></figure>
+<hr>
+<p>　　下面介绍一下/proc/sys下内核文件与配置文件sysctl.conf中变量的对应关系：</p>
+<p>　　由于可以修改的内核参数都在/proc/sys目录下，所以sysctl.conf的变量名省略了目录的前面部分（/proc/sys）。即将/proc/sys中的文件转换成sysctl中的变量依据下面两个简单的规则：</p>
+<ol>
+<li>去掉前面部分/proc/sys</li>
+<li>将文件名中的斜杠变为点</li>
+</ol>
+<p>　　这两条规则可以将/proc/sys中的任一文件名转换成sysctl中的变量名。</p>
+<p>　　例如：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/proc/sys/net/ipv4/ip_forward ＝》 net.ipv4.ip_forward</div><div class="line">/proc/sys/kernel/hostname ＝》 kernel.hostname</div></pre></td></tr></table></figure>
+<p>　　可以使用下面命令查询所有可修改的变量名</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –a</div></pre></td></tr></table></figure>
+
+      
+    </div>
     
-      <li class="post-item">
-        
-    <div class="meta">
-        <time datetime="2017-05-25T09:02:28.000Z" itemprop="datePublished">2017-05-25</time>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/system/">system</a></li></ul>
     </div>
 
-
-        <span>
-    
-        <a class="" href="/2017/05/25/redis 模糊删除key/">redis模糊删除key</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-        <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">2017-05-25</time>
+      
+      <div class="clearfix"></div>
     </div>
-
-
-        <span>
     
-        <a class="" href="/2017/05/25/pdflush进程详解与优化/">pdflush进程详解与优化</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-        <time datetime="2017-05-25T08:02:28.000Z" itemprop="datePublished">2017-05-25</time>
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2017/05/25/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-        <time datetime="2017-05-25T06:02:28.000Z" itemprop="datePublished">2017-05-25</time>
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-        <time datetime="2017-05-25T04:27:28.000Z" itemprop="datePublished">2017-05-25</time>
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-        <time datetime="2017-05-25T04:21:42.000Z" itemprop="datePublished">2017-05-25</time>
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
+  </div>
   
-    
+</article>
+
+
+
+
+
+
+
+
+
+
 
   
-</section>
-
-
+    <article id="post-MongoDB归档及压缩工具" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/MongoDB归档及压缩工具/" class="article-date">
+      <time datetime="2017-05-25T08:02:28.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
 
     </div>
+  
+  <div class="article-inner">
     
-    <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2017 肖星
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about.html">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="https://github.com/unix-like">Projects</a></li>
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-      </ul>
-    </nav>
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　原文地址：<a href="http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html" target="_blank" rel="external">http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个方面的新功能，(planned for the 3.2 release) – 归档和压缩。</p>
+<p>　　在本文中，我将对mongodump和mongorestore提供更详细的归档和压缩特性说明，并探索使用这些特性的可行用例。</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>　　一个通常目的的归档一般由一个或多个文件组成。这样例子如磁带归档格式(tar)，其中包含按顺序组成的一个或多个文件。归档在执行进程间通信的应用程序中尤其有用，例如，你可以通过远程服务器进行目录的tarball压缩，然后通过SSH，传送到到本机上进行解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh source.server.com tar c sourceDirectory | tar x</div></pre></td></tr></table></figure>
+<p>　　由于归档以顺序的方式创建，接收端将能按顺序接收到发送端按顺序发来的数据。</p>
+<p>　　在3.0中，我们增加了在MongoDB中并发执行备份和恢复多个集合的能力，这可以让你执行备份时，更加充分地利用磁盘I / O。 结果，写入mongodump的备份并不一定以顺序的方式接收。 同样，mongorestore同时读取还原操作集合，它的读取指令也并非是序列性的。</p>
+<p>　　通用归档格式，如tar，只支持连续的文件归档打包。mongodump和mongorestore利用这些备份格式，将得到一个不可接受的性能退化， 由于所有集合的数据将不得不被按顺序写入和读出。为了支持这些工具的并发行为，我们研发了一个特殊的通用备份格式，支持非并发文件的写入。 这个新的归档特性极大了提高了备份和还原操作的效率。</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>　　为了按上下文情况进行备份，我们考虑一下你们通常是如何创建备份的。比如，假设你有一个“country”的数据库，其中含有两个集合： “nigeria” and “austria”， 你可能会这样操作：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump --db country</div></pre></td></tr></table></figure>
+<p>　　上面的指令读取“country”数据库的所有集合， 然后将其写入“dump”目录。 上面的指令就会产生以下的目录列表：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">dump/</div><div class="line">└── [4.3M]  country</div><div class="line">    ├── [2.1M]  austria.bson</div><div class="line">    ├── [  87]  austria.metadata.json</div><div class="line">    ├── [2.1M]  nigeria.bson</div><div class="line">    ├── [  87]  nigeria.metadata.json</div><div class="line">    └── [ 140]  system.indexes.bson</div><div class="line"> </div><div class="line">1 directory, 5 files</div></pre></td></tr></table></figure>
+<p>　　你也可以备份整个服务器-这里的服务器包含两个数据库(country 和product)。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">├── [5.4M]  dump</div><div class="line">│   ├── [4.03M]  country</div><div class="line">│   │   ├── [2.1M]  austria.bson</div><div class="line">│   │   ├── [  87]  austria.metadata.json</div><div class="line">│   │   ├── [2.1M]  nigeria.bson</div><div class="line">│   │   ├── [  87]  nigeria.metadata.json</div><div class="line">│   │   └── [ 140]  system.indexes.bson</div><div class="line">│   └── [1.1M]  product</div><div class="line">│       ├── [1.0M]  mongodump.bson</div><div class="line">│       ├── [  89]  mongodump.metadata.json</div><div class="line">│       └── [  72]  system.indexes.bson</div><div class="line">2 directories, 8 files</div></pre></td></tr></table></figure>
+<p>　　或选择备份单个集合到标准输出，而不是一个目录：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --collection nigeria --out -</div></pre></td></tr></table></figure>
+<h1 id="归档支持"><a href="#归档支持" class="headerlink" title="归档支持"></a>归档支持</h1><p>　　在3.2中，我们引入了创建备份的一个附加模式 －－ “归档”模式，写入所有转储数据，甚至从不同的数据库和集合到单一的输出文件。 使用mongodump创建归档是极为简单的 – 只需要一个附加选项：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --archive=country.archive</div><div class="line">	</div><div class="line">-rw-rw-r-- 1 wisdom wisdom 4.2M Jun 29 11:12 country.archive</div></pre></td></tr></table></figure>
+<p>　　上面的指令将在“country.archive”文件中创建“country”的数据库归档。默认情况下，归档被写入到标准输出。不同于目录模式的执行备份，创建目录树，默认归档模式下备份结果就是一个单一的文件， 包含“country”数据库的所有数据-所有集合，索引等。</p>
+<p>　　你也可以备份一个单一的集合或整个服务器的内容：</p>
+<p>　　<strong>单一集合：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --collection nigeria --archive=nga.archive</div><div class="line">	</div><div class="line">-rw-rw-r-- 1 wisdom wisdom 2.1M Jun 29 11:15 nga.archive</div></pre></td></tr></table></figure>
+<p>　　<strong>整个服务器：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --archive=server.archive</div><div class="line">	</div><div class="line">-rw-rw-r-- 1 wisdom wisdom 5.3M Jun 29 11:26 server.archive</div></pre></td></tr></table></figure>
+<p>　　在mongodump的这种情况下，归档模式允许多个集合以非连续的方式打包在归档文件内。在mongorestore中，它允许多个集合进行并行恢复。这样，你可以在网络上执行数据迁移，降低磁盘I/O所占空间，享受到充分利用工具和底层存储引擎的并发所带来的好处。</p>
+<h1 id="数据迁移"><a href="#数据迁移" class="headerlink" title="数据迁移"></a>数据迁移</h1><p>　　一个新的备份改善的例子， 是mongodump和mongorestore之间的进程间通信 – 特别是能够将数据从一个传到另一个。在以前的版本中，这种支持有限 – 一个时间只能传输一个集合。现在，使用归档就没有这样的限制。这种方式对于数据库服务器出于安全考虑而安装有防火墙的情况下很有用。在这种情况下，一个通常的设计是允许一个或多个服务器方访问数据库。使用归档功能，在SSH上进行数据转移数据，就轻而易举了：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh wisdom@proxy.server.com mongodump --host source.server.com --archive  | ssh wisdom@target.server.com mongorestore --archive</div></pre></td></tr></table></figure>
+<p>　　上面的指令使用SSH方式连接到代理主机（proxy.server.com），访问源服务器（source.server.com），在代理服务器上运行mongodump，为了最终的恢复，将源服务器的发送内容（通过SSH）到目标服务器（target.server.com）。</p>
+<p>　　如果没有归档，通过mongodump完成这些操作的唯一办法就是，先执行备份到磁盘，在将文件复制到目标服务器，然后运行mongorestore。通过备份，一个指令就可以完成- 无需任何附加磁盘I/O的开销。</p>
+<h1 id="压缩支持"><a href="#压缩支持" class="headerlink" title="压缩支持"></a>压缩支持</h1><p>　　除了备份，我们还使用gzip进行压缩。这是通过在mongodump和mongorestore中引入一个新的指令行选项 “–gzip” 实现的。 压缩可用于目录以及归档模型下创建的备份，压缩还可以减少磁盘空间使用。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --gzip</div></pre></td></tr></table></figure>
+<p>　　生成：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">dump/</div><div class="line">└── [568K]  country</div><div class="line">    ├── [254K]  austria.bson.gz</div><div class="line">    ├── [ 100]  austria.metadata.json.gz</div><div class="line">    ├── [254K]  nigeria.bson.gz</div><div class="line">    ├── [ 100]  nigeria.metadata.json.gz</div><div class="line">    └── [  91]  system.indexes.bson.gz</div><div class="line"> </div><div class="line">1 directory, 5 files</div></pre></td></tr></table></figure>
+<p>　　注意,目录模型的归档备份大小-568KB-比没有压缩的备份要小很多-4.3MB.</p>
+<p>　　<strong>压缩归档：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --gzip --archive=country.archive</div><div class="line"></div><div class="line">-rw-rw-r-- 1 wisdom wisdom 509K Jun 29 11:23 country.archive</div></pre></td></tr></table></figure>
+<p>　　对于归档来说，数据在写入归档之前需要先压缩。</p>
+<p>　　恢复压缩目录模式备份，你应该运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongorestore --gzip</div></pre></td></tr></table></figure>
+<p>　　类似用来恢复归档模式下的压缩备份的命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh wisdom@proxy.server.com mongodump --host source.server.com --archive --gzip  | ssh wisdom@target.server.com mongorestore --archive --gzip</div></pre></td></tr></table></figure>
+<p>　　数据迁移不会产生任何磁盘I / O开销，由于压缩，将会使用更少的网络带宽。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>　　归档和压缩特性产生了许多用于进行备份和恢复操作的例子。如果你们正在使用MongoDB工具和其它类型的应用程序，我们也乐于倾听你们的经验及用例。 尽管目前最新版本工具还不文档，不过希望大家先对这些特性体验起来。</p>
+<p>　　<strong>注：</strong> 作为提供共享集群的集群范围快照的唯一备份解决方案，MongoDB Ops Manager和MongoDB Cloud Mannager被推荐用于较大的MongoDB部署。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Linux下清空或删除大文件内容的5种方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/" class="article-date">
+      <time datetime="2017-05-25T06:02:28.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>编译自：<a href="http://www.tecmint.com/empty-delete-file-content-linux/" target="_blank" rel="external">http://www.tecmint.com/empty-delete-file-content-linux/</a> 作者： Aaron Kili</p>
+<p>原创：LCTT <a href="https://linux.cn/article-8024-1.html" target="_blank" rel="external">https://linux.cn/article-8024-1.html</a> 译者： FSSlc </p>
+<p>在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这个目的呢？在这篇文章中，我们将介绍几种借助一些实用的命令来清空文件内容的方法。</p>
+<p><strong>注意：</strong> 在我们进一步深入了解这些方法之前，请记住: 由于在 Linux 中一切皆文件，你需要时刻注意，确保你将要清空的文件不是重要的用户文件或者系统文件。清空重要的系统文件或者配置文件可能会引发严重的应用失败或者系统错误。</p>
+<p>前面已经说道，下面的这些方法都是从命令行中达到清空文件的目的。</p>
+<p><strong>提示：</strong> 在下面的示例中，我们将使用名为 access.log 的文件来作为示例样本。</p>
+<h1 id="1-通过重定向到-Null-来清空文件内容"><a href="#1-通过重定向到-Null-来清空文件内容" class="headerlink" title="1. 通过重定向到 Null 来清空文件内容"></a>1. 通过重定向到 Null 来清空文件内容</h1><p>清空或者让一个文件成为空白的最简单方式，是像下面那样，通过 shell 重定向 <code>null</code> （不存在的事物）到该文件：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; access.log</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost logs]<span class="comment"># du -sh catalina.out </span></div><div class="line">9.7G	catalina.out</div><div class="line">[root@localhost logs]<span class="comment"># &gt; catalina.out </span></div><div class="line">[root@localhost logs]<span class="comment"># du -sh catalina.out </span></div><div class="line">0	catalina.out</div></pre></td></tr></table></figure>
+<p>在 Linux 下使用 Null 重定向来清空大文件</p>
+<h1 id="2-使用-true-命令重定向来清空文件"><a href="#2-使用-true-命令重定向来清空文件" class="headerlink" title="2. 使用 true 命令重定向来清空文件"></a>2. 使用 <code>true</code> 命令重定向来清空文件</h1><p>下面我们将使用 : 符号，它是 shell 的一个内置命令，等同于 true 命令，它可被用来作为一个 no-op（即不进行任何操作）。</p>
+<p>另一种清空文件的方法是将 : 或者 true 内置命令的输出重定向到文件中，具体如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">: &gt; access.log</div></pre></td></tr></table></figure>
+<p> 或<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">true</span> &gt; access.log</div></pre></td></tr></table></figure></p>
+<p>使用 Linux 命令清空大文件</p>
+<h1 id="3-使用-cat-cp-dd-实用工具及-dev-null-设备来清空文件"><a href="#3-使用-cat-cp-dd-实用工具及-dev-null-设备来清空文件" class="headerlink" title="3. 使用 cat/cp/dd 实用工具及 /dev/null 设备来清空文件"></a>3. 使用 cat/cp/dd 实用工具及 /dev/null 设备来清空文件</h1><p>在 Linux 中， null 设备基本上被用来丢弃某个进程不再需要的输出流，或者作为某个输入流的空白文件，这些通常可以利用重定向机制来达到。</p>
+<p>所以 /dev/null 设备文件是一个特殊的文件，它将清空送到它这里来的所有输入，而它的输出则可被视为一个空文件。</p>
+<p>另外，你可以通过使用 cat 命令 显示 /dev/null 的内容然后重定向输出到某个文件，以此来达到清空该文件的目的。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /dev/null &gt; access.log</div></pre></td></tr></table></figure>
+<p>使用 cat 命令来清空文件</p>
+<p>下面，我们将使用 cp 命令 复制 /dev/null 的内容到某个文件来达到清空该文件的目的，具体如下所示：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /dev/null access.log</div></pre></td></tr></table></figure>
+<p>使用 cp 命令来清空文件</p>
+<p>而下面的命令中， if 代表输入文件，of 代表输出文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dd <span class="keyword">if</span>=/dev/null of=access.log</div></pre></td></tr></table></figure>
+<p>使用 dd 命令来清空文件内容</p>
+<h1 id="4-使用-echo-命令清空文件"><a href="#4-使用-echo-命令清空文件" class="headerlink" title="4. 使用 echo 命令清空文件"></a>4. 使用 echo 命令清空文件</h1><p>在这里，你可以使用 echo 命令 将空字符串的内容重定向到文件中，具体如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">""</span> &gt; access.log</div></pre></td></tr></table></figure>
+<p>或者<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> &gt; access.log</div></pre></td></tr></table></figure></p>
+<p>使用 echo 命令来清空文件</p>
+<p><strong>注意：</strong>你应该记住空字符串并不等同于 null 。字符串表明它是一个具体的事物，只不过它的内容可能是空的，但 null 则意味着某个事物并不存在。</p>
+<p>基于这个原因，当你将 echo 命令 的输出作为输入重定向到文件后，使用 cat 命令 来查看该文件的内容时，你将看到一个空白行（即一个空字符串）。</p>
+<p>要将 null 做为输出输入到文件中，你应该使用 -n 选项，这个选项将告诉 echo 不再像上面的那个命令那样输出结尾的那个新行。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -n <span class="string">""</span> &gt; access.log</div></pre></td></tr></table></figure>
+<p>使用 Null 重定向来清空文件</p>
+<h1 id="5-使用-truncate-命令来清空文件内容"><a href="#5-使用-truncate-命令来清空文件内容" class="headerlink" title="5. 使用 truncate 命令来清空文件内容"></a>5. 使用 truncate 命令来清空文件内容</h1><p>truncate 可被用来将一个文件缩小或者扩展到某个给定的大小。</p>
+<p>你可以利用它和 -s 参数来特别指定文件的大小。要清空文件的内容，则在下面的命令中将文件的大小设定为 0:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">truncate <span class="_">-s</span> 0 access.log</div></pre></td></tr></table></figure>
+<p>在 Linux 中截断文件内容</p>
+<p>我要介绍的就是这么多了。在本文中，我们介绍了几种通过使用一些简单的命令行工具和 shell 重定向机制来清除或清空文件内容的方法。</p>
+<p>上面介绍的这些可能并不是达到清空文件内容这个目的的所有可行的实践方法，所以你也可以通过下面的评论栏告诉我们本文中尚未提及的其他方法。</p>
+<hr>
+<p>via: <a href="http://www.tecmint.com/empty-delete-file-content-linux/" target="_blank" rel="external">http://www.tecmint.com/empty-delete-file-content-linux/</a></p>
+<p>作者：Aaron Kili 译者：FSSlc 校对：jasminepeng</p>
+<p>本文由 LCTT 原创编译，Linux中国 荣誉推出</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/system/">system</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Linux查看文件编码格式及文件编码转换" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/" class="article-date">
+      <time datetime="2017-05-25T04:27:28.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。</p>
+<h1 id="查看文件编码"><a href="#查看文件编码" class="headerlink" title="查看文件编码"></a>查看文件编码</h1><p>在Linux中查看文件编码可以通过以下几种方式：</p>
+<h3 id="1-在Vim-中可以直接查看文件编码"><a href="#1-在Vim-中可以直接查看文件编码" class="headerlink" title="1.在Vim 中可以直接查看文件编码"></a>1.在Vim 中可以直接查看文件编码</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> fileencoding</div></pre></td></tr></table></figure>
+<p>即可显示文件编码格式。</p>
+<p>如果你只是想查看其它编码格式的文件或者想解决用Vim查看文件乱码的问题，那么你可以在 <code>~/.vimrc</code> 文件中添加以下内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936</div></pre></td></tr></table></figure>
+<p>这样，就可以让vim自动识别文件编码（可以自动识别UTF-8或者GBK编码的文件），其实就是依照 fileencodings提供的编码列表尝试，如果没有找到合适的编码，就用latin-1(ASCII)编码打开。</p>
+<h3 id="2-enca-如果你的系统中没有安装这个命令，可以用sudo-yum-install-y-enca-安装-查看文件编码"><a href="#2-enca-如果你的系统中没有安装这个命令，可以用sudo-yum-install-y-enca-安装-查看文件编码" class="headerlink" title="2. enca (如果你的系统中没有安装这个命令，可以用sudo yum install -y enca 安装 )查看文件编码"></a>2. enca (如果你的系统中没有安装这个命令，可以用sudo yum install -y enca 安装 )查看文件编码</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ enca filename</div><div class="line">filename: Universal transformation format 8 bits; UTF-8</div><div class="line">CRLF line terminators</div></pre></td></tr></table></figure>
+<p>需要说明一点的是，enca对某些GBK编码的文件识别的不是很好，识别时会出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Unrecognized encoding</div></pre></td></tr></table></figure>
+<h1 id="文件编码转换"><a href="#文件编码转换" class="headerlink" title="文件编码转换"></a>文件编码转换</h1><h3 id="1-在Vim中直接进行转换文件编码-比如将一个文件转换成utf-8格式"><a href="#1-在Vim中直接进行转换文件编码-比如将一个文件转换成utf-8格式" class="headerlink" title="1.在Vim中直接进行转换文件编码,比如将一个文件转换成utf-8格式"></a>1.在Vim中直接进行转换文件编码,比如将一个文件转换成utf-8格式</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> fileencoding=utf-8</div></pre></td></tr></table></figure>
+<h3 id="2-enconv-转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下"><a href="#2-enconv-转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下" class="headerlink" title="2. enconv 转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下"></a>2. enconv 转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enconv -L zh_CN -x UTF-8 filename</div></pre></td></tr></table></figure>
+<h3 id="3-iconv-转换，iconv的命令格式如下："><a href="#3-iconv-转换，iconv的命令格式如下：" class="headerlink" title="3. iconv 转换，iconv的命令格式如下："></a>3. iconv 转换，iconv的命令格式如下：</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv <span class="_">-f</span> encoding -t encoding inputfile</div></pre></td></tr></table></figure>
+<p>比如将一个UTF-8 编码的文件转换成GBK编码</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv <span class="_">-f</span> GBK -t UTF-8 file1 -o file2</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符集/">字符集</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Bash历史中执行过的每一项命令设置时间和日期" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/" class="article-date">
+      <time datetime="2017-05-25T04:21:42.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 <code>~/.bash_history</code> 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 <code>history</code> 命令这样的选项来看他或她自己的命令历史。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@l-webdb-docker-dev ~]<span class="comment"># history </span></div><div class="line">    1  vim /gotwo_data/scripts/cronjob/sync_mysql_online.sh</div><div class="line">    2  <span class="built_in">exit</span></div><div class="line">    3  ps -ef | grep 4004</div><div class="line">    4  <span class="built_in">exit</span></div><div class="line">    5  mysql</div><div class="line">    6  mysqldump -uroot -p db_ad &gt; /tmp/db_ad.sql</div><div class="line">    7  vim /tmp/db_ad.sql </div><div class="line">    8  mysqldump -uroot -p db_ad &gt; /tmp/db_ad.sql</div></pre></td></tr></table></figure>
+<p>从上面<code>history</code>命令的输出可知，命令被执行的日期和时间并没有显示出来。基本上所有的 Linux 发行版的默认设置都是这样的。</p>
+<p>在这篇文章里，我们将解释当在 Bash 中执行<code>history</code>命令显示每个命令时，如何配置显示时间戳信息。</p>
+<p>每个命令相关的日期和时间可以记录到历史文件中，用 <code>HISTTIMEFORMAT</code> 环境变量的设置作为命令历史的备注记录。</p>
+<p>这里有两种可行的方式来达到目的：一种是暂时的效果，一种是永久的效果。</p>
+<p>要临时设置 <code>HISTTIMEFORMAT</code>环境变量，在命令行这样输出它：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">export</span> HISTTIMEFORMAT=<span class="string">'%F %T '</span></div></pre></td></tr></table></figure></p>
+<p>在上面的输出命令当中，时间戳格式如下：</p>
+<ol>
+<li><p><code>％F</code>－展开为完整日期，即<code>％Y-％m-％d</code>（年-月-日）。</p>
+</li>
+<li><p><code>％T</code>－展开为时间，即<code>％H:％M:％S</code>（时:分:秒）。</p>
+</li>
+</ol>
+<p>通读 date 命令的 man 手册来获得更多使用说明：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">man date</div></pre></td></tr></table></figure>
+<p>（LCTT 译注：注意：这个功能只能用在当 HISTTIMEFORMAT 这个环境变量被设置之后，之后的那些新执行的 bash 命令才会被打上正确的时间戳。在此之前的所有命令，都将会显示成设置 HISTTIMEFORMAT 变量的时间。）</p>
+<p>然而，如果你想永久地配置该变量，用你最喜欢的编辑器打开文件 <code>~/.bashrc</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi ~/.bashrc</div></pre></td></tr></table></figure>
+<p>然后在下方添加（用注释将其标记为你自己的配置）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 我的配置</span></div><div class="line"><span class="built_in">export</span> HISTTIMEFORMAT=<span class="string">'%F %T '</span></div></pre></td></tr></table></figure>
+<p>保存文件并退出，然后，运行下面的命令以便改动当即生效：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 肖星
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
 </footer>
 
-</body>
-</html>
-<!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-
-
-<!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 <script src="/js/main.js"></script>
-<!-- Google Analytics -->
 
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-86660611-1', 'auto');
-        ga('send', 'pageview');
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 4;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
     </script>
 
-<!-- Disqus Comments -->
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80304484-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
 
 
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?7c4f976a8b427a3d92ebe7ccd522b0b9";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
