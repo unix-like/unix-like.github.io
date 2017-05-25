@@ -85,7 +85,7 @@ require([], function (){
         // https://github.com/jlmakes/scrollreveal.js
         // 使用cdn[//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js]
         require([
-          '//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js'
+          '/css/scrollreveal.js'
         ], function (ScrollReveal) {
           // 更多animation:
           // http://daneden.github.io/animate.css/

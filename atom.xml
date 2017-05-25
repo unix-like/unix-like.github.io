@@ -232,13 +232,9 @@
     <link href="http://www.unix-like.com/2017/05/25/redis%E6%A8%A1%E7%B3%8A%E5%88%A0%E9%99%A4key/"/>
     <id>http://www.unix-like.com/2017/05/25/redis模糊删除key/</id>
     <published>2017-05-25T05:58:41.000Z</published>
-    <updated>2017-05-25T14:09:34.407Z</updated>
+    <updated>2017-05-25T14:35:16.739Z</updated>
     
-    <content type="html"><![CDATA[<ul>
-<li><a id="more"></a>
-</li>
-</ul>
-<p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
+    <content type="html"><![CDATA[<p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"pattern"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure>
 <p>其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。</p>
 <p>所有的Redis命令可以在这里找到：<a href="http://redis.io/commands" target="_blank" rel="external">http://redis.io/commands</a></p>
