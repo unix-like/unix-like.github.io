@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="原文地址：http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html  #介绍 　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维装逼指南">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/index.html">
+<meta property="og:site_name" content="Linux运维装逼指南">
+<meta property="og:description" content="原文地址：http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html  #介绍 　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个">
+<meta property="og:updated_time" content="2017-05-25T03:33:30.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维装逼指南">
+<meta name="twitter:description" content="原文地址：http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html  #介绍 　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux运维装逼指南</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/unix-like">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/05/25/application/redis模糊删除key/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/05/25/application/Linux查看文件编码格式及文件编码转换/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&text="><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&is_video=false&description="><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&name=&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Linux运维装逼指南</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-05-25T03:33:30.534Z" itemprop="datePublished">2017-05-25</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>　　原文地址：<a href="http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html" target="_blank" rel="external">http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html</a></p>
+<hr>
+<p>#介绍</p>
+<p>　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个方面的新功能，(planned for the 3.2 release) – 归档和压缩。</p>
+<p>　　在本文中，我将对mongodump和mongorestore提供更详细的归档和压缩特性说明，并探索使用这些特性的可行用例。</p>
+<p>#概述</p>
+<p>　　一个通常目的的归档一般由一个或多个文件组成。这样例子如磁带归档格式(tar)，其中包含按顺序组成的一个或多个文件。归档在执行进程间通信的应用程序中尤其有用，例如，你可以通过远程服务器进行目录的tarball压缩，然后通过SSH，传送到到本机上进行解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh source.server.com tar c sourceDirectory | tar x</div></pre></td></tr></table></figure>
+<p>　　由于归档以顺序的方式创建，接收端将能按顺序接收到发送端按顺序发来的数据。</p>
+<p>　　在3.0中，我们增加了在MongoDB中并发执行备份和恢复多个集合的能力，这可以让你执行备份时，更加充分地利用磁盘I / O。 结果，写入mongodump的备份并不一定以顺序的方式接收。 同样，mongorestore同时读取还原操作集合，它的读取指令也并非是序列性的。</p>
+<p>　　通用归档格式，如tar，只支持连续的文件归档打包。mongodump和mongorestore利用这些备份格式，将得到一个不可接受的性能退化， 由于所有集合的数据将不得不被按顺序写入和读出。为了支持这些工具的并发行为，我们研发了一个特殊的通用备份格式，支持非并发文件的写入。 这个新的归档特性极大了提高了备份和还原操作的效率。</p>
+<p>#背景</p>
+<p>　　为了按上下文情况进行备份，我们考虑一下你们通常是如何创建备份的。比如，假设你有一个“country”的数据库，其中含有两个集合： “nigeria” and “austria”， 你可能会这样操作：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump --db country</div></pre></td></tr></table></figure>
+<p>　　上面的指令读取“country”数据库的所有集合， 然后将其写入“dump”目录。 上面的指令就会产生以下的目录列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">dump/</div><div class="line">└── [4.3M]  country</div><div class="line">    ├── [2.1M]  austria.bson</div><div class="line">    ├── [  87]  austria.metadata.json</div><div class="line">    ├── [2.1M]  nigeria.bson</div><div class="line">    ├── [  87]  nigeria.metadata.json</div><div class="line">    └── [ 140]  system.indexes.bson</div><div class="line"> </div><div class="line">1 directory, 5 files</div></pre></td></tr></table></figure>
+<p>　　你也可以备份整个服务器-这里的服务器包含两个数据库(country 和product)。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">├── [5.4M]  dump</div><div class="line">│   ├── [4.03M]  country</div><div class="line">│   │   ├── [2.1M]  austria.bson</div><div class="line">│   │   ├── [  87]  austria.metadata.json</div><div class="line">│   │   ├── [2.1M]  nigeria.bson</div><div class="line">│   │   ├── [  87]  nigeria.metadata.json</div><div class="line">│   │   └── [ 140]  system.indexes.bson</div><div class="line">│   └── [1.1M]  product</div><div class="line">│       ├── [1.0M]  mongodump.bson</div><div class="line">│       ├── [  89]  mongodump.metadata.json</div><div class="line">│       └── [  72]  system.indexes.bson</div><div class="line">2 directories, 8 files</div></pre></td></tr></table></figure>
+<p>　　或选择备份单个集合到标准输出，而不是一个目录：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --collection nigeria --out -</div></pre></td></tr></table></figure>
+<p>#归档支持</p>
+<p>　　在3.2中，我们引入了创建备份的一个附加模式 －－ “归档”模式，写入所有转储数据，甚至从不同的数据库和集合到单一的输出文件。 使用mongodump创建归档是极为简单的 – 只需要一个附加选项：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --archive=country.archive</div><div class="line">	</div><div class="line">-rw-rw-r-- 1 wisdom wisdom 4.2M Jun 29 11:12 country.archive</div></pre></td></tr></table></figure>
+<p>　　上面的指令将在“country.archive”文件中创建“country”的数据库归档。默认情况下，归档被写入到标准输出。不同于目录模式的执行备份，创建目录树，默认归档模式下备份结果就是一个单一的文件， 包含“country”数据库的所有数据-所有集合，索引等。</p>
+<p>　　你也可以备份一个单一的集合或整个服务器的内容：</p>
+<p>　　<strong>单一集合：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --collection nigeria --archive=nga.archive</div><div class="line">	</div><div class="line">-rw-rw-r-- 1 wisdom wisdom 2.1M Jun 29 11:15 nga.archive</div></pre></td></tr></table></figure>
+<p>　　<strong>整个服务器：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --archive=server.archive</div><div class="line">	</div><div class="line">-rw-rw-r-- 1 wisdom wisdom 5.3M Jun 29 11:26 server.archive</div></pre></td></tr></table></figure>
+<p>　　在mongodump的这种情况下，归档模式允许多个集合以非连续的方式打包在归档文件内。在mongorestore中，它允许多个集合进行并行恢复。这样，你可以在网络上执行数据迁移，降低磁盘I/O所占空间，享受到充分利用工具和底层存储引擎的并发所带来的好处。</p>
+<p>#数据迁移</p>
+<p>　　一个新的备份改善的例子， 是mongodump和mongorestore之间的进程间通信 – 特别是能够将数据从一个传到另一个。在以前的版本中，这种支持有限 – 一个时间只能传输一个集合。现在，使用归档就没有这样的限制。这种方式对于数据库服务器出于安全考虑而安装有防火墙的情况下很有用。在这种情况下，一个通常的设计是允许一个或多个服务器方访问数据库。使用归档功能，在SSH上进行数据转移数据，就轻而易举了：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh wisdom@proxy.server.com mongodump --host source.server.com --archive  | ssh wisdom@target.server.com mongorestore --archive</div></pre></td></tr></table></figure>
+<p>　　上面的指令使用SSH方式连接到代理主机（proxy.server.com），访问源服务器（source.server.com），在代理服务器上运行mongodump，为了最终的恢复，将源服务器的发送内容（通过SSH）到目标服务器（target.server.com）。</p>
+<p>　　如果没有归档，通过mongodump完成这些操作的唯一办法就是，先执行备份到磁盘，在将文件复制到目标服务器，然后运行mongorestore。通过备份，一个指令就可以完成- 无需任何附加磁盘I/O的开销。</p>
+<p>#压缩支持</p>
+<p>　　除了备份，我们还使用gzip进行压缩。这是通过在mongodump和mongorestore中引入一个新的指令行选项 “–gzip” 实现的。 压缩可用于目录以及归档模型下创建的备份，压缩还可以减少磁盘空间使用。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --gzip</div></pre></td></tr></table></figure>
+<p>　　生成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">dump/</div><div class="line">└── [568K]  country</div><div class="line">    ├── [254K]  austria.bson.gz</div><div class="line">    ├── [ 100]  austria.metadata.json.gz</div><div class="line">    ├── [254K]  nigeria.bson.gz</div><div class="line">    ├── [ 100]  nigeria.metadata.json.gz</div><div class="line">    └── [  91]  system.indexes.bson.gz</div><div class="line"> </div><div class="line">1 directory, 5 files</div></pre></td></tr></table></figure>
+<p>　　注意,目录模型的归档备份大小-568KB-比没有压缩的备份要小很多-4.3MB.</p>
+<p>　　<strong>压缩归档：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongodump --db country --gzip --archive=country.archive</div><div class="line"></div><div class="line">-rw-rw-r-- 1 wisdom wisdom 509K Jun 29 11:23 country.archive</div></pre></td></tr></table></figure>
+<p>　　对于归档来说，数据在写入归档之前需要先压缩。</p>
+<p>　　恢复压缩目录模式备份，你应该运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongorestore --gzip</div></pre></td></tr></table></figure>
+<p>　　类似用来恢复归档模式下的压缩备份的命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh wisdom@proxy.server.com mongodump --host source.server.com --archive --gzip  | ssh wisdom@target.server.com mongorestore --archive --gzip</div></pre></td></tr></table></figure>
+<p>　　数据迁移不会产生任何磁盘I / O开销，由于压缩，将会使用更少的网络带宽。</p>
+<p>#总结</p>
+<p>　　归档和压缩特性产生了许多用于进行备份和恢复操作的例子。如果你们正在使用MongoDB工具和其它类型的应用程序，我们也乐于倾听你们的经验及用例。 尽管目前最新版本工具还不文档，不过希望大家先对这些特性体验起来。</p>
+<p>　　<strong>注：</strong> 作为提供共享集群的集群范围快照的唯一备份解决方案，MongoDB Ops Manager和MongoDB Cloud Mannager被推荐用于较大的MongoDB部署。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/unix-like">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&text="><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&is_video=false&description="><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&title="><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/application/MongoDB归档及压缩工具/&name=&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 肖星
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/unix-like">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

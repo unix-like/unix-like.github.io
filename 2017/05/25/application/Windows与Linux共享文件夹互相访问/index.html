@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="首先安装并配置软件samba1234567891011121314151617sudo yum install samba samba-client  vim /etc/samba/smb.conf        找到security这行并将#注释符号去掉改成  security = share     #共享模式        添加如下代码：        [share]  comment =">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维装逼指南">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/index.html">
+<meta property="og:site_name" content="Linux运维装逼指南">
+<meta property="og:description" content="首先安装并配置软件samba1234567891011121314151617sudo yum install samba samba-client  vim /etc/samba/smb.conf        找到security这行并将#注释符号去掉改成  security = share     #共享模式        添加如下代码：        [share]  comment =">
+<meta property="og:updated_time" content="2017-05-25T03:36:03.634Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维装逼指南">
+<meta name="twitter:description" content="首先安装并配置软件samba1234567891011121314151617sudo yum install samba samba-client  vim /etc/samba/smb.conf        找到security这行并将#注释符号去掉改成  security = share     #共享模式        添加如下代码：        [share]  comment =">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux运维装逼指南</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/unix-like">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/05/25/application/命令行的艺术/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/05/25/application/tc命令Linux基于IP进行流量限速/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&text="><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&is_video=false&description="><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&name=&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#首先安装并配置软件samba"><span class="toc-number">1.</span> <span class="toc-text">首先安装并配置软件samba</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）在windows下访问Linux共享："><span class="toc-number">2.</span> <span class="toc-text">（1）在windows下访问Linux共享：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）在linux下访问windows共享："><span class="toc-number">3.</span> <span class="toc-text">（2）在linux下访问windows共享：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Linux运维装逼指南</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-05-25T03:36:03.638Z" itemprop="datePublished">2017-05-25</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="首先安装并配置软件samba"><a href="#首先安装并配置软件samba" class="headerlink" title="首先安装并配置软件samba"></a>首先安装并配置软件samba</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sudo yum install samba samba-client  </div><div class="line">vim /etc/samba/smb.conf  </div><div class="line">      </div><div class="line">找到security这行并将<span class="comment">#注释符号去掉改成  </span></div><div class="line">security = share     <span class="comment">#共享模式  </span></div><div class="line">      </div><div class="line">添加如下代码：  </div><div class="line">      </div><div class="line">[share]  </div><div class="line">comment = share  </div><div class="line">path = /home/<span class="built_in">test</span>          <span class="comment">#设置共享文件夹目录  </span></div><div class="line">browseable = yes  </div><div class="line">guest ok = yes  </div><div class="line">writable = yes  </div><div class="line"></div><div class="line">service smb start  </div><div class="line">service smbd start   (ubuntu)</div></pre></td></tr></table></figure>
+<h3 id="（1）在windows下访问Linux共享："><a href="#（1）在windows下访问Linux共享：" class="headerlink" title="（1）在windows下访问Linux共享："></a>（1）在windows下访问Linux共享：</h3><p>直接在windows运行里输入\192.168.16.128即可访问linux共享资源，并且不需要密码。</p>
+<h3 id="（2）在linux下访问windows共享："><a href="#（2）在linux下访问windows共享：" class="headerlink" title="（2）在linux下访问windows共享："></a>（2）在linux下访问windows共享：</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">smbclient -L 192.168.16.1 -U xiaoxing   //查看共享了那些目录，由此知道主机名为XIAOXING-PC</div><div class="line"></div><div class="line">smbclient //192.168.16.1/Users -U xiaoxing     输入windows密码即可进入</div></pre></td></tr></table></figure>
+<p>//直接挂载windows共享目录<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456   //XIAOXING-PC/system /mnt/win/</div><div class="line">或者：</div><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456   //192.168.16.1/system /mnt/win/</div><div class="line">或者：</div><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456,ip=192.168.16.1 //XIAOXING-PC/system /mnt/win/</div></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<p>如果出现如下错误：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount: unknown filesystem <span class="built_in">type</span> ’smbfs’</div></pre></td></tr></table></figure></p>
+<p>说明系统已经不能识别smbfs文件系统了，查资料说RHE5的kernel已经不再支持smbfs，而改用Common Internet File Systemcifs(cifs)取代了原有的smbfs，所以命令就改为:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mount -t cifs -o username=xiaoxing,password=123456   //192.168.16.1/system /mnt/win/</div></pre></td></tr></table></figure></p>
+<p>解开挂载</p>
+<p>断开刚才挂载在linux /mnt/win/路径上的winodws共享文件夹。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo umount /mnt/win/</div></pre></td></tr></table></figure></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/unix-like">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#首先安装并配置软件samba"><span class="toc-number">1.</span> <span class="toc-text">首先安装并配置软件samba</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）在windows下访问Linux共享："><span class="toc-number">2.</span> <span class="toc-text">（1）在windows下访问Linux共享：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）在linux下访问windows共享："><span class="toc-number">3.</span> <span class="toc-text">（2）在linux下访问windows共享：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&text="><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&is_video=false&description="><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&title="><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/application/Windows与Linux共享文件夹互相访问/&name=&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 肖星
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/unix-like">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
