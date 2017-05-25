@@ -7,14 +7,15 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。 123456789[root@l-webdb-docker-dev ~]# history     1  vim /gotwo_data">
+<meta name="keywords" content="bash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux运维装逼指南">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/index.html">
+<meta property="og:title" content="Bash历史中执行过的每一项命令设置时间和日期.md">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
 <meta property="og:description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。 123456789[root@l-webdb-docker-dev ~]# history     1  vim /gotwo_data">
-<meta property="og:updated_time" content="2017-05-25T03:32:59.633Z">
+<meta property="og:updated_time" content="2017-05-25T04:23:05.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维装逼指南">
+<meta name="twitter:title" content="Bash历史中执行过的每一项命令设置时间和日期.md">
 <meta name="twitter:description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。 123456789[root@l-webdb-docker-dev ~]# history     1  vim /gotwo_data">
     
     
@@ -35,7 +36,7 @@
         
     
     <!-- title -->
-    <title>Linux运维装逼指南</title>
+    <title>Bash历史中执行过的每一项命令设置时间和日期.md</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -67,8 +68,6 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/05/25/application/Linux查看文件编码格式及文件编码转换/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-        
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -81,16 +80,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&text="><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&is_video=false&description="><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&name=&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&text=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&is_video=false&description=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bash历史中执行过的每一项命令设置时间和日期.md&body=Check out this article: http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&name=Bash历史中执行过的每一项命令设置时间和日期.md&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -107,7 +106,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        
+        Bash历史中执行过的每一项命令设置时间和日期.md
     </h1>
 
 
@@ -118,11 +117,16 @@
       </span>
       
     <div class="postdate">
-        <time datetime="2017-05-25T03:32:59.637Z" itemprop="datePublished">2017-05-25</time>
+        <time datetime="2017-05-25T04:21:42.000Z" itemprop="datePublished">2017-05-25</time>
     </div>
 
 
       
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/bash/">bash</a>
+    </div>
+
 
     </div>
   </header>
@@ -183,16 +187,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&text="><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&is_video=false&description="><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&title="><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/application/Bash历史中执行过的每一项命令设置时间和日期/&name=&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&text=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&is_video=false&description=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bash历史中执行过的每一项命令设置时间和日期.md&body=Check out this article: http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&title=Bash历史中执行过的每一项命令设置时间和日期.md"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/&name=Bash历史中执行过的每一项命令设置时间和日期.md&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
