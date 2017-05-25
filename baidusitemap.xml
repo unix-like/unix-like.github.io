@@ -3,23 +3,26 @@
 
 
     
-    
   <url>
-    <loc>http://www.unix-like.com/2017/05/25/redis%20%E6%A8%A1%E7%B3%8A%E5%88%A0%E9%99%A4key/</loc>
-    <lastmod>2017-05-25T08:46:09.409Z</lastmod>
+    <loc>http://www.unix-like.com/2017/05/25/redis%E6%A8%A1%E7%B3%8A%E5%88%A0%E9%99%A4key/</loc>
+    <lastmod>2017-05-25T13:43:56.554Z</lastmod>
     <data>
         <display>
         <title>redis模糊删除key</title>
-        <pubTime>2017-05-25T09:02:28.000Z</pubTime>
+        <pubTime>2017-05-25T05:58:41.000Z</pubTime>
         
-        <tag>redis</tag>
+        <tag>HTML redis</tag>
          
          
            
+             
+              <breadCrumb title="HTML database" url="http://www.unix-like.com/categories/HTML-database/"/>
+          
         </display>
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://www.unix-like.com/2017/05/25/pdflush%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3%E4%B8%8E%E4%BC%98%E5%8C%96/</loc>
