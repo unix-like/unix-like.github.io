@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.unix-like.com/2017/05/25/MongoDB归档及压缩工具/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
 <meta property="og:description" content="原文地址：http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html 介绍　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个方面的">
-<meta property="og:updated_time" content="2017-05-25T08:37:33.478Z">
+<meta property="og:updated_time" content="2017-05-26T02:22:25.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB归档及压缩工具">
 <meta name="twitter:description" content="原文地址：http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html 介绍　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个方面的">
@@ -299,6 +299,7 @@
         <p>　　原文地址：<a href="http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html" target="_blank" rel="external">http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html</a></p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个方面的新功能，(planned for the 3.2 release) – 归档和压缩。</p>
 <p>　　在本文中，我将对mongodump和mongorestore提供更详细的归档和压缩特性说明，并探索使用这些特性的可行用例。</p>
+<a id="more"></a>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>　　一个通常目的的归档一般由一个或多个文件组成。这样例子如磁带归档格式(tar)，其中包含按顺序组成的一个或多个文件。归档在执行进程间通信的应用程序中尤其有用，例如，你可以通过远程服务器进行目录的tarball压缩，然后通过SSH，传送到到本机上进行解压：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh source.server.com tar c sourceDirectory | tar x</div></pre></td></tr></table></figure>
 <p>　　由于归档以顺序的方式创建，接收端将能按顺序接收到发送端按顺序发来的数据。</p>
@@ -352,7 +353,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 肖星 的个人博客">肖星</a></p>
         <p><span>发布时间:</span>2017年05月25日 - 16时02分</p>
-        <p><span>最后更新:</span>2017年05月25日 - 16时37分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 10时22分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/05/25/MongoDB归档及压缩工具/" title="MongoDB归档及压缩工具">http://www.unix-like.com/2017/05/25/MongoDB归档及压缩工具/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/MongoDB归档及压缩工具/　　作者: 肖星" title=""></span>
