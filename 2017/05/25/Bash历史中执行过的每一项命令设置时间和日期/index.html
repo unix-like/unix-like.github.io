@@ -10,17 +10,17 @@
   
   <title>Bash历史中执行过的每一项命令设置时间和日期.md | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。 123456789[root@l-webdb-docker-dev ~]# history     1  vim /gotwo_data">
+  <meta name="description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。">
 <meta name="keywords" content="bash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bash历史中执行过的每一项命令设置时间和日期.md">
 <meta property="og:url" content="http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。 123456789[root@l-webdb-docker-dev ~]# history     1  vim /gotwo_data">
-<meta property="og:updated_time" content="2017-05-25T04:23:05.915Z">
+<meta property="og:description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。">
+<meta property="og:updated_time" content="2017-05-26T02:29:21.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash历史中执行过的每一项命令设置时间和日期.md">
-<meta name="twitter:description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。 123456789[root@l-webdb-docker-dev ~]# history     1  vim /gotwo_data">
+<meta name="twitter:description" content="在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 ~/.bash_history 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 history 命令这样的选项来看他或她自己的命令历史。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -191,7 +191,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/system/" style="font-size: 20px;">system</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a>
+                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 10px;">调优</a>
                     </div>
                 </section>
                 
@@ -283,6 +283,10 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/system/">system</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
@@ -296,7 +300,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 <code>~/.bash_history</code> 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 <code>history</code> 命令这样的选项来看他或她自己的命令历史。</p>
+        <p>在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 <code>~/.bash_history</code> 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 <code>history</code> 命令这样的选项来看他或她自己的命令历史。<br><a id="more"></a></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@l-webdb-docker-dev ~]<span class="comment"># history </span></div><div class="line">    1  vim /gotwo_data/scripts/cronjob/sync_mysql_online.sh</div><div class="line">    2  <span class="built_in">exit</span></div><div class="line">    3  ps -ef | grep 4004</div><div class="line">    4  <span class="built_in">exit</span></div><div class="line">    5  mysql</div><div class="line">    6  mysqldump -uroot -p db_ad &gt; /tmp/db_ad.sql</div><div class="line">    7  vim /tmp/db_ad.sql </div><div class="line">    8  mysqldump -uroot -p db_ad &gt; /tmp/db_ad.sql</div></pre></td></tr></table></figure>
 <p>从上面<code>history</code>命令的输出可知，命令被执行的日期和时间并没有显示出来。基本上所有的 Linux 发行版的默认设置都是这样的。</p>
 <p>在这篇文章里，我们将解释当在 Bash 中执行<code>history</code>命令显示每个命令时，如何配置显示时间戳信息。</p>
@@ -330,7 +334,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 肖星 的个人博客">肖星</a></p>
         <p><span>发布时间:</span>2017年05月25日 - 12时21分</p>
-        <p><span>最后更新:</span>2017年05月25日 - 12时23分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 10时29分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/" title="Bash历史中执行过的每一项命令设置时间和日期.md">http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/　　作者: 肖星" title=""></span>

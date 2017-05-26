@@ -11,13 +11,13 @@
   <title>Linux下清空或删除大文件内容的5种方法 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="编译自：http://www.tecmint.com/empty-delete-file-content-linux/ 作者： Aaron Kili 原创：LCTT https://linux.cn/article-8024-1.html 译者： FSSlc  在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这">
-<meta name="keywords" content="system">
+<meta name="keywords" content="bash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下清空或删除大文件内容的5种方法">
 <meta property="og:url" content="http://www.unix-like.com/2017/05/25/Linux下清空或删除大文件内容的5种方法/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
 <meta property="og:description" content="编译自：http://www.tecmint.com/empty-delete-file-content-linux/ 作者： Aaron Kili 原创：LCTT https://linux.cn/article-8024-1.html 译者： FSSlc  在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这">
-<meta property="og:updated_time" content="2017-05-25T08:33:55.954Z">
+<meta property="og:updated_time" content="2017-05-26T02:30:58.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下清空或删除大文件内容的5种方法">
 <meta name="twitter:description" content="编译自：http://www.tecmint.com/empty-delete-file-content-linux/ 作者： Aaron Kili 原创：LCTT https://linux.cn/article-8024-1.html 译者： FSSlc  在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这">
@@ -191,7 +191,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/system/" style="font-size: 20px;">system</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a>
+                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 10px;">调优</a>
                     </div>
                 </section>
                 
@@ -283,10 +283,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/system/">system</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/system/">system</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -301,7 +305,7 @@
 <p>在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这个目的呢？在这篇文章中，我们将介绍几种借助一些实用的命令来清空文件内容的方法。</p>
 <p><strong>注意：</strong> 在我们进一步深入了解这些方法之前，请记住: 由于在 Linux 中一切皆文件，你需要时刻注意，确保你将要清空的文件不是重要的用户文件或者系统文件。清空重要的系统文件或者配置文件可能会引发严重的应用失败或者系统错误。</p>
 <p>前面已经说道，下面的这些方法都是从命令行中达到清空文件的目的。</p>
-<p><strong>提示：</strong> 在下面的示例中，我们将使用名为 access.log 的文件来作为示例样本。</p>
+<p><strong>提示：</strong> 在下面的示例中，我们将使用名为 access.log 的文件来作为示例样本。<br><a id="more"></a></p>
 <h1 id="1-通过重定向到-Null-来清空文件内容"><a href="#1-通过重定向到-Null-来清空文件内容" class="headerlink" title="1. 通过重定向到 Null 来清空文件内容"></a>1. 通过重定向到 Null 来清空文件内容</h1><p>清空或者让一个文件成为空白的最简单方式，是像下面那样，通过 shell 重定向 <code>null</code> （不存在的事物）到该文件：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; access.log</div></pre></td></tr></table></figure>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost logs]<span class="comment"># du -sh catalina.out </span></div><div class="line">9.7G	catalina.out</div><div class="line">[root@localhost logs]<span class="comment"># &gt; catalina.out </span></div><div class="line">[root@localhost logs]<span class="comment"># du -sh catalina.out </span></div><div class="line">0	catalina.out</div></pre></td></tr></table></figure>
@@ -352,7 +356,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 肖星 的个人博客">肖星</a></p>
         <p><span>发布时间:</span>2017年05月25日 - 14时02分</p>
-        <p><span>最后更新:</span>2017年05月25日 - 16时33分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 10时30分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/" title="Linux下清空或删除大文件内容的5种方法">http://www.unix-like.com/2017/05/25/Linux下清空或删除大文件内容的5种方法/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/Linux下清空或删除大文件内容的5种方法/　　作者: 肖星" title=""></span>

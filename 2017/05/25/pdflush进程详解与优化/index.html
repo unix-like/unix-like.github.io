@@ -10,17 +10,17 @@
   
   <title>pdflush进程详解与优化 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。 在以下两种情况发生时，脏页被写回磁盘：  当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。  当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。">
-<meta name="keywords" content="system">
+  <meta name="description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
+<meta name="keywords" content="调优">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pdflush进程详解与优化">
 <meta property="og:url" content="http://www.unix-like.com/2017/05/25/pdflush进程详解与优化/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。 在以下两种情况发生时，脏页被写回磁盘：  当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。  当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。">
-<meta property="og:updated_time" content="2017-05-25T08:41:27.473Z">
+<meta property="og:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
+<meta property="og:updated_time" content="2017-05-26T02:32:09.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pdflush进程详解与优化">
-<meta name="twitter:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。 在以下两种情况发生时，脏页被写回磁盘：  当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。  当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。">
+<meta name="twitter:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -191,7 +191,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/system/" style="font-size: 20px;">system</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a>
+                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 10px;">调优</a>
                     </div>
                 </section>
                 
@@ -283,10 +283,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/system/">system</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/system/">system</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -297,6 +301,7 @@
       
           
         <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。</p>
+<a id="more"></a>
 <p>在以下两种情况发生时，脏页被写回磁盘：</p>
 <ul>
 <li><p>当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。</p>
@@ -369,7 +374,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/pdflush进程详解与优化/">pdflush进程详解与优化</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 肖星 的个人博客">肖星</a></p>
         <p><span>发布时间:</span>2017年05月25日 - 16时38分</p>
-        <p><span>最后更新:</span>2017年05月25日 - 16时41分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 10时32分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/05/25/pdflush进程详解与优化/" title="pdflush进程详解与优化">http://www.unix-like.com/2017/05/25/pdflush进程详解与优化/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/pdflush进程详解与优化/　　作者: 肖星" title=""></span>

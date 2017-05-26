@@ -10,17 +10,17 @@
   
   <title>Linux查看文件编码格式及文件编码转换 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。 查看文件编码在Linux中查看文件编码可以通过以下几种方式： 1.在Vim 中可以直接查看文件编码1:set fileencoding 即可">
+  <meta name="description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。">
 <meta name="keywords" content="字符集">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux查看文件编码格式及文件编码转换">
 <meta property="og:url" content="http://www.unix-like.com/2017/05/25/Linux查看文件编码格式及文件编码转换/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。 查看文件编码在Linux中查看文件编码可以通过以下几种方式： 1.在Vim 中可以直接查看文件编码1:set fileencoding 即可">
-<meta property="og:updated_time" content="2017-05-25T07:11:40.321Z">
+<meta property="og:description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。">
+<meta property="og:updated_time" content="2017-05-26T02:29:57.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux查看文件编码格式及文件编码转换">
-<meta name="twitter:description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。 查看文件编码在Linux中查看文件编码可以通过以下几种方式： 1.在Vim 中可以直接查看文件编码1:set fileencoding 即可">
+<meta name="twitter:description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -191,7 +191,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/system/" style="font-size: 20px;">system</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a>
+                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 10px;">调优</a>
                     </div>
                 </section>
                 
@@ -283,6 +283,10 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/system/">system</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
@@ -297,6 +301,7 @@
       
           
         <p>如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。</p>
+<a id="more"></a>
 <h1 id="查看文件编码"><a href="#查看文件编码" class="headerlink" title="查看文件编码"></a>查看文件编码</h1><p>在Linux中查看文件编码可以通过以下几种方式：</p>
 <h3 id="1-在Vim-中可以直接查看文件编码"><a href="#1-在Vim-中可以直接查看文件编码" class="headerlink" title="1.在Vim 中可以直接查看文件编码"></a>1.在Vim 中可以直接查看文件编码</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> fileencoding</div></pre></td></tr></table></figure>
 <p>即可显示文件编码格式。</p>
@@ -322,7 +327,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 肖星 的个人博客">肖星</a></p>
         <p><span>发布时间:</span>2017年05月25日 - 12时27分</p>
-        <p><span>最后更新:</span>2017年05月25日 - 15时11分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 10时29分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/" title="Linux查看文件编码格式及文件编码转换">http://www.unix-like.com/2017/05/25/Linux查看文件编码格式及文件编码转换/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/Linux查看文件编码格式及文件编码转换/　　作者: 肖星" title=""></span>
