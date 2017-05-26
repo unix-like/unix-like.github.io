@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.unix-like.com/2017/05/25/redis模糊删除key/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
 <meta property="og:description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是： 1redis-cli KEYS &quot;pattern&quot; | xargs redis-cli DEL 其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。 所有的Redis命令">
-<meta property="og:updated_time" content="2017-05-26T01:53:58.254Z">
+<meta property="og:updated_time" content="2017-05-26T02:02:53.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis模糊删除key">
 <meta name="twitter:description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是： 1redis-cli KEYS &quot;pattern&quot; | xargs redis-cli DEL 其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。 所有的Redis命令">
@@ -167,9 +167,11 @@
                         
                             <li><a rel="external nofollow" href="/archives/">所有文章</a></li>
                         
-                            <li><a rel="external nofollow" href="/categories/digital">玩转数码</a></li>
+                            <li><a rel="external nofollow" href="/categories/database">数据库</a></li>
                         
-                            <li><a rel="external nofollow" href="/categories/cognition">认知提升</a></li>
+                            <li><a rel="external nofollow" href="/categories/python">编程</a></li>
+                        
+                            <li><a rel="external nofollow" href="/categories/system">Linux系统</a></li>
                         
                             <li><a rel="external nofollow" href="/about/">关于我</a></li>
                         
@@ -231,9 +233,11 @@
                 
                     <li><a href="/archives/">所有文章</a></li>
                 
-                    <li><a href="/categories/digital">玩转数码</a></li>
+                    <li><a href="/categories/database">数据库</a></li>
                 
-                    <li><a href="/categories/cognition">认知提升</a></li>
+                    <li><a href="/categories/python">编程</a></li>
+                
+                    <li><a href="/categories/system">Linux系统</a></li>
                 
                     <li><a href="/about/">关于我</a></li>
                 
@@ -306,8 +310,7 @@
 <p>prefix_: 需要删除key的匹配的前缀名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"prefix_"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure></p>
 <ul>
 <li><a id="more"></a>
-<the rest="" of="" contents="" |="" 余下全文="">
-</the></li>
+</li>
 </ul>
 
       
@@ -320,7 +323,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/redis模糊删除key/">redis模糊删除key</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 肖星 的个人博客">肖星</a></p>
         <p><span>发布时间:</span>2017年05月25日 - 13时58分</p>
-        <p><span>最后更新:</span>2017年05月26日 - 09时53分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 10时02分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/05/25/redis模糊删除key/" title="redis模糊删除key">http://www.unix-like.com/2017/05/25/redis模糊删除key/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/redis模糊删除key/　　作者: 肖星" title=""></span>
