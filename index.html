@@ -616,7 +616,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了description。
+              <p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"pattern"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure>
+<p>其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。</p>
+<p>所有的Redis命令可以在这里找到：<a href="http://redis.io/commands" target="_blank" rel="external">http://redis.io/commands</a></p>
+<p>KEYS命令：<a href="http://redis.io/commands/keys" target="_blank" rel="external">http://redis.io/commands/keys</a></p>
+<p>DEL命令: <a href="http://redis.io/commands/del" target="_blank" rel="external">http://redis.io/commands/del</a></p>
+<p><strong>my demo:</strong></p>
+<p>prefix_: 需要删除key的匹配的前缀名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"prefix_"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure></p>
+<ul>
+<li>
           
       
     </div>

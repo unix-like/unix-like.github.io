@@ -232,7 +232,7 @@
     <link href="http://www.unix-like.com/2017/05/25/redis%E6%A8%A1%E7%B3%8A%E5%88%A0%E9%99%A4key/"/>
     <id>http://www.unix-like.com/2017/05/25/redis模糊删除key/</id>
     <published>2017-05-25T05:58:41.000Z</published>
-    <updated>2017-05-25T14:35:16.739Z</updated>
+    <updated>2017-05-26T01:53:58.254Z</updated>
     
     <content type="html"><![CDATA[<p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"pattern"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure>
@@ -242,11 +242,25 @@
 <p>DEL命令: <a href="http://redis.io/commands/del" target="_blank" rel="external">http://redis.io/commands/del</a></p>
 <p><strong>my demo:</strong></p>
 <p>prefix_: 需要删除key的匹配的前缀名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"prefix_"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+</the></li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
-      Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了description。
+      &lt;p&gt;Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;redis-cli KEYS &lt;span class=&quot;string&quot;&gt;&quot;pattern&quot;&lt;/span&gt; | xargs redis-cli DEL&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。&lt;/p&gt;
+&lt;p&gt;所有的Redis命令可以在这里找到：&lt;a href=&quot;http://redis.io/commands&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://redis.io/commands&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;KEYS命令：&lt;a href=&quot;http://redis.io/commands/keys&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://redis.io/commands/keys&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;DEL命令: &lt;a href=&quot;http://redis.io/commands/del&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://redis.io/commands/del&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;my demo:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;prefix_: 需要删除key的匹配的前缀名&lt;br&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;redis-cli KEYS &lt;span class=&quot;string&quot;&gt;&quot;prefix_&quot;&lt;/span&gt; | xargs redis-cli DEL&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
     
     </summary>
     
