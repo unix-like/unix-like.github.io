@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.unix-like.com/2017/05/25/pdflush进程详解与优化/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
 <meta property="og:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
-<meta property="og:updated_time" content="2017-05-26T02:32:09.687Z">
+<meta property="og:updated_time" content="2017-05-26T05:20:14.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pdflush进程详解与优化">
 <meta name="twitter:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
@@ -312,19 +312,15 @@
 <a id="more"></a>
 <p>在以下两种情况发生时，脏页被写回磁盘：</p>
 <ul>
-<li><p>当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。</p>
-</li>
-<li><p>当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。</p>
-</li>
+<li>当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。</li>
+<li>当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。</li>
 </ul>
 <p>　　上面两种工作的目的完全不同。实际上，在老内核中，这是由两个独立的内核线程分别完成的。但是在2.6内核中，由一群内核线程—pdflush后台回写例程—统一执行两种工作。</p>
 <p>　　我们来看看这两个目标是如何具体实现的。首先，当系统中的空闲内存低于一个特定的阈值时，pdflush线程将脏页刷新回磁盘。该后台回写例程的目的在于在可用物理内存过低时，释放脏页以重新获得内存。特定的内存阈值可以通过<code>dirty_background_ratio</code>参数设置。当空闲内存比阈值<code>dirty_ background_ratio</code>还低时，内核便会调用函数<code>wakeup_bdflush()</code>唤醒一个pdflush线程，随后pdflush线程进一步调用函数<code>background_writeout()</code>开始将脏页写回磁盘。函数<code>background_ writeout()</code>需要一个长整型参数，该参数指定试图回写的页面数目。</p>
 <p>　　函数<code>background_writeout()</code>会连续地写出数据，直到满足以下两个条件：</p>
 <ul>
-<li><p>已经有指定的最小数目的页被写出到磁盘。</p>
-</li>
-<li><p>空闲内存数已经回升，超过了阈值dirty_background_ratio。</p>
-</li>
+<li>已经有指定的最小数目的页被写出到磁盘。</li>
+<li>空闲内存数已经回升，超过了阈值dirty_background_ratio。</li>
 </ul>
 <p>　　上述条件确保了pdflush操作可以减轻系统中内存不足的压力。回写操作不会在达到这两个条件前停止，除非pdflush写回了所有的脏页，没有剩下的脏页可再被写回了。</p>
 <p>　　要满足第二个目标，pdflush后台例程会被周期性唤醒（和空闲内存是否过低无关），将那些在内存中驻留时间过长的脏页写出，确保内存中不会有长期存在的脏页。假如系统发生崩溃，则内存会处于混乱之中，而那些在内存中还没来得及写回磁盘的脏页就会丢失，所以周期性同步回写非常重要。</p>
@@ -368,7 +364,7 @@
 </ol>
 <p>　　这两条规则可以将/proc/sys中的任一文件名转换成sysctl中的变量名。</p>
 <p>　　例如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/proc/sys/net/ipv4/ip_forward ＝》 net.ipv4.ip_forward</div><div class="line">/proc/sys/kernel/hostname ＝》 kernel.hostname</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/proc/sys/net/ipv4/ip_forward =&gt; net.ipv4.ip_forward</div><div class="line">/proc/sys/kernel/hostname =&gt;  kernel.hostname</div></pre></td></tr></table></figure>
 <p>　　可以使用下面命令查询所有可修改的变量名</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –a</div></pre></td></tr></table></figure>
 
@@ -382,7 +378,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/pdflush进程详解与优化/">pdflush进程详解与优化</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 肖星 的个人博客">肖星</a></p>
         <p><span>发布时间:</span>2017年05月25日 - 16时38分</p>
-        <p><span>最后更新:</span>2017年05月26日 - 10时32分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 13时20分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/05/25/pdflush进程详解与优化/" title="pdflush进程详解与优化">http://www.unix-like.com/2017/05/25/pdflush进程详解与优化/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/pdflush进程详解与优化/　　作者: 肖星" title=""></span>
