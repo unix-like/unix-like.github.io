@@ -8,19 +8,19 @@
   
 
   
-  <title>Linux下清空或删除大文件内容的5种方法 | Linux运维装逼指南</title>
+  <title>pdflush进程详解与优化 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编译自：http://www.tecmint.com/empty-delete-file-content-linux/ 作者： Aaron Kili 原创：LCTT https://linux.cn/article-8024-1.html 译者： FSSlc  在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这">
-<meta name="keywords" content="bash">
+  <meta name="description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
+<meta name="keywords" content="调优">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux下清空或删除大文件内容的5种方法">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/25/Linux下清空或删除大文件内容的5种方法/index.html">
+<meta property="og:title" content="pdflush进程详解与优化">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/25/system/pdflush进程详解与优化/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="编译自：http://www.tecmint.com/empty-delete-file-content-linux/ 作者： Aaron Kili 原创：LCTT https://linux.cn/article-8024-1.html 译者： FSSlc  在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这">
-<meta property="og:updated_time" content="2017-05-26T02:30:58.885Z">
+<meta property="og:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
+<meta property="og:updated_time" content="2017-05-26T05:20:14.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下清空或删除大文件内容的5种方法">
-<meta name="twitter:description" content="编译自：http://www.tecmint.com/empty-delete-file-content-linux/ 作者： Aaron Kili 原创：LCTT https://linux.cn/article-8024-1.html 译者： FSSlc  在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这">
+<meta name="twitter:title" content="pdflush进程详解与优化">
+<meta name="twitter:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -195,7 +195,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -264,11 +264,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Linux下清空或删除大文件内容的5种方法" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-system/pdflush进程详解与优化" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/" class="article-date">
-      <time datetime="2017-05-25T06:02:28.000Z" itemprop="datePublished">2017-05-25</time>
+      <a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/" class="article-date">
+      <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">2017-05-25</time>
 </a>
 
     </div>
@@ -282,7 +282,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Linux下清空或删除大文件内容的5种方法
+      pdflush进程详解与优化
     </h1>
   
 
@@ -298,7 +298,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -308,51 +308,65 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>编译自：<a href="http://www.tecmint.com/empty-delete-file-content-linux/" target="_blank" rel="external">http://www.tecmint.com/empty-delete-file-content-linux/</a> 作者： Aaron Kili</p>
-<p>原创：LCTT <a href="https://linux.cn/article-8024-1.html" target="_blank" rel="external">https://linux.cn/article-8024-1.html</a> 译者： FSSlc </p>
-<p>在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这个目的呢？在这篇文章中，我们将介绍几种借助一些实用的命令来清空文件内容的方法。</p>
-<p><strong>注意：</strong> 在我们进一步深入了解这些方法之前，请记住: 由于在 Linux 中一切皆文件，你需要时刻注意，确保你将要清空的文件不是重要的用户文件或者系统文件。清空重要的系统文件或者配置文件可能会引发严重的应用失败或者系统错误。</p>
-<p>前面已经说道，下面的这些方法都是从命令行中达到清空文件的目的。</p>
-<p><strong>提示：</strong> 在下面的示例中，我们将使用名为 access.log 的文件来作为示例样本。<br><a id="more"></a></p>
-<h1 id="1-通过重定向到-Null-来清空文件内容"><a href="#1-通过重定向到-Null-来清空文件内容" class="headerlink" title="1. 通过重定向到 Null 来清空文件内容"></a>1. 通过重定向到 Null 来清空文件内容</h1><p>清空或者让一个文件成为空白的最简单方式，是像下面那样，通过 shell 重定向 <code>null</code> （不存在的事物）到该文件：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; access.log</div></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost logs]<span class="comment"># du -sh catalina.out </span></div><div class="line">9.7G	catalina.out</div><div class="line">[root@localhost logs]<span class="comment"># &gt; catalina.out </span></div><div class="line">[root@localhost logs]<span class="comment"># du -sh catalina.out </span></div><div class="line">0	catalina.out</div></pre></td></tr></table></figure>
-<p>在 Linux 下使用 Null 重定向来清空大文件</p>
-<h1 id="2-使用-true-命令重定向来清空文件"><a href="#2-使用-true-命令重定向来清空文件" class="headerlink" title="2. 使用 true 命令重定向来清空文件"></a>2. 使用 <code>true</code> 命令重定向来清空文件</h1><p>下面我们将使用 : 符号，它是 shell 的一个内置命令，等同于 true 命令，它可被用来作为一个 no-op（即不进行任何操作）。</p>
-<p>另一种清空文件的方法是将 : 或者 true 内置命令的输出重定向到文件中，具体如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">: &gt; access.log</div></pre></td></tr></table></figure>
-<p> 或<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">true</span> &gt; access.log</div></pre></td></tr></table></figure></p>
-<p>使用 Linux 命令清空大文件</p>
-<h1 id="3-使用-cat-cp-dd-实用工具及-dev-null-设备来清空文件"><a href="#3-使用-cat-cp-dd-实用工具及-dev-null-设备来清空文件" class="headerlink" title="3. 使用 cat/cp/dd 实用工具及 /dev/null 设备来清空文件"></a>3. 使用 cat/cp/dd 实用工具及 /dev/null 设备来清空文件</h1><p>在 Linux 中， null 设备基本上被用来丢弃某个进程不再需要的输出流，或者作为某个输入流的空白文件，这些通常可以利用重定向机制来达到。</p>
-<p>所以 /dev/null 设备文件是一个特殊的文件，它将清空送到它这里来的所有输入，而它的输出则可被视为一个空文件。</p>
-<p>另外，你可以通过使用 cat 命令 显示 /dev/null 的内容然后重定向输出到某个文件，以此来达到清空该文件的目的。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /dev/null &gt; access.log</div></pre></td></tr></table></figure>
-<p>使用 cat 命令来清空文件</p>
-<p>下面，我们将使用 cp 命令 复制 /dev/null 的内容到某个文件来达到清空该文件的目的，具体如下所示：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /dev/null access.log</div></pre></td></tr></table></figure>
-<p>使用 cp 命令来清空文件</p>
-<p>而下面的命令中， if 代表输入文件，of 代表输出文件。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dd <span class="keyword">if</span>=/dev/null of=access.log</div></pre></td></tr></table></figure>
-<p>使用 dd 命令来清空文件内容</p>
-<h1 id="4-使用-echo-命令清空文件"><a href="#4-使用-echo-命令清空文件" class="headerlink" title="4. 使用 echo 命令清空文件"></a>4. 使用 echo 命令清空文件</h1><p>在这里，你可以使用 echo 命令 将空字符串的内容重定向到文件中，具体如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">""</span> &gt; access.log</div></pre></td></tr></table></figure>
-<p>或者<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> &gt; access.log</div></pre></td></tr></table></figure></p>
-<p>使用 echo 命令来清空文件</p>
-<p><strong>注意：</strong>你应该记住空字符串并不等同于 null 。字符串表明它是一个具体的事物，只不过它的内容可能是空的，但 null 则意味着某个事物并不存在。</p>
-<p>基于这个原因，当你将 echo 命令 的输出作为输入重定向到文件后，使用 cat 命令 来查看该文件的内容时，你将看到一个空白行（即一个空字符串）。</p>
-<p>要将 null 做为输出输入到文件中，你应该使用 -n 选项，这个选项将告诉 echo 不再像上面的那个命令那样输出结尾的那个新行。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -n <span class="string">""</span> &gt; access.log</div></pre></td></tr></table></figure>
-<p>使用 Null 重定向来清空文件</p>
-<h1 id="5-使用-truncate-命令来清空文件内容"><a href="#5-使用-truncate-命令来清空文件内容" class="headerlink" title="5. 使用 truncate 命令来清空文件内容"></a>5. 使用 truncate 命令来清空文件内容</h1><p>truncate 可被用来将一个文件缩小或者扩展到某个给定的大小。</p>
-<p>你可以利用它和 -s 参数来特别指定文件的大小。要清空文件的内容，则在下面的命令中将文件的大小设定为 0:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">truncate <span class="_">-s</span> 0 access.log</div></pre></td></tr></table></figure>
-<p>在 Linux 中截断文件内容</p>
-<p>我要介绍的就是这么多了。在本文中，我们介绍了几种通过使用一些简单的命令行工具和 shell 重定向机制来清除或清空文件内容的方法。</p>
-<p>上面介绍的这些可能并不是达到清空文件内容这个目的的所有可行的实践方法，所以你也可以通过下面的评论栏告诉我们本文中尚未提及的其他方法。</p>
+        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。</p>
+<a id="more"></a>
+<p>在以下两种情况发生时，脏页被写回磁盘：</p>
+<ul>
+<li>当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。</li>
+<li>当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。</li>
+</ul>
+<p>　　上面两种工作的目的完全不同。实际上，在老内核中，这是由两个独立的内核线程分别完成的。但是在2.6内核中，由一群内核线程—pdflush后台回写例程—统一执行两种工作。</p>
+<p>　　我们来看看这两个目标是如何具体实现的。首先，当系统中的空闲内存低于一个特定的阈值时，pdflush线程将脏页刷新回磁盘。该后台回写例程的目的在于在可用物理内存过低时，释放脏页以重新获得内存。特定的内存阈值可以通过<code>dirty_background_ratio</code>参数设置。当空闲内存比阈值<code>dirty_ background_ratio</code>还低时，内核便会调用函数<code>wakeup_bdflush()</code>唤醒一个pdflush线程，随后pdflush线程进一步调用函数<code>background_writeout()</code>开始将脏页写回磁盘。函数<code>background_ writeout()</code>需要一个长整型参数，该参数指定试图回写的页面数目。</p>
+<p>　　函数<code>background_writeout()</code>会连续地写出数据，直到满足以下两个条件：</p>
+<ul>
+<li>已经有指定的最小数目的页被写出到磁盘。</li>
+<li>空闲内存数已经回升，超过了阈值dirty_background_ratio。</li>
+</ul>
+<p>　　上述条件确保了pdflush操作可以减轻系统中内存不足的压力。回写操作不会在达到这两个条件前停止，除非pdflush写回了所有的脏页，没有剩下的脏页可再被写回了。</p>
+<p>　　要满足第二个目标，pdflush后台例程会被周期性唤醒（和空闲内存是否过低无关），将那些在内存中驻留时间过长的脏页写出，确保内存中不会有长期存在的脏页。假如系统发生崩溃，则内存会处于混乱之中，而那些在内存中还没来得及写回磁盘的脏页就会丢失，所以周期性同步回写非常重要。</p>
+<p>　　在系统启动时，内核初始化一个定时器，让它周期地唤醒pdflush线程，随后使其运行函数<code>wb_kupdate()</code>。该函数将把所有驻留时间超过百分之<code>dirty_expire_centisecs</code>秒的脏页写回。然后定时器将再次被初始化为百分之<code>dirty_expire_ centisecs</code>秒后唤醒pdflush线程。</p>
+<p>　　总而言之，pdflush线程周期地被唤醒并且把超过特定期限的脏页写回磁盘。</p>
+<h1 id="二、proc下的相关控制参数"><a href="#二、proc下的相关控制参数" class="headerlink" title="二、proc下的相关控制参数"></a>二、proc下的相关控制参数</h1><p>　　系统管理员可以在/proc/sys/vm中设置回写相关的参数，也可以通过sysctl系统调用设置它们。</p>
+<ul>
+<li>/proc/sys/vm/dirty_ratio</li>
+</ul>
+<p>　　这个参数控制一个进程在文件系统中的文件系统写缓冲区的大小，单位是百分比，表示系统内存的百分比，表示当一个进程中写缓冲使用到系统内存多少的时候，再有磁盘写操作时开始向磁盘写出数据。增大之会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是 40。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 30 &gt;/proc/sys/vm/dirty_ratio</div></pre></td></tr></table></figure>
 <hr>
-<p>via: <a href="http://www.tecmint.com/empty-delete-file-content-linux/" target="_blank" rel="external">http://www.tecmint.com/empty-delete-file-content-linux/</a></p>
-<p>作者：Aaron Kili 译者：FSSlc 校对：jasminepeng</p>
-<p>本文由 LCTT 原创编译，Linux中国 荣誉推出</p>
+<ul>
+<li>/proc/sys/vm/dirty_background_ratio</li>
+</ul>
+<p>　　这个参数控制文件系统的pdflush进程，在何时刷新磁盘。单位是百分比，表示系统总内存的百分比，意思是当磁盘的脏数据缓冲到系统内存多少的时候，pdflush开始把脏数据刷新到磁盘。增大会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是10。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 8 &gt;/proc/sys/vm/dirty_background_ratio</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>/proc/sys/vm/dirty_writeback_centisecs</li>
+</ul>
+<p>　　Pdflush写后台进程每隔多久被唤醒并执行把脏数据写出到硬盘。单位是 1/100 秒。如果你的系统是持续地写入动作，那么实际上还是降低这个数值比较好，这样可以把尖峰的写操作削平成多次写操作。缺省数值是500，也就是 5 秒。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 200 &gt;/proc/sys/vm/dirty_writeback_centisecs</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>/proc/sys/vm/dirty_expire_centisecs</li>
+</ul>
+<p>　　这个参数声明Linux内核写缓冲区里面的脏数据多“旧”了之后，pdflush 进程就开始考虑写到磁盘中去。单位是 1/100秒。对于特别重载的写操作来说，这个值适当缩小也是好的，但也不能缩小太多，因为缩小太多也会导致IO提高太快。缺省是 30000，也就是 30 秒的数据就算旧了，将会刷新磁盘。建议设置为 1500，也就是15秒算旧。设置方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 1500 &gt;/proc/sys/vm/dirty_expire_centisecs</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="三、内核参数修改后的生效"><a href="#三、内核参数修改后的生效" class="headerlink" title="三、内核参数修改后的生效"></a>三、内核参数修改后的生效</h1><p>　　Linux在系统运行时修改内核参数(/proc/sys与/etc/sysctl.conf)，而不需要重新引导系统，这个功能是通过/proc虚拟文件系统实现的。</p>
+<p>　　在/proc/sys目录下存放着大多数的内核参数，并且设计成可以在系统运行的同时进行更改,可以通过更改/proc/sys中内核参数对应的文件达到修改内核参数的目的(修改过后，保存配置文件就马上自动生效)，不过重新启动机器后之前修改的参数值会失效，所以只能是一种临时参数变更方案。(适合调试内核参数优化值的时候使用，如果设置值有问题，重启服务器还原原来的设置参数值了。简单方便。)</p>
+<p>　　但是如果调试内核参数优化值结束后，需要永久保存参数值，就要通过修改/etc/sysctl.conf内的内核参数来永久保存更改。但只是修改sysctl文件内的参数值，确认保存修改文件后，设定的参数值并不会马上生效，如果想使参数值修改马上生效，并且不重启服务器，可以执行下面的命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –p</div></pre></td></tr></table></figure>
+<hr>
+<p>　　下面介绍一下/proc/sys下内核文件与配置文件sysctl.conf中变量的对应关系：</p>
+<p>　　由于可以修改的内核参数都在/proc/sys目录下，所以sysctl.conf的变量名省略了目录的前面部分（/proc/sys）。即将/proc/sys中的文件转换成sysctl中的变量依据下面两个简单的规则：</p>
+<ol>
+<li>去掉前面部分/proc/sys</li>
+<li>将文件名中的斜杠变为点</li>
+</ol>
+<p>　　这两条规则可以将/proc/sys中的任一文件名转换成sysctl中的变量名。</p>
+<p>　　例如：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/proc/sys/net/ipv4/ip_forward =&gt; net.ipv4.ip_forward</div><div class="line">/proc/sys/kernel/hostname =&gt;  kernel.hostname</div></pre></td></tr></table></figure>
+<p>　　可以使用下面命令查询所有可修改的变量名</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –a</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -361,13 +375,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></p>
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年05月25日 - 14时02分</p>
-        <p><span>最后更新:</span>2017年05月26日 - 10时30分</p>
+        <p><span>发布时间:</span>2017年05月25日 - 16时38分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 13时20分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/" title="Linux下清空或删除大文件内容的5种方法">http://www.unix-like.com/2017/05/25/Linux下清空或删除大文件内容的5种方法/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/Linux下清空或删除大文件内容的5种方法/　　作者: Linux运维装逼指南" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/25/system/pdflush进程详解与优化/" title="pdflush进程详解与优化">http://www.unix-like.com/2017/05/25/system/pdflush进程详解与优化/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/system/pdflush进程详解与优化/　　作者: Linux运维装逼指南" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -378,18 +392,18 @@
 
 <nav id="article-nav">
   
-    <a rel="external nofollow" href="/2017/05/25/MongoDB归档及压缩工具/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a rel="external nofollow" href="/2017/05/26/service/rsync安装配置实例/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          MongoDB归档及压缩工具
+          rsync安装配置实例
         
       </div>
     </a>
   
   
-    <a rel="external nofollow" href="/2017/05/25/redis模糊删除key/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">redis模糊删除key</div>
+    <a rel="external nofollow" href="/2017/05/25/database/MongoDB归档及压缩工具/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MongoDB归档及压缩工具</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -401,7 +415,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-通过重定向到-Null-来清空文件内容"><span class="toc-number">1.</span> <span class="toc-text">1. 通过重定向到 Null 来清空文件内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-使用-true-命令重定向来清空文件"><span class="toc-number">2.</span> <span class="toc-text">2. 使用 true 命令重定向来清空文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-使用-cat-cp-dd-实用工具及-dev-null-设备来清空文件"><span class="toc-number">3.</span> <span class="toc-text">3. 使用 cat/cp/dd 实用工具及 /dev/null 设备来清空文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-使用-echo-命令清空文件"><span class="toc-number">4.</span> <span class="toc-text">4. 使用 echo 命令清空文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-使用-truncate-命令来清空文件内容"><span class="toc-number">5.</span> <span class="toc-text">5. 使用 truncate 命令来清空文件内容</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、简介"><span class="toc-number">1.</span> <span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、proc下的相关控制参数"><span class="toc-number">2.</span> <span class="toc-text">二、proc下的相关控制参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、内核参数修改后的生效"><span class="toc-number">3.</span> <span class="toc-text">三、内核参数修改后的生效</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -455,18 +469,18 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a rel="external nofollow" href="/2017/05/25/MongoDB归档及压缩工具/" title="上一篇: MongoDB归档及压缩工具">
+            <a rel="external nofollow" href="/2017/05/26/service/rsync安装配置实例/" title="上一篇: rsync安装配置实例">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a rel="external nofollow" href="/2017/05/25/redis模糊删除key/" title="下一篇: redis模糊删除key">
+            <a rel="external nofollow" href="/2017/05/25/database/MongoDB归档及压缩工具/" title="下一篇: MongoDB归档及压缩工具">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
     <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

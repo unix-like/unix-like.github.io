@@ -4,23 +4,23 @@
   <meta charset="utf-8">
   <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
   
+   
+    <meta name="keywords" content="tc" />
   
   
 
   
-  <title>redis模糊删除key | Linux运维装逼指南</title>
+  <title>Tag: tc | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：">
-<meta name="keywords" content="redis">
-<meta property="og:type" content="article">
-<meta property="og:title" content="redis模糊删除key">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/25/redis模糊删除key/index.html">
+  <meta name="description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Linux运维装逼指南">
+<meta property="og:url" content="http://www.unix-like.com/tags/tc/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：">
-<meta property="og:updated_time" content="2017-05-26T02:28:54.700Z">
+<meta property="og:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis模糊删除key">
-<meta name="twitter:description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：">
+<meta name="twitter:title" content="Linux运维装逼指南">
+<meta name="twitter:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -45,9 +45,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: true,
+          isPost: false,
           isArchive: false,
-          isTag: false,
+          isTag: true,
           isCategory: false,
           open_in_new: true
       }
@@ -195,7 +195,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -264,200 +264,60 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-redis模糊删除key" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/redis模糊删除key/" class="article-date">
-      <time datetime="2017-05-25T05:58:41.000Z" itemprop="datePublished">2017-05-25</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a rel="external nofollow" href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a rel="external nofollow" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/" class="archive-article-date">
+      <time datetime="2017-05-28T05:18:20.000Z" itemprop="datePublished">05-28</time>
 </a>
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      redis模糊删除key
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a>
     </h1>
   
 
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/database/">database</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        <div class="article-info info-on-archive">
           
-        <p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
-<a id="more"></a>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"pattern"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure>
-<p>其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。</p>
-<p>所有的Redis命令可以在这里找到：<a href="http://redis.io/commands" target="_blank" rel="external">http://redis.io/commands</a></p>
-<p>KEYS命令：<a href="http://redis.io/commands/keys" target="_blank" rel="external">http://redis.io/commands/keys</a></p>
-<p>DEL命令: <a href="http://redis.io/commands/del" target="_blank" rel="external">http://redis.io/commands/del</a></p>
-<p><strong>my demo:</strong></p>
-<p>prefix_: 需要删除key的匹配的前缀名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"prefix_"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure></p>
-
-      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/service/">service</a>
     </div>
-    
+
+
+          
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tc/">tc</a></li></ul>
+    </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/redis模糊删除key/">redis模糊删除key</a></p>
-        <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年05月25日 - 13时58分</p>
-        <p><span>最后更新:</span>2017年05月26日 - 10时28分</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/25/redis模糊删除key/" title="redis模糊删除key">http://www.unix-like.com/2017/05/25/redis模糊删除key/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/redis模糊删除key/　　作者: Linux运维装逼指南" title=""></span>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-<nav id="article-nav">
-  
-    <a rel="external nofollow" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Linux下清空或删除大文件内容的5种方法
-        
-      </div>
-    </a>
-  
-  
-    <a rel="external nofollow" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux查看文件编码格式及文件编码转换</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-
-  
 </article>
-
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-</div>
-<style>
-    .left-col .switch-btn {
-        display: none;
-    }
-    .left-col .switch-area {
-        display: none;
-    }
-</style>
-
-<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-<script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
-<script>
-    var valueHide = "隐藏目录";
-    var valueShow = "显示目录";
-
-    if ($(".left-col").is(":hidden")) {
-        $("#tocButton").attr("value", valueShow);
-    }
-
-    $("#tocButton").click(function() {
-        if ($("#toc").is(":hidden")) {
-            $("#tocButton").attr("value", valueHide);
-            $("#toc").slideDown(320);
-            $(".switch-btn, .switch-area").fadeOut(300);
-        }
-        else {
-            $("#tocButton").attr("value", valueShow);
-            $("#toc").slideUp(350);
-            $(".switch-btn, .switch-area").fadeIn(500);
-        }
-    })
-
-    if ($(".toc").length < 1) {
-        $("#toc, #tocButton").hide();
-        $(".switch-btn, .switch-area").show();
-    }
-</script>
-
-
-
-
-
-
-
+  
+  
+    </div></section>
+  
 
     
 
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a rel="external nofollow" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/" title="上一篇: Linux下清空或删除大文件内容的5种方法">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-        
-            <a rel="external nofollow" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/" title="下一篇: Linux查看文件编码格式及文件编码转换">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
-    <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
-    <script>
-        $(".post-list").addClass("toc-article");
-        // $(".post-list-item a").attr("target","_blank");
-        $("#post-nav-button > a:nth-child(2)").click(function() {
-            $(".fa-bars, .fa-times").toggle();
-            $(".post-list").toggle(300);
-            if ($(".toc").length > 0) {
-                $("#toc, #tocButton").toggle(200, function() {
-                    if ($(".switch-area").is(":visible")) {
-                        $("#toc, .switch-btn, .switch-area").toggle();
-                        $("#tocButton").attr("value", valueHide);
-                        }
-                    })
-            }
-            else {
-                $(".switch-btn, .switch-area").fadeToggle(300);
-            }
-        })
-    </script>
-
-
-
-
-    <script>
-        
-    </script>
 
 </div>
       <footer id="footer">
@@ -524,6 +384,17 @@
         };
     })
 </script>
+
+    <button class="hide-labels">TAG 开关</button>
+    <script src="/js/require-2.1.6-jquery-1.9.1.min.js">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                $(".article-info").toggle(200);
+            });
+        });
+    </script>
 
 
 <script async src="/js/busuanzi.pure.mini.js">

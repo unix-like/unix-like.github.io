@@ -8,19 +8,19 @@
   
 
   
-  <title>Linux查看文件编码格式及文件编码转换 | Linux运维装逼指南</title>
+  <title>redis模糊删除key | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。">
-<meta name="keywords" content="字符集">
+  <meta name="description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：">
+<meta name="keywords" content="redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux查看文件编码格式及文件编码转换">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/25/Linux查看文件编码格式及文件编码转换/index.html">
+<meta property="og:title" content="redis模糊删除key">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/25/database/redis模糊删除key/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。">
-<meta property="og:updated_time" content="2017-05-26T02:29:57.666Z">
+<meta property="og:description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：">
+<meta property="og:updated_time" content="2017-05-26T02:28:54.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux查看文件编码格式及文件编码转换">
-<meta name="twitter:description" content="如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。">
+<meta name="twitter:title" content="redis模糊删除key">
+<meta name="twitter:description" content="Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -195,7 +195,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -264,11 +264,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Linux查看文件编码格式及文件编码转换" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-database/redis模糊删除key" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/" class="article-date">
-      <time datetime="2017-05-25T04:27:28.000Z" itemprop="datePublished">2017-05-25</time>
+      <a rel="external nofollow" href="/2017/05/25/database/redis模糊删除key/" class="article-date">
+      <time datetime="2017-05-25T05:58:41.000Z" itemprop="datePublished">2017-05-25</time>
 </a>
 
     </div>
@@ -282,7 +282,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Linux查看文件编码格式及文件编码转换
+      redis模糊删除key
     </h1>
   
 
@@ -292,13 +292,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
+    <a class="article-category-link" href="/categories/database/">database</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符集/">字符集</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -308,22 +308,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。</p>
+        <p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
 <a id="more"></a>
-<h1 id="查看文件编码"><a href="#查看文件编码" class="headerlink" title="查看文件编码"></a>查看文件编码</h1><p>在Linux中查看文件编码可以通过以下几种方式：</p>
-<h3 id="1-在Vim-中可以直接查看文件编码"><a href="#1-在Vim-中可以直接查看文件编码" class="headerlink" title="1.在Vim 中可以直接查看文件编码"></a>1.在Vim 中可以直接查看文件编码</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> fileencoding</div></pre></td></tr></table></figure>
-<p>即可显示文件编码格式。</p>
-<p>如果你只是想查看其它编码格式的文件或者想解决用Vim查看文件乱码的问题，那么你可以在 <code>~/.vimrc</code> 文件中添加以下内容：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936</div></pre></td></tr></table></figure>
-<p>这样，就可以让vim自动识别文件编码（可以自动识别UTF-8或者GBK编码的文件），其实就是依照 fileencodings提供的编码列表尝试，如果没有找到合适的编码，就用latin-1(ASCII)编码打开。</p>
-<h3 id="2-enca-如果你的系统中没有安装这个命令，可以用sudo-yum-install-y-enca-安装-查看文件编码"><a href="#2-enca-如果你的系统中没有安装这个命令，可以用sudo-yum-install-y-enca-安装-查看文件编码" class="headerlink" title="2. enca (如果你的系统中没有安装这个命令，可以用sudo yum install -y enca 安装 )查看文件编码"></a>2. enca (如果你的系统中没有安装这个命令，可以用sudo yum install -y enca 安装 )查看文件编码</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ enca filename</div><div class="line">filename: Universal transformation format 8 bits; UTF-8</div><div class="line">CRLF line terminators</div></pre></td></tr></table></figure>
-<p>需要说明一点的是，enca对某些GBK编码的文件识别的不是很好，识别时会出现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Unrecognized encoding</div></pre></td></tr></table></figure>
-<h1 id="文件编码转换"><a href="#文件编码转换" class="headerlink" title="文件编码转换"></a>文件编码转换</h1><h3 id="1-在Vim中直接进行转换文件编码-比如将一个文件转换成utf-8格式"><a href="#1-在Vim中直接进行转换文件编码-比如将一个文件转换成utf-8格式" class="headerlink" title="1.在Vim中直接进行转换文件编码,比如将一个文件转换成utf-8格式"></a>1.在Vim中直接进行转换文件编码,比如将一个文件转换成utf-8格式</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> fileencoding=utf-8</div></pre></td></tr></table></figure>
-<h3 id="2-enconv-转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下"><a href="#2-enconv-转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下" class="headerlink" title="2. enconv 转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下"></a>2. enconv 转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enconv -L zh_CN -x UTF-8 filename</div></pre></td></tr></table></figure>
-<h3 id="3-iconv-转换，iconv的命令格式如下："><a href="#3-iconv-转换，iconv的命令格式如下：" class="headerlink" title="3. iconv 转换，iconv的命令格式如下："></a>3. iconv 转换，iconv的命令格式如下：</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv <span class="_">-f</span> encoding -t encoding inputfile</div></pre></td></tr></table></figure>
-<p>比如将一个UTF-8 编码的文件转换成GBK编码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv <span class="_">-f</span> GBK -t UTF-8 file1 -o file2</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"pattern"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure>
+<p>其中pattern是keys命令支持的模式，这样就可以模糊删除key了。服务器上测试删除150万条数据的效率也是很高的。</p>
+<p>所有的Redis命令可以在这里找到：<a href="http://redis.io/commands" target="_blank" rel="external">http://redis.io/commands</a></p>
+<p>KEYS命令：<a href="http://redis.io/commands/keys" target="_blank" rel="external">http://redis.io/commands/keys</a></p>
+<p>DEL命令: <a href="http://redis.io/commands/del" target="_blank" rel="external">http://redis.io/commands/del</a></p>
+<p><strong>my demo:</strong></p>
+<p>prefix_: 需要删除key的匹配的前缀名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli KEYS <span class="string">"prefix_"</span> | xargs redis-cli DEL</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -332,13 +325,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></p>
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年05月25日 - 12时27分</p>
-        <p><span>最后更新:</span>2017年05月26日 - 10时29分</p>
+        <p><span>发布时间:</span>2017年05月25日 - 13时58分</p>
+        <p><span>最后更新:</span>2017年05月26日 - 10时28分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/" title="Linux查看文件编码格式及文件编码转换">http://www.unix-like.com/2017/05/25/Linux查看文件编码格式及文件编码转换/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/Linux查看文件编码格式及文件编码转换/　　作者: Linux运维装逼指南" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/25/database/redis模糊删除key/" title="redis模糊删除key">http://www.unix-like.com/2017/05/25/database/redis模糊删除key/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/database/redis模糊删除key/　　作者: Linux运维装逼指南" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -349,18 +342,18 @@
 
 <nav id="article-nav">
   
-    <a rel="external nofollow" href="/2017/05/25/redis模糊删除key/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a rel="external nofollow" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          redis模糊删除key
+          Linux下清空或删除大文件内容的5种方法
         
       </div>
     </a>
   
   
-    <a rel="external nofollow" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Bash历史中执行过的每一项命令设置时间和日期.md</div>
+    <a rel="external nofollow" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux查看文件编码格式及文件编码转换</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -372,7 +365,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#查看文件编码"><span class="toc-number">1.</span> <span class="toc-text">查看文件编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在Vim-中可以直接查看文件编码"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.在Vim 中可以直接查看文件编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-enca-如果你的系统中没有安装这个命令，可以用sudo-yum-install-y-enca-安装-查看文件编码"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. enca (如果你的系统中没有安装这个命令，可以用sudo yum install -y enca 安装 )查看文件编码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件编码转换"><span class="toc-number">2.</span> <span class="toc-text">文件编码转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在Vim中直接进行转换文件编码-比如将一个文件转换成utf-8格式"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.在Vim中直接进行转换文件编码,比如将一个文件转换成utf-8格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-enconv-转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. enconv 转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码，操作如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-iconv-转换，iconv的命令格式如下："><span class="toc-number">2.0.3.</span> <span class="toc-text">3. iconv 转换，iconv的命令格式如下：</span></a></li></ol></li></ol></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -426,18 +419,18 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a rel="external nofollow" href="/2017/05/25/redis模糊删除key/" title="上一篇: redis模糊删除key">
+            <a rel="external nofollow" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/" title="上一篇: Linux下清空或删除大文件内容的5种方法">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a rel="external nofollow" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/" title="下一篇: Bash历史中执行过的每一项命令设置时间和日期.md">
+            <a rel="external nofollow" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/" title="下一篇: Linux查看文件编码格式及文件编码转换">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
     <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
