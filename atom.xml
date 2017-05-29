@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-05-28T15:23:41.168Z</updated>
+  <updated>2017-05-29T14:05:31.845Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows与Linux共享文件夹互相访问</title>
+    <link href="http://www.unix-like.com/2017/05/29/service/%20Windows%E4%B8%8ELinux%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E4%BA%92%E7%9B%B8%E8%AE%BF%E9%97%AE%20/"/>
+    <id>http://www.unix-like.com/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /</id>
+    <published>2017-05-29T13:56:20.000Z</published>
+    <updated>2017-05-29T14:05:31.845Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="首先安装并配置软件samba"><a href="#首先安装并配置软件samba" class="headerlink" title="首先安装并配置软件samba"></a>首先安装并配置软件samba</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sudo yum install samba samba-client  </div><div class="line">vim /etc/samba/smb.conf  </div><div class="line">      </div><div class="line">找到security这行并将<span class="comment">#注释符号去掉改成  </span></div><div class="line">security = share     <span class="comment">#共享模式  </span></div><div class="line">      </div><div class="line">添加如下代码：  </div><div class="line">      </div><div class="line">[share]  </div><div class="line">comment = share  </div><div class="line">path = /home/<span class="built_in">test</span>          <span class="comment">#设置共享文件夹目录  </span></div><div class="line">browseable = yes  </div><div class="line">guest ok = yes  </div><div class="line">writable = yes  </div><div class="line"></div><div class="line">service smb start  </div><div class="line">service smbd start   (ubuntu)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="（1）在windows下访问Linux共享："><a href="#（1）在windows下访问Linux共享：" class="headerlink" title="（1）在windows下访问Linux共享："></a>（1）在windows下访问Linux共享：</h2><p>直接在windows运行里输入\192.168.16.128即可访问linux共享资源，并且不需要密码。</p>
+<h2 id="（2）在linux下访问windows共享："><a href="#（2）在linux下访问windows共享：" class="headerlink" title="（2）在linux下访问windows共享："></a>（2）在linux下访问windows共享：</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">smbclient -L 192.168.16.1 -U xiaoxing   <span class="comment"># 查看共享了那些目录，由此知道主机名为XIAOXING-PC</span></div><div class="line"></div><div class="line">smbclient //192.168.16.1/Users -U xiaoxing     输入windows密码即可进入</div></pre></td></tr></table></figure>
+<p>直接挂载windows共享目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456   //XIAOXING-PC/system /mnt/win/</div><div class="line">或者：</div><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456   //192.168.16.1/system /mnt/win/</div><div class="line">或者：</div><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456,ip=192.168.16.1 //XIAOXING-PC/system /mnt/win/</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<p>如果出现如下错误：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount: unknown filesystem <span class="built_in">type</span> ’smbfs’</div></pre></td></tr></table></figure>
+<p>说明系统已经不能识别smbfs文件系统了，查资料说RHE5的kernel已经不再支持smbfs，而改用Common Internet File Systemcifs(cifs)取代了原有的smbfs，所以命令就改为:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mount -t cifs -o username=xiaoxing,password=123456   //192.168.16.1/system /mnt/win/</div></pre></td></tr></table></figure>
+<p>解开挂载</p>
+<p>断开刚才挂载在linux /mnt/win/路径上的winodws共享文件夹。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo umount /mnt/win/</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;首先安装并配置软件samba&quot;&gt;&lt;a href=&quot;#首先安装并配置软件samba&quot; class=&quot;headerlink&quot; title=&quot;首先安装并配置软件samba&quot;&gt;&lt;/a&gt;首先安装并配置软件samba&lt;/h1&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo yum install samba samba-client  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;vim /etc/samba/smb.conf  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;找到security这行并将&lt;span class=&quot;comment&quot;&gt;#注释符号去掉改成  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;security = share     &lt;span class=&quot;comment&quot;&gt;#共享模式  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;添加如下代码：  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[share]  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;comment = share  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;path = /home/&lt;span class=&quot;built_in&quot;&gt;test&lt;/span&gt;          &lt;span class=&quot;comment&quot;&gt;#设置共享文件夹目录  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;browseable = yes  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;guest ok = yes  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;writable = yes  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;service smb start  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;service smbd start   (ubuntu)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="service" scheme="http://www.unix-like.com/categories/service/"/>
+    
+    
+      <category term="samba" scheme="http://www.unix-like.com/tags/samba/"/>
+    
+  </entry>
   
   <entry>
     <title>系统运维工程师装逼完全指南</title>

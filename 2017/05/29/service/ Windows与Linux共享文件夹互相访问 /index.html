@@ -8,17 +8,19 @@
   
 
   
-  <title>Archives: 2017/5 | Linux运维装逼指南</title>
+  <title>Windows与Linux共享文件夹互相访问 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Linux运维装逼指南">
-<meta property="og:url" content="http://www.unix-like.com/archives/2017/05/index.html">
+  <meta name="description" content="首先安装并配置软件samba1234567891011121314151617sudo yum install samba samba-client  vim /etc/samba/smb.conf        找到security这行并将#注释符号去掉改成  security = share     #共享模式        添加如下代码：        [share]  comment =">
+<meta name="keywords" content="samba">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows与Linux共享文件夹互相访问">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta property="og:description" content="首先安装并配置软件samba1234567891011121314151617sudo yum install samba samba-client  vim /etc/samba/smb.conf        找到security这行并将#注释符号去掉改成  security = share     #共享模式        添加如下代码：        [share]  comment =">
+<meta property="og:updated_time" content="2017-05-29T14:05:31.845Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维装逼指南">
-<meta name="twitter:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta name="twitter:title" content="Windows与Linux共享文件夹互相访问">
+<meta name="twitter:description" content="首先安装并配置软件samba1234567891011121314151617sudo yum install samba samba-client  vim /etc/samba/smb.conf        找到security这行并将#注释符号去掉改成  security = share     #共享模式        添加如下代码：        [share]  comment =">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -43,8 +45,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: true
@@ -266,397 +268,193 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-service/ Windows与Linux共享文件夹互相访问 " class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a rel="external nofollow" href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" class="archive-article-date">
-      <time datetime="2017-05-29T13:56:20.000Z" itemprop="datePublished">05-29</time>
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" class="article-date">
+      <time datetime="2017-05-29T13:56:20.000Z" itemprop="datePublished">2017-05-29</time>
 </a>
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Windows与Linux共享文件夹互相访问
     </h1>
   
 
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/service/">service</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/samba/">samba</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="首先安装并配置软件samba"><a href="#首先安装并配置软件samba" class="headerlink" title="首先安装并配置软件samba"></a>首先安装并配置软件samba</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sudo yum install samba samba-client  </div><div class="line">vim /etc/samba/smb.conf  </div><div class="line">      </div><div class="line">找到security这行并将<span class="comment">#注释符号去掉改成  </span></div><div class="line">security = share     <span class="comment">#共享模式  </span></div><div class="line">      </div><div class="line">添加如下代码：  </div><div class="line">      </div><div class="line">[share]  </div><div class="line">comment = share  </div><div class="line">path = /home/<span class="built_in">test</span>          <span class="comment">#设置共享文件夹目录  </span></div><div class="line">browseable = yes  </div><div class="line">guest ok = yes  </div><div class="line">writable = yes  </div><div class="line"></div><div class="line">service smb start  </div><div class="line">service smbd start   (ubuntu)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="（1）在windows下访问Linux共享："><a href="#（1）在windows下访问Linux共享：" class="headerlink" title="（1）在windows下访问Linux共享："></a>（1）在windows下访问Linux共享：</h2><p>直接在windows运行里输入\192.168.16.128即可访问linux共享资源，并且不需要密码。</p>
+<h2 id="（2）在linux下访问windows共享："><a href="#（2）在linux下访问windows共享：" class="headerlink" title="（2）在linux下访问windows共享："></a>（2）在linux下访问windows共享：</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">smbclient -L 192.168.16.1 -U xiaoxing   <span class="comment"># 查看共享了那些目录，由此知道主机名为XIAOXING-PC</span></div><div class="line"></div><div class="line">smbclient //192.168.16.1/Users -U xiaoxing     输入windows密码即可进入</div></pre></td></tr></table></figure>
+<p>直接挂载windows共享目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456   //XIAOXING-PC/system /mnt/win/</div><div class="line">或者：</div><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456   //192.168.16.1/system /mnt/win/</div><div class="line">或者：</div><div class="line">sudo mount -t smbfs -o username=xiaoxing,password=123456,ip=192.168.16.1 //XIAOXING-PC/system /mnt/win/</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<p>如果出现如下错误：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount: unknown filesystem <span class="built_in">type</span> ’smbfs’</div></pre></td></tr></table></figure>
+<p>说明系统已经不能识别smbfs文件系统了，查资料说RHE5的kernel已经不再支持smbfs，而改用Common Internet File Systemcifs(cifs)取代了原有的smbfs，所以命令就改为:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mount -t cifs -o username=xiaoxing,password=123456   //192.168.16.1/system /mnt/win/</div></pre></td></tr></table></figure>
+<p>解开挂载</p>
+<p>断开刚才挂载在linux /mnt/win/路径上的winodws共享文件夹。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo umount /mnt/win/</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a></p>
+        <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
+        <p><span>发布时间:</span>2017年05月29日 - 21时56分</p>
+        <p><span>最后更新:</span>2017年05月29日 - 22时05分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" title="Windows与Linux共享文件夹互相访问">http://www.unix-like.com/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /　　作者: Linux运维装逼指南" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">系统运维工程师装逼完全指南</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
 </article>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#首先安装并配置软件samba"><span class="toc-number">1.</span> <span class="toc-text">首先安装并配置软件samba</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（1）在windows下访问Linux共享："><span class="toc-number">1.1.</span> <span class="toc-text">（1）在windows下访问Linux共享：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（2）在linux下访问windows共享："><span class="toc-number">1.2.</span> <span class="toc-text">（2）在linux下访问windows共享：</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
+
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/" class="archive-article-date">
-      <time datetime="2017-05-28T10:49:44.000Z" itemprop="datePublished">05-28</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a>
-    </h1>
-  
 
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a rel="external nofollow" href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/" title="下一篇: 系统运维工程师装逼完全指南">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
+    <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/life/运维人装逼指南大全/" class="archive-article-date">
-      <time datetime="2017-05-28T10:27:19.000Z" itemprop="datePublished">05-28</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a>
-    </h1>
-  
 
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/" class="archive-article-date">
-      <time datetime="2017-05-28T05:18:20.000Z" itemprop="datePublished">05-28</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tc/">tc</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/27/system/Linux上ssd优化/" class="archive-article-date">
-      <time datetime="2017-05-27T15:18:28.000Z" itemprop="datePublished">05-27</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/26/service/rsync安装配置实例/" class="archive-article-date">
-      <time datetime="2017-05-26T02:48:58.000Z" itemprop="datePublished">05-26</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsync/">rsync</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/" class="archive-article-date">
-      <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">05-25</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/25/database/MongoDB归档及压缩工具/" class="archive-article-date">
-      <time datetime="2017-05-25T08:02:28.000Z" itemprop="datePublished">05-25</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/database/">database</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/" class="archive-article-date">
-      <time datetime="2017-05-25T06:02:28.000Z" itemprop="datePublished">05-25</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/25/database/redis模糊删除key/" class="archive-article-date">
-      <time datetime="2017-05-25T05:58:41.000Z" itemprop="datePublished">05-25</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/database/">database</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/05/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/05/page/2/">Next &raquo;</a>
-    </nav>
-  
-
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
@@ -723,17 +521,6 @@
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 开关</button>
-    <script src="/js/require-2.1.6-jquery-1.9.1.min.js">
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 
 <script async src="/js/busuanzi.pure.mini.js">
