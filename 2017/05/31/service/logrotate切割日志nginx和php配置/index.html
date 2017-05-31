@@ -5,22 +5,22 @@
   <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
   
   
-   
-    <meta name="keywords" content="life" />
   
 
   
-  <title>Category: life | Linux运维装逼指南</title>
+  <title>logrotate切割日志nginx和php配置 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Linux运维装逼指南">
-<meta property="og:url" content="http://www.unix-like.com/categories/life/index.html">
+  <meta name="description" content="nginx配置12345678910111213/gotwo_data/logs/nginx/2mm.cn/*.log &amp;#123;        daily        missingok        rotate 52        compress        delaycompress        notifempty        create 644 nginx nginx">
+<meta name="keywords" content="logrotate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="logrotate切割日志nginx和php配置">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/31/service/logrotate切割日志nginx和php配置/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta property="og:description" content="nginx配置12345678910111213/gotwo_data/logs/nginx/2mm.cn/*.log &amp;#123;        daily        missingok        rotate 52        compress        delaycompress        notifempty        create 644 nginx nginx">
+<meta property="og:updated_time" content="2017-05-31T03:27:20.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维装逼指南">
-<meta name="twitter:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta name="twitter:title" content="logrotate切割日志nginx和php配置">
+<meta name="twitter:description" content="nginx配置12345678910111213/gotwo_data/logs/nginx/2mm.cn/*.log &amp;#123;        daily        missingok        rotate 52        compress        delaycompress        notifempty        create 644 nginx nginx">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -45,10 +45,10 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
-          isCategory: true,
+          isCategory: false,
           open_in_new: true
       }
   </script>
@@ -268,97 +268,183 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-service/logrotate切割日志nginx和php配置" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a rel="external nofollow" href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/" class="archive-article-date">
-      <time datetime="2017-05-28T10:49:44.000Z" itemprop="datePublished">05-28</time>
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" class="article-date">
+      <time datetime="2017-05-31T03:25:18.000Z" itemprop="datePublished">2017-05-31</time>
 </a>
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      logrotate切割日志nginx和php配置
     </h1>
   
 
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
+    <a class="article-category-link" href="/categories/service/">service</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logrotate/">logrotate</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/life/运维人装逼指南大全/" class="archive-article-date">
-      <time datetime="2017-05-28T10:27:19.000Z" itemprop="datePublished">05-28</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
+        <h1 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/gotwo_data/logs/nginx/2mm.cn/*.log &#123;</div><div class="line">        daily</div><div class="line">        missingok</div><div class="line">        rotate 52</div><div class="line">        compress</div><div class="line">        delaycompress</div><div class="line">        notifempty</div><div class="line">        create 644 nginx nginx</div><div class="line">        sharedscripts</div><div class="line">        postrotate</div><div class="line">                [ <span class="_">-f</span> /gotwo_data/logs/nginx/nginx.pid ] &amp;&amp; <span class="built_in">kill</span> -USR1 `cat /gotwo_data/logs/nginx/nginx.pid`</div><div class="line">        endscript</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="php配置"><a href="#php配置" class="headerlink" title="php配置"></a>php配置</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/gotwo_data/logs/php/*.log &#123;</div><div class="line">        daily</div><div class="line">        missingok</div><div class="line">        rotate 52</div><div class="line">        compress</div><div class="line">        delaycompress</div><div class="line">        notifempty</div><div class="line">        create 666 nobody nobody</div><div class="line">        sharedscripts</div><div class="line">        postrotate</div><div class="line">                [ <span class="_">-f</span> /gotwo_data/Application/php/var/run/php-fpm.pid ] &amp;&amp; <span class="built_in">kill</span> -USR1 `cat /gotwo_data/Application/php/var/run/php-fpm.pid`</div><div class="line">        endscript</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/">logrotate切割日志nginx和php配置</a></p>
+        <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
+        <p><span>发布时间:</span>2017年05月31日 - 11时25分</p>
+        <p><span>最后更新:</span>2017年05月31日 - 11时27分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" title="logrotate切割日志nginx和php配置">http://www.unix-like.com/2017/05/31/service/logrotate切割日志nginx和php配置/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/31/service/logrotate切割日志nginx和php配置/　　作者: Linux运维装逼指南" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+<nav id="article-nav">
+  
+  
+    <a rel="external nofollow" href="/2017/05/31/service/nginx常见问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx常见问题</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx配置"><span class="toc-number">1.</span> <span class="toc-text">nginx配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#php配置"><span class="toc-number">2.</span> <span class="toc-text">php配置</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
 
     
 
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a rel="external nofollow" href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a rel="external nofollow" href="/2017/05/31/service/nginx常见问题/" title="下一篇: nginx常见问题">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/logrotate切割日志nginx和php配置/">logrotate切割日志nginx和php配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/nginx常见问题/">nginx常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
+    <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
@@ -425,17 +511,6 @@
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 开关</button>
-    <script src="/js/require-2.1.6-jquery-1.9.1.min.js">
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 
 <script async src="/js/busuanzi.pure.mini.js">
