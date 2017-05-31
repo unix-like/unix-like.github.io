@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 20px;">bash</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 20px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -270,6 +270,76 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-system/LINUX下解决netstat查看TIME-WAIT状态过多问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" class="article-date">
+      <time datetime="2017-05-31T08:03:00.000Z" itemprop="datePublished">2017-05-31</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/">LINUX下解决netstat查看TIME_WAIT状态过多问题</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># netstat -an|awk '/tcp/ &#123;print $6&#125;'|sort|uniq -c</span></div><div class="line">     16 CLOSING</div><div class="line">    130 ESTABLISHED</div><div class="line">    298 FIN_WAIT1</div><div class="line">     13 FIN_WAIT2</div><div class="line">      9 LAST_ACK</div><div class="line">      7 LISTEN</div><div class="line">    103 SYN_RECV</div><div class="line">   5204 TIME_WAIT</div><div class="line"></div><div class="line">状态：描述</div><div class="line">CLOSED：无连接是活动的或正在进行</div><div class="line">LISTEN：服务器在等待进入呼叫</div><div class="line">SYN_RECV：一个连接请求已经到达，等待确认</div><div class="line">SYN_SENT：应用已经开始，打开一个连接</div><div class="line">ESTABLISHED：正常数据传输状态</div><div class="line">FIN_WAIT1：应用说它已经完成</div><div class="line">FIN_WAIT2：另一边已同意释放</div><div class="line">ITMED_WAIT：等待所有分组死掉</div><div class="line">CLOSING：两边同时尝试关闭</div><div class="line">TIME_WAIT：另一边已初始化一个释放</div><div class="line">LAST_ACK：等待所有分组死掉</div></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/system/">system</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-service/logrotate切割日志nginx和php配置" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -891,76 +961,6 @@
       
         <p class="article-more-link">
           <a rel="external nofollow"  href="/2017/05/26/service/rsync安装配置实例/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/pdflush进程详解与优化" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/" class="article-date">
-      <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/25/system/pdflush进程详解与优化/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>

@@ -8,19 +8,19 @@
   
 
   
-  <title>pdflush进程详解与优化 | Linux运维装逼指南</title>
+  <title>LINUX下解决netstat查看TIME_WAIT状态过多问题 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
+  <meta name="description" content="12345678910111213141516171819202122# netstat -an|awk &apos;/tcp/ &amp;#123;print $6&amp;#125;&apos;|sort|uniq -c     16 CLOSING    130 ESTABLISHED    298 FIN_WAIT1     13 FIN_WAIT2      9 LAST_ACK      7 LISTEN    103">
 <meta name="keywords" content="调优">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pdflush进程详解与优化">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/25/system/pdflush进程详解与优化/index.html">
+<meta property="og:title" content="LINUX下解决netstat查看TIME_WAIT状态过多问题">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
-<meta property="og:updated_time" content="2017-05-26T05:20:14.661Z">
+<meta property="og:description" content="12345678910111213141516171819202122# netstat -an|awk &apos;/tcp/ &amp;#123;print $6&amp;#125;&apos;|sort|uniq -c     16 CLOSING    130 ESTABLISHED    298 FIN_WAIT1     13 FIN_WAIT2      9 LAST_ACK      7 LISTEN    103">
+<meta property="og:updated_time" content="2017-05-31T08:06:25.551Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pdflush进程详解与优化">
-<meta name="twitter:description" content="一、简介　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。">
+<meta name="twitter:title" content="LINUX下解决netstat查看TIME_WAIT状态过多问题">
+<meta name="twitter:description" content="12345678910111213141516171819202122# netstat -an|awk &apos;/tcp/ &amp;#123;print $6&amp;#125;&apos;|sort|uniq -c     16 CLOSING    130 ESTABLISHED    298 FIN_WAIT1     13 FIN_WAIT2      9 LAST_ACK      7 LISTEN    103">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -268,11 +268,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-system/pdflush进程详解与优化" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-system/LINUX下解决netstat查看TIME-WAIT状态过多问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/" class="article-date">
-      <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">2017-05-25</time>
+      <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" class="article-date">
+      <time datetime="2017-05-31T08:03:00.000Z" itemprop="datePublished">2017-05-31</time>
 </a>
 
     </div>
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      pdflush进程详解与优化
+      LINUX下解决netstat查看TIME_WAIT状态过多问题
     </h1>
   
 
@@ -312,65 +312,29 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。</p>
+        <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># netstat -an|awk '/tcp/ &#123;print $6&#125;'|sort|uniq -c</span></div><div class="line">     16 CLOSING</div><div class="line">    130 ESTABLISHED</div><div class="line">    298 FIN_WAIT1</div><div class="line">     13 FIN_WAIT2</div><div class="line">      9 LAST_ACK</div><div class="line">      7 LISTEN</div><div class="line">    103 SYN_RECV</div><div class="line">   5204 TIME_WAIT</div><div class="line"></div><div class="line">状态：描述</div><div class="line">CLOSED：无连接是活动的或正在进行</div><div class="line">LISTEN：服务器在等待进入呼叫</div><div class="line">SYN_RECV：一个连接请求已经到达，等待确认</div><div class="line">SYN_SENT：应用已经开始，打开一个连接</div><div class="line">ESTABLISHED：正常数据传输状态</div><div class="line">FIN_WAIT1：应用说它已经完成</div><div class="line">FIN_WAIT2：另一边已同意释放</div><div class="line">ITMED_WAIT：等待所有分组死掉</div><div class="line">CLOSING：两边同时尝试关闭</div><div class="line">TIME_WAIT：另一边已初始化一个释放</div><div class="line">LAST_ACK：等待所有分组死掉</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>在以下两种情况发生时，脏页被写回磁盘：</p>
-<ul>
-<li>当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。</li>
-<li>当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。</li>
-</ul>
-<p>　　上面两种工作的目的完全不同。实际上，在老内核中，这是由两个独立的内核线程分别完成的。但是在2.6内核中，由一群内核线程—pdflush后台回写例程—统一执行两种工作。</p>
-<p>　　我们来看看这两个目标是如何具体实现的。首先，当系统中的空闲内存低于一个特定的阈值时，pdflush线程将脏页刷新回磁盘。该后台回写例程的目的在于在可用物理内存过低时，释放脏页以重新获得内存。特定的内存阈值可以通过<code>dirty_background_ratio</code>参数设置。当空闲内存比阈值<code>dirty_ background_ratio</code>还低时，内核便会调用函数<code>wakeup_bdflush()</code>唤醒一个pdflush线程，随后pdflush线程进一步调用函数<code>background_writeout()</code>开始将脏页写回磁盘。函数<code>background_ writeout()</code>需要一个长整型参数，该参数指定试图回写的页面数目。</p>
-<p>　　函数<code>background_writeout()</code>会连续地写出数据，直到满足以下两个条件：</p>
-<ul>
-<li>已经有指定的最小数目的页被写出到磁盘。</li>
-<li>空闲内存数已经回升，超过了阈值dirty_background_ratio。</li>
-</ul>
-<p>　　上述条件确保了pdflush操作可以减轻系统中内存不足的压力。回写操作不会在达到这两个条件前停止，除非pdflush写回了所有的脏页，没有剩下的脏页可再被写回了。</p>
-<p>　　要满足第二个目标，pdflush后台例程会被周期性唤醒（和空闲内存是否过低无关），将那些在内存中驻留时间过长的脏页写出，确保内存中不会有长期存在的脏页。假如系统发生崩溃，则内存会处于混乱之中，而那些在内存中还没来得及写回磁盘的脏页就会丢失，所以周期性同步回写非常重要。</p>
-<p>　　在系统启动时，内核初始化一个定时器，让它周期地唤醒pdflush线程，随后使其运行函数<code>wb_kupdate()</code>。该函数将把所有驻留时间超过百分之<code>dirty_expire_centisecs</code>秒的脏页写回。然后定时器将再次被初始化为百分之<code>dirty_expire_ centisecs</code>秒后唤醒pdflush线程。</p>
-<p>　　总而言之，pdflush线程周期地被唤醒并且把超过特定期限的脏页写回磁盘。</p>
-<h1 id="二、proc下的相关控制参数"><a href="#二、proc下的相关控制参数" class="headerlink" title="二、proc下的相关控制参数"></a>二、proc下的相关控制参数</h1><p>　　系统管理员可以在/proc/sys/vm中设置回写相关的参数，也可以通过sysctl系统调用设置它们。</p>
-<ul>
-<li>/proc/sys/vm/dirty_ratio</li>
-</ul>
-<p>　　这个参数控制一个进程在文件系统中的文件系统写缓冲区的大小，单位是百分比，表示系统内存的百分比，表示当一个进程中写缓冲使用到系统内存多少的时候，再有磁盘写操作时开始向磁盘写出数据。增大之会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是 40。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 30 &gt;/proc/sys/vm/dirty_ratio</div></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>/proc/sys/vm/dirty_background_ratio</li>
-</ul>
-<p>　　这个参数控制文件系统的pdflush进程，在何时刷新磁盘。单位是百分比，表示系统总内存的百分比，意思是当磁盘的脏数据缓冲到系统内存多少的时候，pdflush开始把脏数据刷新到磁盘。增大会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是10。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 8 &gt;/proc/sys/vm/dirty_background_ratio</div></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>/proc/sys/vm/dirty_writeback_centisecs</li>
-</ul>
-<p>　　Pdflush写后台进程每隔多久被唤醒并执行把脏数据写出到硬盘。单位是 1/100 秒。如果你的系统是持续地写入动作，那么实际上还是降低这个数值比较好，这样可以把尖峰的写操作削平成多次写操作。缺省数值是500，也就是 5 秒。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 200 &gt;/proc/sys/vm/dirty_writeback_centisecs</div></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>/proc/sys/vm/dirty_expire_centisecs</li>
-</ul>
-<p>　　这个参数声明Linux内核写缓冲区里面的脏数据多“旧”了之后，pdflush 进程就开始考虑写到磁盘中去。单位是 1/100秒。对于特别重载的写操作来说，这个值适当缩小也是好的，但也不能缩小太多，因为缩小太多也会导致IO提高太快。缺省是 30000，也就是 30 秒的数据就算旧了，将会刷新磁盘。建议设置为 1500，也就是15秒算旧。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 1500 &gt;/proc/sys/vm/dirty_expire_centisecs</div></pre></td></tr></table></figure>
-<hr>
-<h1 id="三、内核参数修改后的生效"><a href="#三、内核参数修改后的生效" class="headerlink" title="三、内核参数修改后的生效"></a>三、内核参数修改后的生效</h1><p>　　Linux在系统运行时修改内核参数(/proc/sys与/etc/sysctl.conf)，而不需要重新引导系统，这个功能是通过/proc虚拟文件系统实现的。</p>
-<p>　　在/proc/sys目录下存放着大多数的内核参数，并且设计成可以在系统运行的同时进行更改,可以通过更改/proc/sys中内核参数对应的文件达到修改内核参数的目的(修改过后，保存配置文件就马上自动生效)，不过重新启动机器后之前修改的参数值会失效，所以只能是一种临时参数变更方案。(适合调试内核参数优化值的时候使用，如果设置值有问题，重启服务器还原原来的设置参数值了。简单方便。)</p>
-<p>　　但是如果调试内核参数优化值结束后，需要永久保存参数值，就要通过修改/etc/sysctl.conf内的内核参数来永久保存更改。但只是修改sysctl文件内的参数值，确认保存修改文件后，设定的参数值并不会马上生效，如果想使参数值修改马上生效，并且不重启服务器，可以执行下面的命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –p</div></pre></td></tr></table></figure>
-<hr>
-<p>　　下面介绍一下/proc/sys下内核文件与配置文件sysctl.conf中变量的对应关系：</p>
-<p>　　由于可以修改的内核参数都在/proc/sys目录下，所以sysctl.conf的变量名省略了目录的前面部分（/proc/sys）。即将/proc/sys中的文件转换成sysctl中的变量依据下面两个简单的规则：</p>
-<ol>
-<li>去掉前面部分/proc/sys</li>
-<li>将文件名中的斜杠变为点</li>
-</ol>
-<p>　　这两条规则可以将/proc/sys中的任一文件名转换成sysctl中的变量名。</p>
-<p>　　例如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/proc/sys/net/ipv4/ip_forward =&gt; net.ipv4.ip_forward</div><div class="line">/proc/sys/kernel/hostname =&gt;  kernel.hostname</div></pre></td></tr></table></figure>
-<p>　　可以使用下面命令查询所有可修改的变量名</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –a</div></pre></td></tr></table></figure>
+<p>如发现系统存在大量TIME_WAIT状态的连接，通过调整内核参数解决，</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf</div></pre></td></tr></table></figure>
+<p>编辑文件，加入以下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">net.ipv4.tcp_syncookies = 1</div><div class="line">net.ipv4.tcp_tw_reuse = 1</div><div class="line">net.ipv4.tcp_tw_recycle = 1</div><div class="line">net.ipv4.tcp_fin_timeout = 30</div></pre></td></tr></table></figure></p>
+<p>然后执行 <code>/sbin/sysctl -p</code> 让参数生效。</p>
+<p>net.ipv4.tcp_syncookies = 1 表示开启SYN cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭；</p>
+<p>net.ipv4.tcp_tw_reuse = 1 表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</p>
+<p>net.ipv4.tcp_tw_recycle = 1 表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</p>
+<p>net.ipv4.tcp_fin_timeout 修改系統默认的 TIMEOUT 时间</p>
+<p>下面附上TIME_WAIT状态的意义：</p>
+<p>客户端与服务器端建立TCP/IP连接后关闭SOCKET后，服务器端连接的端口</p>
+<p>状态为TIME_WAIT</p>
+<p>是不是所有执行主动关闭的socket都会进入TIME_WAIT状态呢？</p>
+<p>有没有什么情况使主动关闭的socket直接进入CLOSED状态呢？</p>
+<p>主动关闭的一方在发送最后一个 ack 后就会进入 TIME_WAIT 状态 停留2MSL（max segment lifetime）时间这个是TCP/IP必不可少的，也就是“解决”不了的。</p>
+<p>也就是TCP/IP设计者本来是这么设计的</p>
+<p>主要有两个原因</p>
+<p>1。防止上一次连接中的包，迷路后重新出现，影响新连接（经过2MSL，上一次连接中所有的重复包都会消失）</p>
+<p>2。可靠的关闭TCP连接</p>
+<p>在主动关闭方发送的最后一个 ack(fin) ，有可能丢失，这时被动方会重新发fin, 如果这时主动方处于 CLOSED 状态 ，就会响应 rst 而不是 ack。所以主动方要处于 TIME_WAIT 状态，而不能是 CLOSED 。</p>
+<p>TIME_WAIT 并不会占用很大资源的，除非受到攻击。</p>
+<p>还有，如果一方 send 或 recv 超时，就会直接进入 CLOSED 状态</p>
 
       
     </div>
@@ -379,13 +343,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></p>
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/">LINUX下解决netstat查看TIME_WAIT状态过多问题</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年05月25日 - 16时38分</p>
-        <p><span>最后更新:</span>2017年05月26日 - 13时20分</p>
+        <p><span>发布时间:</span>2017年05月31日 - 16时03分</p>
+        <p><span>最后更新:</span>2017年05月31日 - 16时06分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/25/system/pdflush进程详解与优化/" title="pdflush进程详解与优化">http://www.unix-like.com/2017/05/25/system/pdflush进程详解与优化/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/25/system/pdflush进程详解与优化/　　作者: Linux运维装逼指南" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" title="LINUX下解决netstat查看TIME_WAIT状态过多问题">http://www.unix-like.com/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/　　作者: Linux运维装逼指南" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -396,18 +360,9 @@
 
 <nav id="article-nav">
   
-    <a rel="external nofollow" href="/2017/05/26/service/rsync安装配置实例/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          rsync安装配置实例
-        
-      </div>
-    </a>
   
-  
-    <a rel="external nofollow" href="/2017/05/25/database/MongoDB归档及压缩工具/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MongoDB归档及压缩工具</div>
+    <a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">logrotate切割日志nginx和php配置</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -419,7 +374,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、简介"><span class="toc-number">1.</span> <span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、proc下的相关控制参数"><span class="toc-number">2.</span> <span class="toc-text">二、proc下的相关控制参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、内核参数修改后的生效"><span class="toc-number">3.</span> <span class="toc-text">三、内核参数修改后的生效</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -473,13 +428,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a rel="external nofollow" href="/2017/05/26/service/rsync安装配置实例/" title="上一篇: rsync安装配置实例">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a rel="external nofollow" href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a rel="external nofollow" href="/2017/05/25/database/MongoDB归档及压缩工具/" title="下一篇: MongoDB归档及压缩工具">
+            <a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" title="下一篇: logrotate切割日志nginx和php配置">
                 <i class="fa fa-angle-right"></i>
             </a>
         

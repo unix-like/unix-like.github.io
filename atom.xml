@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-05-31T03:27:20.615Z</updated>
+  <updated>2017-05-31T08:06:25.551Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LINUX下解决netstat查看TIME_WAIT状态过多问题</title>
+    <link href="http://www.unix-like.com/2017/05/31/system/LINUX%E4%B8%8B%E8%A7%A3%E5%86%B3netstat%E6%9F%A5%E7%9C%8BTIME-WAIT%E7%8A%B6%E6%80%81%E8%BF%87%E5%A4%9A%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.unix-like.com/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/</id>
+    <published>2017-05-31T08:03:00.000Z</published>
+    <updated>2017-05-31T08:06:25.551Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># netstat -an|awk '/tcp/ &#123;print $6&#125;'|sort|uniq -c</span></div><div class="line">     16 CLOSING</div><div class="line">    130 ESTABLISHED</div><div class="line">    298 FIN_WAIT1</div><div class="line">     13 FIN_WAIT2</div><div class="line">      9 LAST_ACK</div><div class="line">      7 LISTEN</div><div class="line">    103 SYN_RECV</div><div class="line">   5204 TIME_WAIT</div><div class="line"></div><div class="line">状态：描述</div><div class="line">CLOSED：无连接是活动的或正在进行</div><div class="line">LISTEN：服务器在等待进入呼叫</div><div class="line">SYN_RECV：一个连接请求已经到达，等待确认</div><div class="line">SYN_SENT：应用已经开始，打开一个连接</div><div class="line">ESTABLISHED：正常数据传输状态</div><div class="line">FIN_WAIT1：应用说它已经完成</div><div class="line">FIN_WAIT2：另一边已同意释放</div><div class="line">ITMED_WAIT：等待所有分组死掉</div><div class="line">CLOSING：两边同时尝试关闭</div><div class="line">TIME_WAIT：另一边已初始化一个释放</div><div class="line">LAST_ACK：等待所有分组死掉</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>如发现系统存在大量TIME_WAIT状态的连接，通过调整内核参数解决，</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf</div></pre></td></tr></table></figure>
+<p>编辑文件，加入以下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">net.ipv4.tcp_syncookies = 1</div><div class="line">net.ipv4.tcp_tw_reuse = 1</div><div class="line">net.ipv4.tcp_tw_recycle = 1</div><div class="line">net.ipv4.tcp_fin_timeout = 30</div></pre></td></tr></table></figure></p>
+<p>然后执行 <code>/sbin/sysctl -p</code> 让参数生效。</p>
+<p>net.ipv4.tcp_syncookies = 1 表示开启SYN cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭；</p>
+<p>net.ipv4.tcp_tw_reuse = 1 表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</p>
+<p>net.ipv4.tcp_tw_recycle = 1 表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</p>
+<p>net.ipv4.tcp_fin_timeout 修改系統默认的 TIMEOUT 时间</p>
+<p>下面附上TIME_WAIT状态的意义：</p>
+<p>客户端与服务器端建立TCP/IP连接后关闭SOCKET后，服务器端连接的端口</p>
+<p>状态为TIME_WAIT</p>
+<p>是不是所有执行主动关闭的socket都会进入TIME_WAIT状态呢？</p>
+<p>有没有什么情况使主动关闭的socket直接进入CLOSED状态呢？</p>
+<p>主动关闭的一方在发送最后一个 ack 后就会进入 TIME_WAIT 状态 停留2MSL（max segment lifetime）时间这个是TCP/IP必不可少的，也就是“解决”不了的。</p>
+<p>也就是TCP/IP设计者本来是这么设计的</p>
+<p>主要有两个原因</p>
+<p>1。防止上一次连接中的包，迷路后重新出现，影响新连接（经过2MSL，上一次连接中所有的重复包都会消失）</p>
+<p>2。可靠的关闭TCP连接</p>
+<p>在主动关闭方发送的最后一个 ack(fin) ，有可能丢失，这时被动方会重新发fin, 如果这时主动方处于 CLOSED 状态 ，就会响应 rst 而不是 ack。所以主动方要处于 TIME_WAIT 状态，而不能是 CLOSED 。</p>
+<p>TIME_WAIT 并不会占用很大资源的，除非受到攻击。</p>
+<p>还有，如果一方 send 或 recv 超时，就会直接进入 CLOSED 状态</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# netstat -an|awk &#39;/tcp/ &amp;#123;print $6&amp;#125;&#39;|sort|uniq -c&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     16 CLOSING&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    130 ESTABLISHED&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    298 FIN_WAIT1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     13 FIN_WAIT2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      9 LAST_ACK&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      7 LISTEN&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    103 SYN_RECV&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   5204 TIME_WAIT&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;状态：描述&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;CLOSED：无连接是活动的或正在进行&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;LISTEN：服务器在等待进入呼叫&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;SYN_RECV：一个连接请求已经到达，等待确认&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;SYN_SENT：应用已经开始，打开一个连接&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ESTABLISHED：正常数据传输状态&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;FIN_WAIT1：应用说它已经完成&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;FIN_WAIT2：另一边已同意释放&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ITMED_WAIT：等待所有分组死掉&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;CLOSING：两边同时尝试关闭&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;TIME_WAIT：另一边已初始化一个释放&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;LAST_ACK：等待所有分组死掉&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="system" scheme="http://www.unix-like.com/categories/system/"/>
+    
+    
+      <category term="调优" scheme="http://www.unix-like.com/tags/%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
   
   <entry>
     <title>logrotate切割日志nginx和php配置</title>
