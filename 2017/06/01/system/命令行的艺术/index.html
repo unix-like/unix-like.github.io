@@ -8,17 +8,21 @@
   
 
   
-  <title>Linux运维装逼指南</title>
+  <title>命令行的艺术 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Linux运维装逼指南">
-<meta property="og:url" content="http://www.unix-like.com/index.html">
+  <meta name="description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明  &amp;lt;–! more –&amp;gt; 熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长">
+<meta name="keywords" content="bash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令行的艺术">
+<meta property="og:url" content="http://www.unix-like.com/2017/06/01/system/命令行的艺术/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta property="og:description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明  &amp;lt;–! more –&amp;gt; 熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长">
+<meta property="og:image" content="https://camo.githubusercontent.com/e170e276291254896665fa8f612b99fe5b7dd005/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d73612f342e302f38387833312e706e67">
+<meta property="og:updated_time" content="2017-06-01T13:54:10.039Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维装逼指南">
-<meta name="twitter:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta name="twitter:title" content="命令行的艺术">
+<meta name="twitter:description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明  &amp;lt;–! more –&amp;gt; 熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/e170e276291254896665fa8f612b99fe5b7dd005/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d73612f342e302f38387833312e706e67">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -32,9 +36,6 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-    
-    
-  
   
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
@@ -45,8 +46,8 @@
       var yiliaConfig = {
           fancybox: true,
           animate: true,
-          isHome: true,
-          isPost: false,
+          isHome: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -269,9 +270,7 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-system/命令行的艺术" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-system/命令行的艺术" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a rel="external nofollow" href="/2017/06/01/system/命令行的艺术/" class="article-date">
@@ -288,13 +287,28 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/06/01/system/命令行的艺术/">命令行的艺术</a>
+    <h1 class="article-title" itemprop="name">
+      命令行的艺术
     </h1>
   
 
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/system/">system</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -443,167 +457,81 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/LINUX下解决netstat查看TIME-WAIT状态过多问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" class="article-date">
-      <time datetime="2017-05-31T08:03:00.000Z" itemprop="datePublished">2017-05-31</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/">LINUX下解决netstat查看TIME_WAIT状态过多问题</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># netstat -an|awk '/tcp/ &#123;print $6&#125;'|sort|uniq -c</span></div><div class="line">     16 CLOSING</div><div class="line">    130 ESTABLISHED</div><div class="line">    298 FIN_WAIT1</div><div class="line">     13 FIN_WAIT2</div><div class="line">      9 LAST_ACK</div><div class="line">      7 LISTEN</div><div class="line">    103 SYN_RECV</div><div class="line">   5204 TIME_WAIT</div><div class="line"></div><div class="line">状态：描述</div><div class="line">CLOSED：无连接是活动的或正在进行</div><div class="line">LISTEN：服务器在等待进入呼叫</div><div class="line">SYN_RECV：一个连接请求已经到达，等待确认</div><div class="line">SYN_SENT：应用已经开始，打开一个连接</div><div class="line">ESTABLISHED：正常数据传输状态</div><div class="line">FIN_WAIT1：应用说它已经完成</div><div class="line">FIN_WAIT2：另一边已同意释放</div><div class="line">ITMED_WAIT：等待所有分组死掉</div><div class="line">CLOSING：两边同时尝试关闭</div><div class="line">TIME_WAIT：另一边已初始化一个释放</div><div class="line">LAST_ACK：等待所有分组死掉</div></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/#more">查看更多 >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/01/system/命令行的艺术/">命令行的艺术</a></p>
+        <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
+        <p><span>发布时间:</span>2017年06月01日 - 21时52分</p>
+        <p><span>最后更新:</span>2017年06月01日 - 21时54分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/01/system/命令行的艺术/" title="命令行的艺术">http://www.unix-like.com/2017/06/01/system/命令行的艺术/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/01/system/命令行的艺术/　　作者: Linux运维装逼指南" title=""></span>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-service/logrotate切割日志nginx和php配置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" class="article-date">
-      <time datetime="2017-05-31T03:25:18.000Z" itemprop="datePublished">2017-05-31</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/31/service/logrotate切割日志nginx和php配置/">logrotate切割日志nginx和php配置</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/gotwo_data/logs/nginx/2mm.cn/*.log &#123;</div><div class="line">        daily</div><div class="line">        missingok</div><div class="line">        rotate 52</div><div class="line">        compress</div><div class="line">        delaycompress</div><div class="line">        notifempty</div><div class="line">        create 644 nginx nginx</div><div class="line">        sharedscripts</div><div class="line">        postrotate</div><div class="line">                [ <span class="_">-f</span> /gotwo_data/logs/nginx/nginx.pid ] &amp;&amp; <span class="built_in">kill</span> -USR1 `cat /gotwo_data/logs/nginx/nginx.pid`</div><div class="line">        endscript</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logrotate/">logrotate</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/31/service/logrotate切割日志nginx和php配置/#more">查看更多 >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LINUX下解决netstat查看TIME_WAIT状态过多问题</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
   
 </article>
 
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">日常使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">文件及数据处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">系统调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">单行脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">冷门但有用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">仅限 OS X 系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">仅限 Windows 系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text">更多资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text">免责声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">12.</span> <span class="toc-text">授权条款</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
 
 
 
@@ -612,514 +540,49 @@
 
 
 
-
-
-  
-    <article id="post-service/nginx常见问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/31/service/nginx常见问题/" class="article-date">
-      <time datetime="2017-05-31T03:01:53.000Z" itemprop="datePublished">2017-05-31</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+
+
+    <div class="scroll" id="post-nav-button">
         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/31/service/nginx常见问题/">nginx常见问题</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1-错误日志：warn：an-upstream-response-is-buffered-to-a-temporary-file"><a href="#1-错误日志：warn：an-upstream-response-is-buffered-to-a-temporary-file" class="headerlink" title="1.错误日志：warn：an upstream response is buffered to a temporary file"></a>1.错误日志：warn：an upstream response is buffered to a temporary file</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">解决办法：增加fastcgi_buffers 8 4K;     fastcgi_buffer_size 4K;</div></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/31/service/nginx常见问题/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/恢复linux被误删文件" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/30/system/恢复linux被误删文件/" class="article-date">
-      <time datetime="2017-05-30T10:31:56.000Z" itemprop="datePublished">2017-05-30</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a rel="external nofollow" href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、首先我们先来了解下文件删除原理："><a href="#一、首先我们先来了解下文件删除原理：" class="headerlink" title="一、首先我们先来了解下文件删除原理："></a>一、首先我们先来了解下文件删除原理：</h1><ul>
-<li>1）linux是通过link的数量来控制文件删除的，只有当一个文件不存在任何link的时候，这个文件才会被删除。一般来说，每个文件都有2个link计数器：i_count和i_nlink。</li>
-<li>2）当进程打开了某个文件时，只要该进程保持打开该文件，即使将其删除，它依然存在于磁盘中。这意味着，进程并不知道文件已经被删除，它仍然可以向打开该文件时提供给它的文件描述符进行读取和写入。除了该进程之外，这个文件是不可见的，因为已经删除了其相应的目录索引节点。</li>
-<li>3）当你发现你误删除了文件后，要做的第一件事是马上卸载被误删除文件所在的分区，或者以只读的方式来挂载该分区。原因大家都很清楚，文件被删除后，文件中的数据还存在磁盘上，除非存放这些数据的数据块又被操作系统分配出去了。我们这一步就是尽量降低数据块中数据被覆盖的风险，以提高恢复数据成功的比率。</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据恢复/">数据恢复</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/30/system/恢复linux被误删文件/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-service/ Windows与Linux共享文件夹互相访问 " class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" class="article-date">
-      <time datetime="2017-05-29T13:56:20.000Z" itemprop="datePublished">2017-05-29</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="首先安装并配置软件samba"><a href="#首先安装并配置软件samba" class="headerlink" title="首先安装并配置软件samba"></a>首先安装并配置软件samba</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sudo yum install samba samba-client  </div><div class="line">vim /etc/samba/smb.conf  </div><div class="line">      </div><div class="line">找到security这行并将<span class="comment">#注释符号去掉改成  </span></div><div class="line">security = share     <span class="comment">#共享模式  </span></div><div class="line">      </div><div class="line">添加如下代码：  </div><div class="line">      </div><div class="line">[share]  </div><div class="line">comment = share  </div><div class="line">path = /home/<span class="built_in">test</span>          <span class="comment">#设置共享文件夹目录  </span></div><div class="line">browseable = yes  </div><div class="line">guest ok = yes  </div><div class="line">writable = yes  </div><div class="line"></div><div class="line">service smb start  </div><div class="line">service smbd start   (ubuntu)</div></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/samba/">samba</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-life/系统运维工程师装逼完全指南" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/" class="article-date">
-      <time datetime="2017-05-28T10:49:44.000Z" itemprop="datePublished">2017-05-28</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" title="下一篇: LINUX下解决netstat查看TIME_WAIT状态过多问题">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>1、全球化的认证有助于提升逼格，什么OCM、CCIE、RHCA、CISSP等等能考都考，再不济，也要有一张系统架构设计师或者网络规划设计师的信产部认证。每过一个认证，逼格提升一档。</p>
-          
-      
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/28/life/系统运维工程师装逼完全指南/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/01/system/命令行的艺术/">命令行的艺术</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/">LINUX下解决netstat查看TIME_WAIT状态过多问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/logrotate切割日志nginx和php配置/">logrotate切割日志nginx和php配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/nginx常见问题/">nginx常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
+    <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
 
 
 
 
-
-
-
-
-
-
-
-  
-    <article id="post-life/运维人装逼指南大全" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/28/life/运维人装逼指南大全/" class="article-date">
-      <time datetime="2017-05-28T10:27:19.000Z" itemprop="datePublished">2017-05-28</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <script>
         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>曾经有一首诗是这么写的</p>
-<blockquote>
-<p>装逼，是一种态度??</p>
-<p>装逼的人生不可限量</p>
-<p>装逼如煲汤</p>
-<p>遇到烹制的高手，逼格立马飙升</p>
-</blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/28/life/运维人装逼指南大全/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-service/tc命令Linux基于IP进行流量限速" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/" class="article-date">
-      <time datetime="2017-05-28T05:18:20.000Z" itemprop="datePublished">2017-05-28</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、TC原理"><a href="#一、TC原理" class="headerlink" title="一、TC原理"></a>一、TC原理</h1><p>　　Linux操作系统中的流量控制器TC（Traffic Control）用于Linux内核的流量控制，主要是通过在输出端口处建立一个队列来实现流量控制。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tc/">tc</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/Linux上ssd优化" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/27/system/Linux上ssd优化/" class="article-date">
-      <time datetime="2017-05-27T15:18:28.000Z" itemprop="datePublished">2017-05-27</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、修改默认的固态硬盘-SSD-柱面大小"><a href="#一、修改默认的固态硬盘-SSD-柱面大小" class="headerlink" title="一、修改默认的固态硬盘(SSD)柱面大小"></a>一、修改默认的固态硬盘(SSD)柱面大小</h1><p>　　提升Linux下固态硬盘的使用率，在安装Linux操作系统前就应该做相关工作。系统会先在磁盘上创建分区，通常创建的分区包含固定数量的柱面，而默认情况下，每个柱面由16065512个字节的扇区组成。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/27/system/Linux上ssd优化/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
+    </script>
 
 </div>
       <footer id="footer">
