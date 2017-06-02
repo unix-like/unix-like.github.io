@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-06-01T13:54:10.039Z</updated>
+  <updated>2017-06-02T01:39:10.512Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://www.unix-like.com/2017/06/01/system/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF/"/>
     <id>http://www.unix-like.com/2017/06/01/system/命令行的艺术/</id>
     <published>2017-06-01T13:52:56.000Z</published>
-    <updated>2017-06-01T13:54:10.039Z</updated>
+    <updated>2017-06-02T01:39:10.512Z</updated>
     
     <content type="html"><![CDATA[<ul><br><li><a href="#%E5%89%8D%E8%A8%80">前言</a></li><br><li><a href="#%E5%9F%BA%E7%A1%80">基础</a></li><br><li><a href="#%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8">日常使用</a></li><br><li><a href="#%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86">文件及数据处理</a></li><br><li><a href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95">系统调试</a></li><br><li><a href="#%E5%8D%95%E8%A1%8C%E8%84%9A%E6%9C%AC">单行脚本</a></li><br><li><a href="#%E5%86%B7%E9%97%A8%E4%BD%86%E6%9C%89%E7%94%A8">冷门但有用</a></li><br><li><a href="#%E4%BB%85%E9%99%90-os-x-%E7%B3%BB%E7%BB%9F">仅限 OS X 系统</a></li><br><li><a href="#%E4%BB%85%E9%99%90-windows-%E7%B3%BB%E7%BB%9F">仅限 Windows 系统</a></li><br><li><a href="#%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90">更多资源</a></li><br><li><a href="#%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E">免责声明</a></li><br></ul>
 
-<p>&lt;–! more –&gt;</p>
+<a id="more"></a>
 <p>熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长，但当你能够熟练掌握这里列出的所有技巧时，你就学会了很多关于命令行的东西了。</p>
 
 <p>这篇文章是<a href="/jlevy/the-art-of-command-line/blob/master/AUTHORS.md">许多作者和译者</a>共同的成果。<br>这里的部分内容<br><a href="http://www.quora.com/What-are-some-lesser-known-but-useful-Unix-commands" target="_blank" rel="external">首次</a><br><a href="http://www.quora.com/What-are-the-most-useful-Swiss-army-knife-one-liners-on-Unix" target="_blank" rel="external">出现</a><br>于 <a href="http://www.quora.com/What-are-some-time-saving-tips-that-every-Linux-user-should-know" target="_blank" rel="external">Quora</a>，<br>但已经迁移到了 Github，并由众多高手做出了许多改进。<br>如果你在本文中发现了错误或者存在可以改善的地方，请<a href="/jlevy/the-art-of-command-line/blob/master/CONTRIBUTING.md"><strong>贡献你的一份力量</strong></a>。</p>
@@ -165,7 +165,7 @@
     
     <summary type="html">
     
-      &lt;ul&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;前言&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E5%9F%BA%E7%A1%80&quot;&gt;基础&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E6%97%A5%E5%B8%B8%E
+      &lt;ul&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;前言&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E5%9F%BA%E7%A1%80&quot;&gt;基础&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8&quot;&gt;日常使用&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86&quot;&gt;文件及数据处理&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95&quot;&gt;系统调试&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E5%8D%95%E8%A1%8C%E8%84%9A%E6%9C%AC&quot;&gt;单行脚本&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E5%86%B7%E9%97%A8%E4%BD%86%E6%9C%89%E7%94%A8&quot;&gt;冷门但有用&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E4%BB%85%E9%99%90-os-x-%E7%B3%BB%E7%BB%9F&quot;&gt;仅限 OS X 系统&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E4%BB%85%E9%99%90-windows-%E7%B3%BB%E7%BB%9F&quot;&gt;仅限 Windows 系统&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90&quot;&gt;更多资源&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;#%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E&quot;&gt;免责声明&lt;/a&gt;&lt;/li&gt;&lt;br&gt;&lt;/ul&gt;
     
     </summary>
     

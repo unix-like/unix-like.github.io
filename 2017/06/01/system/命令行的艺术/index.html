@@ -10,18 +10,18 @@
   
   <title>命令行的艺术 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明  &amp;lt;–! more –&amp;gt; 熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长">
+  <meta name="description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明">
 <meta name="keywords" content="bash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令行的艺术">
 <meta property="og:url" content="http://www.unix-like.com/2017/06/01/system/命令行的艺术/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明  &amp;lt;–! more –&amp;gt; 熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长">
+<meta property="og:description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明">
 <meta property="og:image" content="https://camo.githubusercontent.com/e170e276291254896665fa8f612b99fe5b7dd005/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d73612f342e302f38387833312e706e67">
-<meta property="og:updated_time" content="2017-06-01T13:54:10.039Z">
+<meta property="og:updated_time" content="2017-06-02T01:39:10.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令行的艺术">
-<meta name="twitter:description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明  &amp;lt;–! more –&amp;gt; 熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长">
+<meta name="twitter:description" content="前言基础日常使用文件及数据处理系统调试单行脚本冷门但有用仅限 OS X 系统仅限 Windows 系统更多资源免责声明">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/e170e276291254896665fa8f612b99fe5b7dd005/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d73612f342e302f38387833312e706e67">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
@@ -316,7 +316,7 @@
           
         <ul><br><li><a href="#%E5%89%8D%E8%A8%80">前言</a></li><br><li><a href="#%E5%9F%BA%E7%A1%80">基础</a></li><br><li><a href="#%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8">日常使用</a></li><br><li><a href="#%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86">文件及数据处理</a></li><br><li><a href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95">系统调试</a></li><br><li><a href="#%E5%8D%95%E8%A1%8C%E8%84%9A%E6%9C%AC">单行脚本</a></li><br><li><a href="#%E5%86%B7%E9%97%A8%E4%BD%86%E6%9C%89%E7%94%A8">冷门但有用</a></li><br><li><a href="#%E4%BB%85%E9%99%90-os-x-%E7%B3%BB%E7%BB%9F">仅限 OS X 系统</a></li><br><li><a href="#%E4%BB%85%E9%99%90-windows-%E7%B3%BB%E7%BB%9F">仅限 Windows 系统</a></li><br><li><a href="#%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90">更多资源</a></li><br><li><a href="#%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E">免责声明</a></li><br></ul>
 
-<p>&lt;–! more –&gt;</p>
+<a id="more"></a>
 <p>熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长，但当你能够熟练掌握这里列出的所有技巧时，你就学会了很多关于命令行的东西了。</p>
 
 <p>这篇文章是<a href="/jlevy/the-art-of-command-line/blob/master/AUTHORS.md">许多作者和译者</a>共同的成果。<br>这里的部分内容<br><a href="http://www.quora.com/What-are-some-lesser-known-but-useful-Unix-commands" target="_blank" rel="external">首次</a><br><a href="http://www.quora.com/What-are-the-most-useful-Swiss-army-knife-one-liners-on-Unix" target="_blank" rel="external">出现</a><br>于 <a href="http://www.quora.com/What-are-some-time-saving-tips-that-every-Linux-user-should-know" target="_blank" rel="external">Quora</a>，<br>但已经迁移到了 Github，并由众多高手做出了许多改进。<br>如果你在本文中发现了错误或者存在可以改善的地方，请<a href="/jlevy/the-art-of-command-line/blob/master/CONTRIBUTING.md"><strong>贡献你的一份力量</strong></a>。</p>
@@ -464,7 +464,7 @@
         <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/01/system/命令行的艺术/">命令行的艺术</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
         <p><span>发布时间:</span>2017年06月01日 - 21时52分</p>
-        <p><span>最后更新:</span>2017年06月01日 - 21时54分</p>
+        <p><span>最后更新:</span>2017年06月02日 - 09时39分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/06/01/system/命令行的艺术/" title="命令行的艺术">http://www.unix-like.com/2017/06/01/system/命令行的艺术/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/01/system/命令行的艺术/　　作者: Linux运维装逼指南" title=""></span>
