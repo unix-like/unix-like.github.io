@@ -8,19 +8,19 @@
   
 
   
-  <title>恢复linux被误删文件 | Linux运维装逼指南</title>
+  <title>修改PHP上传文件大小限制 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、首先我们先来了解下文件删除原理： 1）linux是通过link的数量来控制文件删除的，只有当一个文件不存在任何link的时候，这个文件才会被删除。一般来说，每个文件都有2个link计数器：i_count和i_nlink。 2）当进程打开了某个文件时，只要该进程保持打开该文件，即使将其删除，它依然存在于磁盘中。这意味着，进程并不知道文件已经被删除，它仍然可以向打开该文件时提供给它的文件描述符进行">
-<meta name="keywords" content="数据恢复">
+  <meta name="description" content="一.配置php.ini文件 （以上传500M以下大小的文件为例）　　查找以下选项并修改: 12file_uploads = On ;打开文件上传选项upload_max_filesize = 500M ;上传文件上限">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="恢复linux被误删文件">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/30/system/恢复linux被误删文件/index.html">
+<meta property="og:title" content="修改PHP上传文件大小限制">
+<meta property="og:url" content="http://www.unix-like.com/2017/05/30/service/修改PHP上传文件大小限制/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="一、首先我们先来了解下文件删除原理： 1）linux是通过link的数量来控制文件删除的，只有当一个文件不存在任何link的时候，这个文件才会被删除。一般来说，每个文件都有2个link计数器：i_count和i_nlink。 2）当进程打开了某个文件时，只要该进程保持打开该文件，即使将其删除，它依然存在于磁盘中。这意味着，进程并不知道文件已经被删除，它仍然可以向打开该文件时提供给它的文件描述符进行">
-<meta property="og:updated_time" content="2017-05-30T10:34:19.698Z">
+<meta property="og:description" content="一.配置php.ini文件 （以上传500M以下大小的文件为例）　　查找以下选项并修改: 12file_uploads = On ;打开文件上传选项upload_max_filesize = 500M ;上传文件上限">
+<meta property="og:updated_time" content="2017-06-02T01:56:49.133Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="恢复linux被误删文件">
-<meta name="twitter:description" content="一、首先我们先来了解下文件删除原理： 1）linux是通过link的数量来控制文件删除的，只有当一个文件不存在任何link的时候，这个文件才会被删除。一般来说，每个文件都有2个link计数器：i_count和i_nlink。 2）当进程打开了某个文件时，只要该进程保持打开该文件，即使将其删除，它依然存在于磁盘中。这意味着，进程并不知道文件已经被删除，它仍然可以向打开该文件时提供给它的文件描述符进行">
+<meta name="twitter:title" content="修改PHP上传文件大小限制">
+<meta name="twitter:description" content="一.配置php.ini文件 （以上传500M以下大小的文件为例）　　查找以下选项并修改: 12file_uploads = On ;打开文件上传选项upload_max_filesize = 500M ;上传文件上限">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -268,11 +268,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-system/恢复linux被误删文件" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-service/修改PHP上传文件大小限制" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/30/system/恢复linux被误删文件/" class="article-date">
-      <time datetime="2017-05-30T10:31:56.000Z" itemprop="datePublished">2017-05-30</time>
+      <a rel="external nofollow" href="/2017/05/30/service/修改PHP上传文件大小限制/" class="article-date">
+      <time datetime="2017-05-30T01:56:54.000Z" itemprop="datePublished">2017-05-30</time>
 </a>
 
     </div>
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      恢复linux被误删文件
+      修改PHP上传文件大小限制
     </h1>
   
 
@@ -296,13 +296,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
+    <a class="article-category-link" href="/categories/service/">service</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据恢复/">数据恢复</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -312,35 +312,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="一、首先我们先来了解下文件删除原理："><a href="#一、首先我们先来了解下文件删除原理：" class="headerlink" title="一、首先我们先来了解下文件删除原理："></a>一、首先我们先来了解下文件删除原理：</h1><ul>
-<li>1）linux是通过link的数量来控制文件删除的，只有当一个文件不存在任何link的时候，这个文件才会被删除。一般来说，每个文件都有2个link计数器：i_count和i_nlink。</li>
-<li>2）当进程打开了某个文件时，只要该进程保持打开该文件，即使将其删除，它依然存在于磁盘中。这意味着，进程并不知道文件已经被删除，它仍然可以向打开该文件时提供给它的文件描述符进行读取和写入。除了该进程之外，这个文件是不可见的，因为已经删除了其相应的目录索引节点。</li>
-<li>3）当你发现你误删除了文件后，要做的第一件事是马上卸载被误删除文件所在的分区，或者以只读的方式来挂载该分区。原因大家都很清楚，文件被删除后，文件中的数据还存在磁盘上，除非存放这些数据的数据块又被操作系统分配出去了。我们这一步就是尽量降低数据块中数据被覆盖的风险，以提高恢复数据成功的比率。</li>
-</ul>
+        <h1 id="一-配置php-ini文件-（以上传500M以下大小的文件为例）"><a href="#一-配置php-ini文件-（以上传500M以下大小的文件为例）" class="headerlink" title="一.配置php.ini文件 （以上传500M以下大小的文件为例）"></a>一.配置php.ini文件 （以上传500M以下大小的文件为例）</h1><p>　　查找以下选项并修改:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">file_uploads = On ;打开文件上传选项</div><div class="line">upload_max_filesize = 500M ;上传文件上限</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h1 id="二、了解完后，实战演练"><a href="#二、了解完后，实战演练" class="headerlink" title="二、了解完后，实战演练"></a>二、了解完后，实战演练</h1><hr>
-<h2 id="方案-1）现在我向大家介绍使用extundelete恢复文件（适合rhel6-X系统的ext4"><a href="#方案-1）现在我向大家介绍使用extundelete恢复文件（适合rhel6-X系统的ext4" class="headerlink" title="方案 1）现在我向大家介绍使用extundelete恢复文件（适合rhel6.X系统的ext4)"></a>方案 1）现在我向大家介绍使用extundelete恢复文件（适合rhel6.X系统的ext4)</h2><h3 id="1-编译安装extundelete-0-2-4"><a href="#1-编译安装extundelete-0-2-4" class="headerlink" title="1.编译安装extundelete-0.2.4"></a>1.编译安装extundelete-0.2.4</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tar -jxvf  extundelete-0.2.4.tar.bz2</div><div class="line"><span class="built_in">cd</span> extundelete-0.2.4</div><div class="line">./configure （这步出现错误，请看下文）</div><div class="line">mount /dev/cdrom /mnt</div><div class="line">rpm -ivh  /mnt/Packages/e2fsprogs-devel-1.41.12-18.el6.x86_64.rpm  （必须安装否则，前面./configure报错）</div><div class="line">./configure （成功）</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
-<h3 id="2-软件安装完毕，下面我们来恢复文件吧"><a href="#2-软件安装完毕，下面我们来恢复文件吧" class="headerlink" title="2.软件安装完毕，下面我们来恢复文件吧"></a>2.软件安装完毕，下面我们来恢复文件吧</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mkdir recover</div><div class="line"><span class="built_in">cd</span> recover</div><div class="line">extundelete  /dev/sda4 --inode  2  （看到你所删除的文件）</div><div class="line">extundelete  /dev/sda4 -restore-inode 15 （按对应的节点来恢复文件）</div><div class="line">extundelete  /dev/sda4 -restore-file  a.txt   （按对应文件名来恢复文件）</div><div class="line">extundelete  /dev/sda4 -restore-dirctory etc  （按对应的目录，这里我以etc目录）</div><div class="line">extundelete  /dev/sda4 -restore-all （全部恢复）</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="方案2）使用lsof自带一个的神秘功能"><a href="#方案2）使用lsof自带一个的神秘功能" class="headerlink" title="方案2）使用lsof自带一个的神秘功能"></a>方案2）使用lsof自带一个的神秘功能</h2><p>　　原理：大多数与 lsof 相关的信息都存储于以进程的 PID命名的目录中,假如由于误操作将/var/log/messages文件删除掉了，那么这时要将/var/log/messages文件恢复的方法如下：</p>
-<p>　　首先使用lsof来查看当前是否有进程打开/var/logmessages文件，如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">lsof |grep /var/<span class="built_in">log</span>/messages</div><div class="line"></div><div class="line">syslogd 1283 root 2w REG 3,3 5381017 1773647 /var/<span class="built_in">log</span>/messages (deleted)</div></pre></td></tr></table></figure>
-<p>　　从上面的信息可以看到 PID 1283（syslogd）打开文件的文件描述符为 2。同时还可以看到/var/log/messages已经标记被删除了。因此我们可以在 /proc/1283/fd/2 （fd下的每个以数字命名的文件表示进程对应的文件描述符）中查看相应的信息，如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">head -n 10 /proc/1283/fd/2</div><div class="line"></div><div class="line">Aug 4 13:50:15 holmes86 syslogd 1.4.1: restart.</div><div class="line">Aug 4 13:50:15 holmes86 kernel: klogd 1.4.1, <span class="built_in">log</span> <span class="built_in">source</span> = /proc/kmsg started.</div><div class="line">Aug 4 13:50:15 holmes86 kernel: Linux version 2.6.22.1-8 (root@everestbuilder.linux-ren.org)</div><div class="line">(gcc version 4.2.0) <span class="comment">#1 SMP Wed Jul 18 11:18:32 EDT 2007 Aug 4 13:50:15 holmes86 kernel:</span></div><div class="line">BIOS-provided physical RAM map: Aug 4 13:50:15 holmes86 kernel: BIOS<span class="_">-e</span>820:</div><div class="line">0000000000000000 - 000000000009f000 (usable) Aug 4 13:50:15 holmes86 kernel: BIOS<span class="_">-e</span>820:</div><div class="line">000000000009f000 - 00000000000a0000 (reserved) Aug 4 13:50:15 holmes86 kernel:</div><div class="line">BIOS<span class="_">-e</span>820: 0000000000100000 - 000000001f7d3800 (usable) Aug 4 13:50:15 holmes86 kernel:</div><div class="line">BIOS<span class="_">-e</span>820: 000000001f7d3800 - 0000000020000000 (reserved) Aug 4 13:50:15 holmes86</div><div class="line">kernel: BIOS<span class="_">-e</span>820: 00000000e0000000 - 00000000f0007000 (reserved) Aug 4 13:50:15</div><div class="line">holmes86 kernel: BIOS<span class="_">-e</span>820: 00000000f0008000 - 00000000f000c000 (reserved)</div></pre></td></tr></table></figure>
-<p>　　从上面的信息可以看出，查看 /proc/8663/fd/15 就可以得到所要恢复的数据。如果可以通过文件描述符查看相应的数据，那么就可以使用 I/O 重定向将其复制到文件中，如:cat /proc/1283/fd/2 &gt; /var/log/messages对于许多应用程序，尤其是日志文件和数据库，这种恢复删除文件的方法非常有用。</p>
-<hr>
-<h2 id="方案3）使用ext3grep恢复文件（适合rhel5-X系统的ext3"><a href="#方案3）使用ext3grep恢复文件（适合rhel5-X系统的ext3" class="headerlink" title="方案3）使用ext3grep恢复文件（适合rhel5.X系统的ext3)"></a>方案3）使用ext3grep恢复文件（适合rhel5.X系统的ext3)</h2><h3 id="1-编译安装ext3grep-0-10-1"><a href="#1-编译安装ext3grep-0-10-1" class="headerlink" title="1. 编译安装ext3grep-0.10.1"></a>1. 编译安装ext3grep-0.10.1</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar -jxvf  ext3grep-0.10.1.tar.gz</div><div class="line"><span class="built_in">cd</span> ext3grep-0.10.1</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
-<h3 id="2-软件安装完毕，下面我们来恢复文件吧-1"><a href="#2-软件安装完毕，下面我们来恢复文件吧-1" class="headerlink" title="2. 软件安装完毕，下面我们来恢复文件吧"></a>2. 软件安装完毕，下面我们来恢复文件吧</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir recover</div><div class="line"><span class="built_in">cd</span> recover</div><div class="line">ext3grep /dev/your-device --restore-filepath/to/your/file/filename</div></pre></td></tr></table></figure>
-<p>　　需要注意的是，上面的文件路径，是在该分区上文件路径。假设我们要恢复/dev/sda3分区上文件，这个分区原来的安装点是/home，现在想恢复文件/home/easwy/vi/tips.xml，那么输入的命令应该是：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ext3grep /dev/sda3--restore-file easwy/vi/tips.xml</div></pre></td></tr></table></figure>
-<p>　　所有恢复的文件都会放在当前目下在<code>RESTORED_FILES</code>目录下，大小也一样，这里<code>RESTORED_FILES</code>目录是执行ext3grep的当前目录下</p>
-<p>　　如果你忘记了文件名，或者你误删除的是一个目录而你无法记全该目录中的文件，你可以先用下面的命令查询一下文件名：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ext3grep /dev/sda3 --dump-names | tee filename.txt</div></pre></td></tr></table></figure>
-<p>　　上面的命令把ext3grep命令的输出记录到文件filename.txt中，你可以慢慢查看，或者使用grep命令过滤出你需要的信息。</p>
-<p>　　当你知道了目录/文件的信息后，就可以用上面说的命令进行恢复了。</p>
-<p>　　复所有文件和目录，但是目录的话，如果删除时间较长，不一定能完全恢复，压缩文件一般都能恢复</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ext3grep /termite/cc-disk --restore-all</div><div class="line">ext3grep /dev/sda3  --ls --inode 2 创建扫描分区文件：sda5.ext3grep.stage1和sda5.ext3grep.stage2</div></pre></td></tr></table></figure>
-<p>　　如果想要重新生成可以删除这个两个文件，再次执行这条命令。另外当第一次执行ext3grep /dev/sda3 –restore-file test/a.txt进行还原时也会自动生成扫描分区文件。</p>
+<p>　　如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">post_max_size = 500M ;post上限</div><div class="line">max_execution_time = 1800 ; Maximum execution time of each script, <span class="keyword">in</span> seconds脚本最大执行时间</div><div class="line">max_input_time = 1800 ; Maximum amount of time each script may spend parsing request data</div><div class="line">memory_limit = 128M ; Maximum amount of memory a script may consume (128MB)内存上限</div></pre></td></tr></table></figure>
+<h1 id="二-修改nginx配置"><a href="#二-修改nginx配置" class="headerlink" title="二.修改nginx配置"></a>二.修改nginx配置</h1><p>　　需要在对应的虚拟主机配置中修改　<code>client_max_body_size</code> 参数的值</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">client_max_body_size 500m;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -349,13 +327,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a></p>
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/30/service/修改PHP上传文件大小限制/">修改PHP上传文件大小限制</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年05月30日 - 18时31分</p>
-        <p><span>最后更新:</span>2017年05月30日 - 18时34分</p>
+        <p><span>发布时间:</span>2017年05月30日 - 09时56分</p>
+        <p><span>最后更新:</span>2017年06月02日 - 09时56分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/30/system/恢复linux被误删文件/" title="恢复linux被误删文件">http://www.unix-like.com/2017/05/30/system/恢复linux被误删文件/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/30/system/恢复linux被误删文件/　　作者: Linux运维装逼指南" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/30/service/修改PHP上传文件大小限制/" title="修改PHP上传文件大小限制">http://www.unix-like.com/2017/05/30/service/修改PHP上传文件大小限制/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/30/service/修改PHP上传文件大小限制/　　作者: Linux运维装逼指南" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -366,18 +344,18 @@
 
 <nav id="article-nav">
   
-    <a rel="external nofollow" href="/2017/05/31/service/nginx常见问题/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a rel="external nofollow" href="/2017/05/30/system/恢复linux被误删文件/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          nginx常见问题
+          恢复linux被误删文件
         
       </div>
     </a>
   
   
-    <a rel="external nofollow" href="/2017/05/30/service/修改PHP上传文件大小限制/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">修改PHP上传文件大小限制</div>
+    <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Windows与Linux共享文件夹互相访问</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -389,7 +367,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、首先我们先来了解下文件删除原理："><span class="toc-number">1.</span> <span class="toc-text">一、首先我们先来了解下文件删除原理：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、了解完后，实战演练"><span class="toc-number">2.</span> <span class="toc-text">二、了解完后，实战演练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方案-1）现在我向大家介绍使用extundelete恢复文件（适合rhel6-X系统的ext4"><span class="toc-number">2.1.</span> <span class="toc-text">方案 1）现在我向大家介绍使用extundelete恢复文件（适合rhel6.X系统的ext4)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-编译安装extundelete-0-2-4"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.编译安装extundelete-0.2.4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-软件安装完毕，下面我们来恢复文件吧"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.软件安装完毕，下面我们来恢复文件吧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案2）使用lsof自带一个的神秘功能"><span class="toc-number">2.2.</span> <span class="toc-text">方案2）使用lsof自带一个的神秘功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案3）使用ext3grep恢复文件（适合rhel5-X系统的ext3"><span class="toc-number">2.3.</span> <span class="toc-text">方案3）使用ext3grep恢复文件（适合rhel5.X系统的ext3)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-编译安装ext3grep-0-10-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">1. 编译安装ext3grep-0.10.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-软件安装完毕，下面我们来恢复文件吧-1"><span class="toc-number">2.3.2.</span> <span class="toc-text">2. 软件安装完毕，下面我们来恢复文件吧</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-配置php-ini文件-（以上传500M以下大小的文件为例）"><span class="toc-number">1.</span> <span class="toc-text">一.配置php.ini文件 （以上传500M以下大小的文件为例）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-修改nginx配置"><span class="toc-number">2.</span> <span class="toc-text">二.修改nginx配置</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -443,13 +421,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a rel="external nofollow" href="/2017/05/31/service/nginx常见问题/" title="上一篇: nginx常见问题">
+            <a rel="external nofollow" href="/2017/05/30/system/恢复linux被误删文件/" title="上一篇: 恢复linux被误删文件">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a rel="external nofollow" href="/2017/05/30/service/修改PHP上传文件大小限制/" title="下一篇: 修改PHP上传文件大小限制">
+            <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" title="下一篇: Windows与Linux共享文件夹互相访问">
                 <i class="fa fa-angle-right"></i>
             </a>
         
