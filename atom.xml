@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-06-02T01:55:23.376Z</updated>
+  <updated>2017-06-04T11:25:21.711Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kvm部署及虚拟机安装</title>
+    <link href="http://www.unix-like.com/2017/06/04/service/KVM%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85/"/>
+    <id>http://www.unix-like.com/2017/06/04/service/KVM部署及虚拟机安装/</id>
+    <published>2017-06-04T11:20:33.000Z</published>
+    <updated>2017-06-04T11:25:21.711Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一-KVM安装"><a href="#一-KVM安装" class="headerlink" title="一. KVM安装"></a>一. KVM安装</h1><h2 id="1-查看硬件是否支持虚拟化"><a href="#1-查看硬件是否支持虚拟化" class="headerlink" title="1. 查看硬件是否支持虚拟化"></a>1. 查看硬件是否支持虚拟化</h2><p>　　KVM需要CPU支持虚拟化，执行以下命令查看是否支持虚拟化：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">egrep <span class="string">'(vmx|svm)'</span> --color=always /proc/cpuinfo</div></pre></td></tr></table></figure>
+<p>　　如果含有vmx或者svm字样，则表示支持CPU虚拟化，</p>
+<p>　　Intel是vmx，AMD是svm。</p>
+<a id="more"></a>
+<h2 id="2-安装KVM"><a href="#2-安装KVM" class="headerlink" title="2. 安装KVM"></a>2. 安装KVM</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install qemu-kvm qemu-img libvirt libvirt-python libguestfs-tools virt-install</div></pre></td></tr></table></figure>
+<p>　　<strong>qemu-kvm</strong> 是一个开源的虚拟机程序，为 KVM 虚拟机监视器提供硬件仿真，而 qemu-img 则提供了一个操纵磁盘镜像的命令行工具。</p>
+<p>　　<strong>libvirt</strong> 包含与操作系统的虚拟化功能交互的工具。</p>
+<p>　　<strong>libvirt-python</strong> 包含一个模块，它允许用 Python 写的应用来使用由 libvirt 提供的接口。</p>
+<p>　　<strong>libguestfs-tools</strong> 包含各式各样的针对虚拟机的系统管理员命令行工具。</p>
+<p>　　<strong>virt-install</strong> 包含针对虚拟机管理的其他命令行工具。</p>
+<h3 id="2-1-启动并开启了-libvirtd-服务"><a href="#2-1-启动并开启了-libvirtd-服务" class="headerlink" title="2.1. 启动并开启了 libvirtd 服务"></a>2.1. 启动并开启了 libvirtd 服务</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/libvirtd start</div><div class="line"></div><div class="line">chkconfig libvirtd on</div></pre></td></tr></table></figure>
+<h3 id="2-2-配置转发"><a href="#2-2-配置转发" class="headerlink" title="2.2. 配置转发"></a>2.2. 配置转发</h3><p>　　文件/etc/sysctl.conf 中设置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net.ipv4.ip_forward = 1</div></pre></td></tr></table></figure>
+<h3 id="2-3-关闭网桥上的Netfilter-提高性能"><a href="#2-3-关闭网桥上的Netfilter-提高性能" class="headerlink" title="2.3. 关闭网桥上的Netfilter(提高性能)"></a>2.3. 关闭网桥上的Netfilter(提高性能)</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf:</div><div class="line"></div><div class="line">    net.bridge.bridge-nf-call-ip6tables = 0</div><div class="line"></div><div class="line">    net.bridge.bridge-nf-call-iptables = 0</div><div class="line"></div><div class="line">    net.bridge.bridge-nf-call-arptables = 0</div></pre></td></tr></table></figure>
+<h3 id="2-4-加载更改到当前的内核配置中："><a href="#2-4-加载更改到当前的内核配置中：" class="headerlink" title="2.4. 加载更改到当前的内核配置中："></a>2.4. 加载更改到当前的内核配置中：</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl -p</div></pre></td></tr></table></figure>
+<h2 id="3-KVM网络配置"><a href="#3-KVM网络配置" class="headerlink" title="3. KVM网络配置"></a>3. KVM网络配置</h2><h3 id="3-1-创建桥接器"><a href="#3-1-创建桥接器" class="headerlink" title="3.1. 创建桥接器"></a>3.1. 创建桥接器</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/network-scripts/ifcfg-br0</div><div class="line"></div><div class="line">    DEVICE=br0</div><div class="line">    NAME=br0</div><div class="line">    NM_CONTROLLED=no</div><div class="line">    TYPE=Bridge     <span class="comment"># 注意Bridge大小写</span></div><div class="line">    ONBOOT=yes</div><div class="line">    BOOTPROTO=none</div><div class="line">    BROADCAST=192.168.2.255</div><div class="line">    IPADDR=192.168.2.7</div><div class="line">    NETMASK=255.255.255.0</div><div class="line">    NETWORK=192.168.2.0</div><div class="line">    GATEWAY=192.168.2.1</div></pre></td></tr></table></figure>
+<h3 id="3-2-将物理接口桥接到桥接器"><a href="#3-2-将物理接口桥接到桥接器" class="headerlink" title="3.2. 将物理接口桥接到桥接器"></a>3.2. 将物理接口桥接到桥接器</h3><p>　　修改eth0的内容（本服务器是用eth0上网的），去掉其IP相关信息，加上“BRIDGE=br0”，将其桥接到br0上；如果是双网卡或是多网卡，照此过程修改：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/network-scripts/ifcfg-eth0</div><div class="line"></div><div class="line">    DEVICE=eth0</div><div class="line">    NAME=eth0</div><div class="line">    TYPE=Ethernet</div><div class="line">    NM_CONTROLLED=no</div><div class="line">    ONBOOT=yes</div><div class="line">    BRIDGE=br0</div></pre></td></tr></table></figure>
+<h3 id="3-3-重启网络"><a href="#3-3-重启网络" class="headerlink" title="3.3. 重启网络"></a>3.3. 重启网络</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/network restart</div></pre></td></tr></table></figure>
+<h1 id="二-安装并配置VNC服务"><a href="#二-安装并配置VNC服务" class="headerlink" title="二. 安装并配置VNC服务"></a>二. 安装并配置VNC服务</h1><h2 id="1-安装VNC"><a href="#1-安装VNC" class="headerlink" title="1. 安装VNC"></a>1. 安装VNC</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install tigervnc tigervnc-server</div></pre></td></tr></table></figure>
+<h2 id="2-配置VNC"><a href="#2-配置VNC" class="headerlink" title="2. 配置VNC"></a>2. 配置VNC</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/vncservers</div><div class="line"></div><div class="line">    VNCSERVERS=<span class="string">"1:root"</span></div><div class="line">    VNCSERVERARGS[2]=<span class="string">"-geometry 800x600 -nolisten tcp -localhost"</span></div></pre></td></tr></table></figure>
+<h2 id="3-设置vnc密码"><a href="#3-设置vnc密码" class="headerlink" title="3.设置vnc密码"></a>3.设置vnc密码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vncpasswd</div></pre></td></tr></table></figure>
+<h2 id="4-启动服务"><a href="#4-启动服务" class="headerlink" title="4.启动服务"></a>4.启动服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/vncserver start</div><div class="line"></div><div class="line">chkconfig vncserver on</div></pre></td></tr></table></figure>
+<h2 id="5-配置QEMU"><a href="#5-配置QEMU" class="headerlink" title="5. 配置QEMU"></a>5. 配置QEMU</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim /etc/libvirt/qemu.conf</div><div class="line"></div><div class="line">    vnc_listen = <span class="string">"0.0.0.0"</span></div><div class="line"></div><div class="line">    vnc_password = <span class="string">"xxxxx"</span></div></pre></td></tr></table></figure>
+<h2 id="6-重启服务"><a href="#6-重启服务" class="headerlink" title="6.重启服务"></a>6.重启服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/libvirtd restart</div></pre></td></tr></table></figure>
+<h1 id="三-创建虚拟机"><a href="#三-创建虚拟机" class="headerlink" title="三. 创建虚拟机"></a>三. 创建虚拟机</h1><h2 id="1-创建centos虚拟机"><a href="#1-创建centos虚拟机" class="headerlink" title="1. 创建centos虚拟机"></a>1. 创建centos虚拟机</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virt-install --network bridge=br0 --name=test_centos --ram=2048 --vcpus=2 --disk path=/var/lib/libvirt/images/test_centos.img,size=200 --cdrom /usr/<span class="built_in">local</span>/src/CentOS-6.7-x86_64-minimal.iso --vnc --vncport=5910 --hvm</div></pre></td></tr></table></figure>
+<p>　　执行上面命令后通过VNC 连接安装系统</p>
+<h2 id="2-创建windows虚拟机"><a href="#2-创建windows虚拟机" class="headerlink" title="2.创建windows虚拟机"></a>2.创建windows虚拟机</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virt-install --network bridge=br0 --name=test_xp --ram=2048 --vcpus=2 --disk path=/var/lib/libvirt/images/test_xp.img,size=200 --cdrom /usr/<span class="built_in">local</span>/src/Deepin-LiteXP-5.10.iso --vnc --vncport=5920 --os-type=Windows</div></pre></td></tr></table></figure>
+<p>　　执行上面命令后通过VNC 连接安装系统</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一-KVM安装&quot;&gt;&lt;a href=&quot;#一-KVM安装&quot; class=&quot;headerlink&quot; title=&quot;一. KVM安装&quot;&gt;&lt;/a&gt;一. KVM安装&lt;/h1&gt;&lt;h2 id=&quot;1-查看硬件是否支持虚拟化&quot;&gt;&lt;a href=&quot;#1-查看硬件是否支持虚拟化&quot; class=&quot;headerlink&quot; title=&quot;1. 查看硬件是否支持虚拟化&quot;&gt;&lt;/a&gt;1. 查看硬件是否支持虚拟化&lt;/h2&gt;&lt;p&gt;　　KVM需要CPU支持虚拟化，执行以下命令查看是否支持虚拟化：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;egrep &lt;span class=&quot;string&quot;&gt;&#39;(vmx|svm)&#39;&lt;/span&gt; --color=always /proc/cpuinfo&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;　　如果含有vmx或者svm字样，则表示支持CPU虚拟化，&lt;/p&gt;
+&lt;p&gt;　　Intel是vmx，AMD是svm。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="service" scheme="http://www.unix-like.com/categories/service/"/>
+    
+    
+      <category term="kvm" scheme="http://www.unix-like.com/tags/kvm/"/>
+    
+  </entry>
   
   <entry>
     <title>使用命令行生成高强度密码</title>

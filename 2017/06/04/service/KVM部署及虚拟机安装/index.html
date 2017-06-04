@@ -8,19 +8,19 @@
   
 
   
-  <title>系统运维工程师装逼完全指南 | Linux运维装逼指南</title>
+  <title>kvm部署及虚拟机安装 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、全球化的认证有助于提升逼格，什么OCM、CCIE、RHCA、CISSP等等能考都考，再不济，也要有一张系统架构设计师或者网络规划设计师的信产部认证。每过一个认证，逼格提升一档。">
-<meta name="keywords" content="职业">
+  <meta name="description" content="一. KVM安装1. 查看硬件是否支持虚拟化　　KVM需要CPU支持虚拟化，执行以下命令查看是否支持虚拟化： 1egrep &apos;(vmx|svm)&apos; --color=always /proc/cpuinfo 　　如果含有vmx或者svm字样，则表示支持CPU虚拟化， 　　Intel是vmx，AMD是svm。">
+<meta name="keywords" content="kvm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统运维工程师装逼完全指南">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/28/life/系统运维工程师装逼完全指南/index.html">
+<meta property="og:title" content="kvm部署及虚拟机安装">
+<meta property="og:url" content="http://www.unix-like.com/2017/06/04/service/KVM部署及虚拟机安装/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="1、全球化的认证有助于提升逼格，什么OCM、CCIE、RHCA、CISSP等等能考都考，再不济，也要有一张系统架构设计师或者网络规划设计师的信产部认证。每过一个认证，逼格提升一档。">
-<meta property="og:updated_time" content="2017-05-28T15:23:41.168Z">
+<meta property="og:description" content="一. KVM安装1. 查看硬件是否支持虚拟化　　KVM需要CPU支持虚拟化，执行以下命令查看是否支持虚拟化： 1egrep &apos;(vmx|svm)&apos; --color=always /proc/cpuinfo 　　如果含有vmx或者svm字样，则表示支持CPU虚拟化， 　　Intel是vmx，AMD是svm。">
+<meta property="og:updated_time" content="2017-06-04T11:25:21.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统运维工程师装逼完全指南">
-<meta name="twitter:description" content="1、全球化的认证有助于提升逼格，什么OCM、CCIE、RHCA、CISSP等等能考都考，再不济，也要有一张系统架构设计师或者网络规划设计师的信产部认证。每过一个认证，逼格提升一档。">
+<meta name="twitter:title" content="kvm部署及虚拟机安装">
+<meta name="twitter:description" content="一. KVM安装1. 查看硬件是否支持虚拟化　　KVM需要CPU支持虚拟化，执行以下命令查看是否支持虚拟化： 1egrep &apos;(vmx|svm)&apos; --color=always /proc/cpuinfo 　　如果含有vmx或者svm字样，则表示支持CPU虚拟化， 　　Intel是vmx，AMD是svm。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -268,11 +268,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-life/系统运维工程师装逼完全指南" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-service/KVM部署及虚拟机安装" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/" class="article-date">
-      <time datetime="2017-05-28T10:49:44.000Z" itemprop="datePublished">2017-05-28</time>
+      <a rel="external nofollow" href="/2017/06/04/service/KVM部署及虚拟机安装/" class="article-date">
+      <time datetime="2017-06-04T11:20:33.000Z" itemprop="datePublished">2017-06-04</time>
 </a>
 
     </div>
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      系统运维工程师装逼完全指南
+      kvm部署及虚拟机安装
     </h1>
   
 
@@ -296,13 +296,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
+    <a class="article-category-link" href="/categories/service/">service</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kvm/">kvm</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -312,19 +312,36 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1、全球化的认证有助于提升逼格，什么OCM、CCIE、RHCA、CISSP等等能考都考，再不济，也要有一张系统架构设计师或者网络规划设计师的信产部认证。每过一个认证，逼格提升一档。</p>
+        <h1 id="一-KVM安装"><a href="#一-KVM安装" class="headerlink" title="一. KVM安装"></a>一. KVM安装</h1><h2 id="1-查看硬件是否支持虚拟化"><a href="#1-查看硬件是否支持虚拟化" class="headerlink" title="1. 查看硬件是否支持虚拟化"></a>1. 查看硬件是否支持虚拟化</h2><p>　　KVM需要CPU支持虚拟化，执行以下命令查看是否支持虚拟化：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">egrep <span class="string">'(vmx|svm)'</span> --color=always /proc/cpuinfo</div></pre></td></tr></table></figure>
+<p>　　如果含有vmx或者svm字样，则表示支持CPU虚拟化，</p>
+<p>　　Intel是vmx，AMD是svm。</p>
 <a id="more"></a>
-<p>2、TCP/IP协议、Linux内核深入研究、ORACLE大全等等之类的超过1千页大本头的书能有效提升B格，一定要放手边。不懂不要紧，别人能看见就行了。真有人跟你谈这些，也别担心装B失败，谈网络就从TCP的实现谈起，谈Linux就从内存的管理谈起，谈数据库就从各数据库SQL语句的源码实现谈起。如果有人跟你谈MS的东西也不要紧，就说自己之前有多年的微软的工作经历，外包的也算。反正也不会有查。有人非要跟你谈硬件，最次也要从计算机部件分类谈起吧。</p>
-<p>3、大众化的东西要少用。能用ATS，就别用squid；能用postgresql，就别用MySQL；坚信什么nginx、lighty这种webserver要比apache好一万倍，而且apache能实现的功能，这些都能实现，不行就自己写模块、写扩展。实在要用apache，也别用高版本，抱死1.3的系统。有人要是问起，就说这是基于1.3的版是自己深度二次开发版本。实在要找不到的话也不要紧，没事在sf、oschina上看看什么下载量少的项目，背背项目简介啥的。不得不说，这两个网站太贴心，分类都给你做好了。总之，小众的东西能很有效的提升你的装逼级别。</p>
-<p>4、写脚本的话，别用grep、sort 、uniq、管道这类命令。使用纯粹的awk、sed的实现，长度不要紧，阅读性、性能也不是问题。功能实现了，别人都还不懂这就是关键。如果真有人来请教，也要装出一副很简单的表情。切记不要摇头尾巴晃。就算是你是从《sed和awk》这种书上抄你自己也不一定能看懂的代码。</p>
-<p>5、虽然会shell，但也要少用shell。初级装逼者，系统管理会首选perl、python、php这类3p的工具，而且要对shell这种语言有一种不屑。把什么性能、移植性、面向对象要常挂嘴边。如果还能再写几行什么erlang、ruby、lua这类语言做系统管理，绝对是装B神器，也是中级装逼的标准。高级装逼者会有Haskell这类函数式语言进行系统管理，这绝对是装B的B2轰炸机呀。当然，资深装逼者会返璞归真，使用面向对象进行shell编程。对，你没看错，是使用OO进行shell编程。</p>
-<p>6、当谈到Redhat、ubuntu这类大众发行版本时，就回复一个字“切！”LFS、Gentoo这类系统绝对是装逼的首选。不为什么，就为在无穷尽的编译中找到属于自己的快感。如果非装大众发行版，也要从开机画面、登陆提示等等地方打自己上深刻的烙印。装逼的寂寞岂是一般人能懂的。</p>
-<p>7、对什么checkpoint，juniper等表示不屑。必须天天把iptabes的链和表都挂在嘴边，尤其是mangle表。原则上对商用产品的一律不屑一顾，什么f5，radware一律自己开发实现。至于意外的将自己关在外面的事情一定要严格遵守各自公司的保密协议。</p>
-<p>8、对于操作终端呢，像SecureCRT、xshell这种绝对是不用的，一定要用最原始的，什么黑屏绿字只是初级装逼者的水平，中高级则是Alpha半透明终端，桌面背景在设置个全球internet流量趋势图。让你根本就不知道他天天对着屏幕在敲什么东西。有事没事编译一些大型软件，看着翻滚的屏幕做思考状。</p>
-<p>9、名片的title一定要是系统架构师，没有名片也不要紧，什么QQ签名、人人状态、微博简介上，有人看的地方一定要写上。这些都是提升B格的好地方。</p>
-<p>10、初级装逼谈流量、PV、自动化；中级装逼谈流程、谈规范，什么ITIL、ITSM要常挂嘴边；高级装逼谈架构、谈模式；资深装逼则谈合同、谈成本。</p>
-<p>11、混圈子对装逼来非常有必要的。什么XX沙龙、XX架构师大会、XX优化大会之类必要是常客，露个B脸就行。基本原则就是跟搞系统谈网络，跟搞网络的谈数据库，跟搞数据库的谈安全……对方不懂什么就谈什么对就了</p>
-<p>12、最后，骨灰级早就超出三界外，不在五行中，他们注定有着传奇的色彩。他们正忙于对装逼者们进行职业发展规划。装逼助理、初级装逼、高级装逼、资深装逼、装逼总监直至CBO。如果发展了到了CBO，那么你一定是一位惊天地、泣鬼神的一代B神，一统江湖的教主，供万千iBer敬仰。darling，我很看好你哟！</p>
+<h2 id="2-安装KVM"><a href="#2-安装KVM" class="headerlink" title="2. 安装KVM"></a>2. 安装KVM</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install qemu-kvm qemu-img libvirt libvirt-python libguestfs-tools virt-install</div></pre></td></tr></table></figure>
+<p>　　<strong>qemu-kvm</strong> 是一个开源的虚拟机程序，为 KVM 虚拟机监视器提供硬件仿真，而 qemu-img 则提供了一个操纵磁盘镜像的命令行工具。</p>
+<p>　　<strong>libvirt</strong> 包含与操作系统的虚拟化功能交互的工具。</p>
+<p>　　<strong>libvirt-python</strong> 包含一个模块，它允许用 Python 写的应用来使用由 libvirt 提供的接口。</p>
+<p>　　<strong>libguestfs-tools</strong> 包含各式各样的针对虚拟机的系统管理员命令行工具。</p>
+<p>　　<strong>virt-install</strong> 包含针对虚拟机管理的其他命令行工具。</p>
+<h3 id="2-1-启动并开启了-libvirtd-服务"><a href="#2-1-启动并开启了-libvirtd-服务" class="headerlink" title="2.1. 启动并开启了 libvirtd 服务"></a>2.1. 启动并开启了 libvirtd 服务</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/libvirtd start</div><div class="line"></div><div class="line">chkconfig libvirtd on</div></pre></td></tr></table></figure>
+<h3 id="2-2-配置转发"><a href="#2-2-配置转发" class="headerlink" title="2.2. 配置转发"></a>2.2. 配置转发</h3><p>　　文件/etc/sysctl.conf 中设置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net.ipv4.ip_forward = 1</div></pre></td></tr></table></figure>
+<h3 id="2-3-关闭网桥上的Netfilter-提高性能"><a href="#2-3-关闭网桥上的Netfilter-提高性能" class="headerlink" title="2.3. 关闭网桥上的Netfilter(提高性能)"></a>2.3. 关闭网桥上的Netfilter(提高性能)</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf:</div><div class="line"></div><div class="line">    net.bridge.bridge-nf-call-ip6tables = 0</div><div class="line"></div><div class="line">    net.bridge.bridge-nf-call-iptables = 0</div><div class="line"></div><div class="line">    net.bridge.bridge-nf-call-arptables = 0</div></pre></td></tr></table></figure>
+<h3 id="2-4-加载更改到当前的内核配置中："><a href="#2-4-加载更改到当前的内核配置中：" class="headerlink" title="2.4. 加载更改到当前的内核配置中："></a>2.4. 加载更改到当前的内核配置中：</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl -p</div></pre></td></tr></table></figure>
+<h2 id="3-KVM网络配置"><a href="#3-KVM网络配置" class="headerlink" title="3. KVM网络配置"></a>3. KVM网络配置</h2><h3 id="3-1-创建桥接器"><a href="#3-1-创建桥接器" class="headerlink" title="3.1. 创建桥接器"></a>3.1. 创建桥接器</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/network-scripts/ifcfg-br0</div><div class="line"></div><div class="line">    DEVICE=br0</div><div class="line">    NAME=br0</div><div class="line">    NM_CONTROLLED=no</div><div class="line">    TYPE=Bridge     <span class="comment"># 注意Bridge大小写</span></div><div class="line">    ONBOOT=yes</div><div class="line">    BOOTPROTO=none</div><div class="line">    BROADCAST=192.168.2.255</div><div class="line">    IPADDR=192.168.2.7</div><div class="line">    NETMASK=255.255.255.0</div><div class="line">    NETWORK=192.168.2.0</div><div class="line">    GATEWAY=192.168.2.1</div></pre></td></tr></table></figure>
+<h3 id="3-2-将物理接口桥接到桥接器"><a href="#3-2-将物理接口桥接到桥接器" class="headerlink" title="3.2. 将物理接口桥接到桥接器"></a>3.2. 将物理接口桥接到桥接器</h3><p>　　修改eth0的内容（本服务器是用eth0上网的），去掉其IP相关信息，加上“BRIDGE=br0”，将其桥接到br0上；如果是双网卡或是多网卡，照此过程修改：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/network-scripts/ifcfg-eth0</div><div class="line"></div><div class="line">    DEVICE=eth0</div><div class="line">    NAME=eth0</div><div class="line">    TYPE=Ethernet</div><div class="line">    NM_CONTROLLED=no</div><div class="line">    ONBOOT=yes</div><div class="line">    BRIDGE=br0</div></pre></td></tr></table></figure>
+<h3 id="3-3-重启网络"><a href="#3-3-重启网络" class="headerlink" title="3.3. 重启网络"></a>3.3. 重启网络</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/network restart</div></pre></td></tr></table></figure>
+<h1 id="二-安装并配置VNC服务"><a href="#二-安装并配置VNC服务" class="headerlink" title="二. 安装并配置VNC服务"></a>二. 安装并配置VNC服务</h1><h2 id="1-安装VNC"><a href="#1-安装VNC" class="headerlink" title="1. 安装VNC"></a>1. 安装VNC</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install tigervnc tigervnc-server</div></pre></td></tr></table></figure>
+<h2 id="2-配置VNC"><a href="#2-配置VNC" class="headerlink" title="2. 配置VNC"></a>2. 配置VNC</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/vncservers</div><div class="line"></div><div class="line">    VNCSERVERS=<span class="string">"1:root"</span></div><div class="line">    VNCSERVERARGS[2]=<span class="string">"-geometry 800x600 -nolisten tcp -localhost"</span></div></pre></td></tr></table></figure>
+<h2 id="3-设置vnc密码"><a href="#3-设置vnc密码" class="headerlink" title="3.设置vnc密码"></a>3.设置vnc密码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vncpasswd</div></pre></td></tr></table></figure>
+<h2 id="4-启动服务"><a href="#4-启动服务" class="headerlink" title="4.启动服务"></a>4.启动服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/vncserver start</div><div class="line"></div><div class="line">chkconfig vncserver on</div></pre></td></tr></table></figure>
+<h2 id="5-配置QEMU"><a href="#5-配置QEMU" class="headerlink" title="5. 配置QEMU"></a>5. 配置QEMU</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim /etc/libvirt/qemu.conf</div><div class="line"></div><div class="line">    vnc_listen = <span class="string">"0.0.0.0"</span></div><div class="line"></div><div class="line">    vnc_password = <span class="string">"xxxxx"</span></div></pre></td></tr></table></figure>
+<h2 id="6-重启服务"><a href="#6-重启服务" class="headerlink" title="6.重启服务"></a>6.重启服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/libvirtd restart</div></pre></td></tr></table></figure>
+<h1 id="三-创建虚拟机"><a href="#三-创建虚拟机" class="headerlink" title="三. 创建虚拟机"></a>三. 创建虚拟机</h1><h2 id="1-创建centos虚拟机"><a href="#1-创建centos虚拟机" class="headerlink" title="1. 创建centos虚拟机"></a>1. 创建centos虚拟机</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virt-install --network bridge=br0 --name=test_centos --ram=2048 --vcpus=2 --disk path=/var/lib/libvirt/images/test_centos.img,size=200 --cdrom /usr/<span class="built_in">local</span>/src/CentOS-6.7-x86_64-minimal.iso --vnc --vncport=5910 --hvm</div></pre></td></tr></table></figure>
+<p>　　执行上面命令后通过VNC 连接安装系统</p>
+<h2 id="2-创建windows虚拟机"><a href="#2-创建windows虚拟机" class="headerlink" title="2.创建windows虚拟机"></a>2.创建windows虚拟机</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virt-install --network bridge=br0 --name=test_xp --ram=2048 --vcpus=2 --disk path=/var/lib/libvirt/images/test_xp.img,size=200 --cdrom /usr/<span class="built_in">local</span>/src/Deepin-LiteXP-5.10.iso --vnc --vncport=5920 --os-type=Windows</div></pre></td></tr></table></figure>
+<p>　　执行上面命令后通过VNC 连接安装系统</p>
 
       
     </div>
@@ -333,13 +350,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a></p>
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/04/service/KVM部署及虚拟机安装/">kvm部署及虚拟机安装</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年05月28日 - 18时49分</p>
-        <p><span>最后更新:</span>2017年05月28日 - 23时23分</p>
+        <p><span>发布时间:</span>2017年06月04日 - 19时20分</p>
+        <p><span>最后更新:</span>2017年06月04日 - 19时25分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/28/life/系统运维工程师装逼完全指南/" title="系统运维工程师装逼完全指南">http://www.unix-like.com/2017/05/28/life/系统运维工程师装逼完全指南/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/28/life/系统运维工程师装逼完全指南/　　作者: Linux运维装逼指南" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/04/service/KVM部署及虚拟机安装/" title="kvm部署及虚拟机安装">http://www.unix-like.com/2017/06/04/service/KVM部署及虚拟机安装/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/04/service/KVM部署及虚拟机安装/　　作者: Linux运维装逼指南" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -350,18 +367,9 @@
 
 <nav id="article-nav">
   
-    <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Windows与Linux共享文件夹互相访问
-        
-      </div>
-    </a>
   
-  
-    <a rel="external nofollow" href="/2017/05/28/life/运维人装逼指南大全/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">运维人装逼指南大全</div>
+    <a rel="external nofollow" href="/2017/06/02/system/使用命令行生成高强度密码/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用命令行生成高强度密码</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -373,7 +381,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-KVM安装"><span class="toc-number">1.</span> <span class="toc-text">一. KVM安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-查看硬件是否支持虚拟化"><span class="toc-number">1.1.</span> <span class="toc-text">1. 查看硬件是否支持虚拟化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装KVM"><span class="toc-number">1.2.</span> <span class="toc-text">2. 安装KVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-启动并开启了-libvirtd-服务"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1. 启动并开启了 libvirtd 服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-配置转发"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2. 配置转发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-关闭网桥上的Netfilter-提高性能"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3. 关闭网桥上的Netfilter(提高性能)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-加载更改到当前的内核配置中："><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4. 加载更改到当前的内核配置中：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-KVM网络配置"><span class="toc-number">1.3.</span> <span class="toc-text">3. KVM网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-创建桥接器"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1. 创建桥接器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-将物理接口桥接到桥接器"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2. 将物理接口桥接到桥接器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-重启网络"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3. 重启网络</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-安装并配置VNC服务"><span class="toc-number">2.</span> <span class="toc-text">二. 安装并配置VNC服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装VNC"><span class="toc-number">2.1.</span> <span class="toc-text">1. 安装VNC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-配置VNC"><span class="toc-number">2.2.</span> <span class="toc-text">2. 配置VNC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-设置vnc密码"><span class="toc-number">2.3.</span> <span class="toc-text">3.设置vnc密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-启动服务"><span class="toc-number">2.4.</span> <span class="toc-text">4.启动服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-配置QEMU"><span class="toc-number">2.5.</span> <span class="toc-text">5. 配置QEMU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-重启服务"><span class="toc-number">2.6.</span> <span class="toc-text">6.重启服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-创建虚拟机"><span class="toc-number">3.</span> <span class="toc-text">三. 创建虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-创建centos虚拟机"><span class="toc-number">3.1.</span> <span class="toc-text">1. 创建centos虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建windows虚拟机"><span class="toc-number">3.2.</span> <span class="toc-text">2.创建windows虚拟机</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -427,13 +435,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" title="上一篇: Windows与Linux共享文件夹互相访问">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a rel="external nofollow" href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a rel="external nofollow" href="/2017/05/28/life/运维人装逼指南大全/" title="下一篇: 运维人装逼指南大全">
+            <a rel="external nofollow" href="/2017/06/02/system/使用命令行生成高强度密码/" title="下一篇: 使用命令行生成高强度密码">
                 <i class="fa fa-angle-right"></i>
             </a>
         
