@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://www.unix-like.com/2017/06/06/service/%E5%9C%A8Ubuntu15.04%E4%B8%8A%E9%85%8D%E7%BD%AEOpenVPN%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</loc>
+    <lastmod>2017-06-06T06:34:28.042Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 15.04 上配置 OpenVPN 服务器和客户端</title>
+        <pubTime>2017-06-06T05:40:43.000Z</pubTime>
+        
+        <tag>openvpn</tag>
+         
+         
+           
+             
+              <breadCrumb title="service" url="http://www.unix-like.com/categories/service/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.unix-like.com/2017/06/06/service/Ubuntu%E4%B8%8BOpenVPN%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2017-06-06T05:39:23.471Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu下OpenVPN客户端配置</title>
+        <pubTime>2017-06-06T05:37:35.000Z</pubTime>
+        
+        <tag>openvpn</tag>
+         
+         
+           
+             
+              <breadCrumb title="service" url="http://www.unix-like.com/categories/service/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.unix-like.com/2017/06/04/service/KVM%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2017-06-04T11:25:21.711Z</lastmod>
     <data>

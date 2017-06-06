@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-06-04T11:25:21.711Z</updated>
+  <updated>2017-06-06T06:34:28.042Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -14,6 +14,166 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu 15.04 上配置 OpenVPN 服务器和客户端</title>
+    <link href="http://www.unix-like.com/2017/06/06/service/%E5%9C%A8Ubuntu15.04%E4%B8%8A%E9%85%8D%E7%BD%AEOpenVPN%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+    <id>http://www.unix-like.com/2017/06/06/service/在Ubuntu15.04上配置OpenVPN服务器和客户端/</id>
+    <published>2017-06-06T05:40:43.000Z</published>
+    <updated>2017-06-06T06:34:28.042Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　虚拟专用网（VPN）常指几种通过其它网络建立连接技术。它之所以被称为“虚拟”，是因为各个节点间的连接不是通过物理线路实现的，而“专用”是指如果没有网络所有者的正确授权是不能被公开访问到。</p>
+<a id="more"></a>
+<p>　　OpenVPN软件借助TUN/TAP驱动使用TCP和UDP协议来传输数据。UDP协议和TUN驱动允许NAT后的用户建立到OpenVPN服务器的连接。此外，OpenVPN允许指定自定义端口。它提供了更多的灵活配置，可以帮助你避免防火墙限制。</p>
+<p>　　OpenVPN中，由OpenSSL库和传输层安全协议（TLS）提供了安全和加密。TLS是SSL协议的一个改进版本。</p>
+<p>　　OpenSSL提供了两种加密方法：对称和非对称。下面，我们展示了如何配置OpenVPN的服务器端，以及如何配置使用带有公共密钥基础结构（PKI）的非对称加密和TLS协议。</p>
+<h1 id="服务器端配置"><a href="#服务器端配置" class="headerlink" title="服务器端配置"></a>服务器端配置</h1><p>　　首先，我们必须安装OpenVPN软件。在Ubuntu 15.04和其它带有‘apt’包管理器的Unix系统中，可以通过如下命令安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openvpn</div></pre></td></tr></table></figure>
+<p>　　然后，我们必须配置一个密钥对，这可以通过默认的“openssl”工具完成。但是，这种方式十分难。这也是我们使用“easy-rsa”来实现此目的的原因。接下来的命令会将“easy-rsa”安装到系统中。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install easy-rsa</div></pre></td></tr></table></figure>
+<p>　　<strong>注意</strong>： 所有接下来的命令要以超级用户权限执行，如在使用<code>sudo -i</code>命令后执行，或者你可以使用<code>sudo -E</code>作为接下来所有命令的前缀。</p>
+<p>　　开始之前，我们需要拷贝“easy-rsa”到openvpn文件夹。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir /etc/openvpn/easy-rsa</div><div class="line">cp -r /usr/share/easy-rsa /etc/openvpn/easy-rsa</div><div class="line">mv /etc/openvpn/easy-rsa/easy-rsa /etc/openvpn/easy-rsa/2.0</div></pre></td></tr></table></figure>
+<p>　　然后进入到该目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/openvpn/easy-rsa/2.0</div></pre></td></tr></table></figure>
+<p>　　这里，我们开始密钥生成进程。</p>
+<p>　　首先，我们编辑一个“vars”文件。为了简化生成过程，我们需要在里面指定数据。这里是“vars”文件的一个样例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> KEY_COUNTRY=<span class="string">"CN"</span></div><div class="line"><span class="built_in">export</span> KEY_PROVINCE=<span class="string">"BJ"</span></div><div class="line"><span class="built_in">export</span> KEY_CITY=<span class="string">"Beijing"</span></div><div class="line"><span class="built_in">export</span> KEY_ORG=<span class="string">"Linux.CN"</span></div><div class="line"><span class="built_in">export</span> KEY_EMAIL=<span class="string">"open@vpn.linux.cn"</span></div><div class="line"><span class="built_in">export</span> KEY_OU=server</div></pre></td></tr></table></figure>
+<p>　　希望这些字段名称对你而言已经很清楚，不需要进一步说明了。</p>
+<p>　　其次，我们需要拷贝openssl配置。另外一个版本已经有现成的配置文件，如果你没有特定要求，你可以使用它的上一个版本。这里是1.0.0版本。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp openssl-1.0.0.cnf openssl.cnf</div></pre></td></tr></table></figure>
+<p>　　第三，我们需要加载环境变量，这些变量已经在前面一步中编辑好了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ./vars</div></pre></td></tr></table></figure>
+<p>　　生成密钥的最后一步准备工作是清空旧的证书和密钥，以及生成新密钥的序列号和索引文件。可以通过以下命令完成。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./clean-all</div></pre></td></tr></table></figure>
+<p>　　现在，我们完成了准备工作，准备好启动生成进程了。让我们先来生成证书。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./build-ca</div></pre></td></tr></table></figure>
+<p>　　在对话中，我们可以看到默认的变量，这些变量是我们先前在“vars”中指定的。我们可以检查一下，如有必要进行编辑，然后按回车几次。对话如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Generating a 2048 bit RSA private key</div><div class="line">.............................................+++</div><div class="line">...................................................................................................+++</div><div class="line">writing new private key to <span class="string">'ca.key'</span></div><div class="line">-----</div><div class="line">You are about to be asked to enter information that will be incorporated</div><div class="line">into your certificate request.</div><div class="line">What you are about to enter is what is called a Distinguished Name or a DN.</div><div class="line">There are quite a few fields but you can leave some blank</div><div class="line">For some fields there will be a default value,</div><div class="line">If you enter <span class="string">'.'</span>, the field will be left blank.</div><div class="line">-----</div><div class="line">Country Name (2 letter code) [CN]:</div><div class="line">State or Province Name (full name) [BJ]:</div><div class="line">Locality Name (eg, city) [Beijing]:</div><div class="line">Organization Name (eg, company) [Linux.CN]:</div><div class="line">Organizational Unit Name (eg, section) [Tech]:</div><div class="line">Common Name (eg, your name or your server<span class="string">'s hostname) [Linux.CN CA]:</span></div><div class="line">Name [EasyRSA]:</div><div class="line">Email Address [open@vpn.linux.cn]:</div></pre></td></tr></table></figure>
+<p>　　接下来，我们需要生成一个服务器密钥</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./build-key-server server</div></pre></td></tr></table></figure>
+<p>　　该命令的对话如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">Generating a 2048 bit RSA private key</div><div class="line">........................................................................+++</div><div class="line">............................+++</div><div class="line">writing new private key to <span class="string">'server.key'</span></div><div class="line">-----</div><div class="line">You are about to be asked to enter information that will be incorporated</div><div class="line">into your certificate request.</div><div class="line">What you are about to enter is what is called a Distinguished Name or a DN.</div><div class="line">There are quite a few fields but you can leave some blank</div><div class="line">For some fields there will be a default value,</div><div class="line">If you enter <span class="string">'.'</span>, the field will be left blank.</div><div class="line">-----</div><div class="line">Country Name (2 letter code) [CN]:</div><div class="line">State or Province Name (full name) [BJ]:</div><div class="line">Locality Name (eg, city) [Beijing]:</div><div class="line">Organization Name (eg, company) [Linux.CN]:</div><div class="line">Organizational Unit Name (eg, section) [Tech]:</div><div class="line">Common Name (eg, your name or your server<span class="string">'s hostname) [Linux.CN server]:</span></div><div class="line">Name [EasyRSA]:</div><div class="line">Email Address [open@vpn.linux.cn]:</div><div class="line">Please enter the following 'extra<span class="string">' attributes</span></div><div class="line">to be sent with your certificate request</div><div class="line">A challenge password []:</div><div class="line">An optional company name []:</div><div class="line">Using configuration from /etc/openvpn/easy-rsa/2.0/openssl-1.0.0.cnf</div><div class="line">Check that the request matches the signature</div><div class="line">Signature ok</div><div class="line">The Subject's Distinguished Name is as follows</div><div class="line">countryName :PRINTABLE:<span class="string">'CN'</span></div><div class="line">stateOrProvinceName :PRINTABLE:<span class="string">'BJ'</span></div><div class="line">localityName :PRINTABLE:<span class="string">'Beijing'</span></div><div class="line">organizationName :PRINTABLE:<span class="string">'Linux.CN'</span></div><div class="line">organizationalUnitName:PRINTABLE:<span class="string">'Tech'</span></div><div class="line">commonName :PRINTABLE:<span class="string">'Linux.CN server'</span></div><div class="line">name :PRINTABLE:<span class="string">'EasyRSA'</span></div><div class="line">emailAddress :IA5STRING:<span class="string">'open@vpn.linux.cn'</span></div><div class="line">Certificate is to be certified until May 22 19:00:25 2025 GMT (3650 days)</div><div class="line">Sign the certificate? [y/n]:y</div><div class="line">1 out of 1 certificate requests certified, commit? [y/n]y</div><div class="line">Write out database with 1 new entries</div><div class="line">Data Base Updated</div></pre></td></tr></table></figure>
+<p>　　这里，最后两个关于“签署证书”和“提交”的问题，我们必须回答“yes”。</p>
+<p>　　现在，我们已经有了证书和服务器密钥。下一步，就是去省城Diffie-Hellman密钥。执行以下命令，耐心等待。在接下来的几分钟内，我们将看到许多点和加号。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./build-dh</div></pre></td></tr></table></figure>
+<p>　　该命令的输出样例如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Generating DH parameters, 2048 bit long safe prime, generator 2</div><div class="line">This is going to take a long time</div><div class="line">................................+................&lt;许多的点&gt;</div></pre></td></tr></table></figure>
+<p>　　在漫长的等待之后，我们可以继续生成最后的密钥了，该密钥用于TLS验证。命令如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn --genkey --secret keys/ta.key</div></pre></td></tr></table></figure>
+<p>　　现在，生成完毕，我们可以移动所有生成的文件到最后的位置中。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp -r /etc/openvpn/easy-rsa/2.0/keys/ /etc/openvpn/</div></pre></td></tr></table></figure>
+<p>　　最后，我们来创建OpenVPN配置文件。让我们从样例中拷贝过来吧：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/</div><div class="line"><span class="built_in">cd</span> /etc/openvpn</div><div class="line">gunzip <span class="_">-d</span> /etc/openvpn/server.conf.gz</div></pre></td></tr></table></figure>
+<p>　　然后编辑</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/openvpn/server.conf</div></pre></td></tr></table></figure>
+<p>　　我们需要指定密钥的自定义路径</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ca /etc/openvpn/keys/ca.crt</div><div class="line">cert /etc/openvpn/keys/server.crt</div><div class="line">key /etc/openvpn/keys/server.key <span class="comment"># This file should be kept secret</span></div><div class="line">dh /etc/openvpn/keys/dh2048.pem</div></pre></td></tr></table></figure>
+<p>　　一切就绪。在重启OpenVPN后，服务器端配置就完成了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service openvpn restart</div></pre></td></tr></table></figure>
+<h1 id="Unix的客户端配置"><a href="#Unix的客户端配置" class="headerlink" title="Unix的客户端配置"></a>Unix的客户端配置</h1><p>　　假定我们有一台装有类Unix操作系统的设备，比如Ubuntu 15.04，并安装有OpenVPN。我们想要连接到前面建立的OpenVPN服务器。首先，我们需要为客户端生成密钥。为了生成该密钥，请转到服务器上的对应目录中：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/openvpn/easy-rsa/2.0</div></pre></td></tr></table></figure>
+<p>　　加载环境变量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> vars</div></pre></td></tr></table></figure>
+<p>　　然后创建客户端密钥</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./build-key client</div></pre></td></tr></table></figure>
+<p>　　我们将看到一个与先前关于服务器密钥生成部分的章节描述一样的对话，填入客户端的实际信息。</p>
+<p>　　如果需要密码保护密钥，你需要运行另外一个命令，命令如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./build-key-pass client</div></pre></td></tr></table></figure>
+<p>　　在此种情况下，在建立VPN连接时，会提示你输入密码。</p>
+<p>　　现在，我们需要将以下文件从服务器拷贝到客户端/etc/openvpn/keys/文件夹。</p>
+<p>　　服务器文件列表：</p>
+<ul>
+<li>ca.crt,</li>
+<li>dh2048.pem,</li>
+<li>client.crt,</li>
+<li>client.key,</li>
+<li>ta.key.</li>
+</ul>
+<p>　　在此之后，我们转到客户端，准备配置文件。配置文件位于/etc/openvpn/client.conf，内容如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">dev tun</div><div class="line">proto udp</div><div class="line"></div><div class="line"><span class="comment"># 远程 OpenVPN 服务器的 IP 和 端口号</span></div><div class="line">remote 111.222.333.444 1194</div><div class="line"></div><div class="line">resolv-retry infinite</div><div class="line"></div><div class="line">ca /etc/openvpn/keys/ca.crt</div><div class="line">cert /etc/openvpn/keys/client.crt</div><div class="line">key /etc/openvpn/keys/client.key</div><div class="line">tls-client</div><div class="line">tls-auth /etc/openvpn/keys/ta.key 1</div><div class="line">auth SHA1</div><div class="line">cipher BF-CBC</div><div class="line">remote-cert-tls server</div><div class="line">comp-lzo</div><div class="line">persist-key</div><div class="line">persist-tun</div><div class="line"></div><div class="line">status openvpn-status.log</div><div class="line"><span class="built_in">log</span> /var/<span class="built_in">log</span>/openvpn.log</div><div class="line">verb 3</div><div class="line">mute 20</div></pre></td></tr></table></figure>
+<p>　　在此之后，我们需要重启OpenVPN以接受新配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service openvpn restart</div></pre></td></tr></table></figure>
+<p>　　好了，客户端配置完成。</p>
+<p>#安卓客户端配置</p>
+<p>　　安卓设备上的OpenVPN配置和Unix系统上的十分类似，我们需要一个含有配置文件、密钥和证书的包。文件列表如下：</p>
+<ul>
+<li>配置文件 (扩展名 .ovpn),</li>
+<li>ca.crt,</li>
+<li>dh2048.pem,</li>
+<li>client.crt,</li>
+<li>client.key.</li>
+</ul>
+<p>　　客户端密钥生成方式和先前章节所述的一样。</p>
+<p>　　配置文件内容如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">client tls-client</div><div class="line">dev tun</div><div class="line">proto udp</div><div class="line"></div><div class="line"><span class="comment"># 远程 OpenVPN 服务器的 IP 和 端口号</span></div><div class="line">remote 111.222.333.444 1194</div><div class="line"></div><div class="line">resolv-retry infinite</div><div class="line">nobind</div><div class="line">ca ca.crt</div><div class="line">cert client.crt</div><div class="line">key client.key</div><div class="line">dh dh2048.pem</div><div class="line">persist-tun</div><div class="line">persist-key</div><div class="line"></div><div class="line">verb 3</div><div class="line">mute 20</div></pre></td></tr></table></figure>
+<p>　　所有这些文件我们必须移动我们设备的SD卡上。</p>
+<p>　　然后，我们需要安装一个OpenVPN Connect 应用。</p>
+<p>　　接下来，配置过程很是简单：</p>
+<ul>
+<li>打开 OpenVPN 并选择“Import”选项</li>
+<li>选择“Import Profile from SD card”</li>
+<li>在打开的窗口中导航到我们放置好文件的目录，并选择那个 .ovpn 文件</li>
+<li>应用会要求我们创建一个新的配置文件</li>
+<li>点击“Connect”按钮并稍等一下</li>
+</ul>
+<p>　　搞定。现在，我们的安卓设备已经通过安全的VPN连接连接到我们的专用网。</p>
+<h1 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h1><p>　　虽然OpenVPN初始配置花费不少时间，但是简易的客户端配置为我们弥补了时间上的损失，也提供了从任何设备连接的能力。此外，OpenVPN提供了一个很高的安全等级，以及从不同地方连接的能力，包括位于NAT后面的客户端。因此，OpenVPN可以同时在家和企业中使用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　虚拟专用网（VPN）常指几种通过其它网络建立连接技术。它之所以被称为“虚拟”，是因为各个节点间的连接不是通过物理线路实现的，而“专用”是指如果没有网络所有者的正确授权是不能被公开访问到。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="service" scheme="http://www.unix-like.com/categories/service/"/>
+    
+    
+      <category term="openvpn" scheme="http://www.unix-like.com/tags/openvpn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu下OpenVPN客户端配置</title>
+    <link href="http://www.unix-like.com/2017/06/06/service/Ubuntu%E4%B8%8BOpenVPN%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE/"/>
+    <id>http://www.unix-like.com/2017/06/06/service/Ubuntu下OpenVPN客户端配置/</id>
+    <published>2017-06-06T05:37:35.000Z</published>
+    <updated>2017-06-06T05:39:23.471Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="安装OpenVPN"><a href="#安装OpenVPN" class="headerlink" title="安装OpenVPN"></a>安装OpenVPN</h1><p>　　首先需要安装OpenVPN客户端。一般来说直接使用apt-get即可。执行如下命令安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@www ~]<span class="comment"># apt-get install openvpn</span></div></pre></td></tr></table></figure>
+<p>　　稍等片刻将自动安装好openvpn需要的软件包。安装完成后，应该出现 <code>/etc/openvpn/</code> 文件夹。 </p>
+<a id="more"></a>
+<h1 id="配置OpenVPN"><a href="#配置OpenVPN" class="headerlink" title="配置OpenVPN"></a>配置OpenVPN</h1><p>　　作为客户端，OpenVPN并没有特定的配置文件，而是由服务器提供方给出一个配置文件。对于认证，OpenVPN提供了两种认证方法：基于用户名/密码的认证与SSL证书认证。用户名/密码的认证方法无法（或较难）限制一个账号同时连接多个客户端，而采用证书，则可保证同一证书同一时间只能有一个 客户端连接。当然，这些都是由服务器端决定的，不需要客户端进行选择。</p>
+<p>　　首先将OpenVPN服务器提供商发给你的配置文件解压，并将所有文件都复制到 /etc/openvpn/中。</p>
+<p>这些文件中至少包含一个.ovpn文件，需要手动创建该文件，如：client.ovpn；如果服务器需要证书认证，则应该还存在另外三个证书文件。</p>
+<p>　　看懂OpenVPN配置格式。下面是一个.ovpn配置示例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tap</div><div class="line">proto tcp-client</div><div class="line">remote 192.168.135.75 1194</div><div class="line">resolv-retry infinite</div><div class="line">nobind</div><div class="line">mute-replay-warnings</div><div class="line">redirect-gateway</div><div class="line">ca /etc/openvpn/ca.crt</div><div class="line">cert /etc/openvpn/client.crt</div><div class="line">key /etc/openvpn/client.key</div><div class="line">comp-lzo</div><div class="line">verb 4</div></pre></td></tr></table></figure>
+<p>　　一般来说，ca.crt，client.crt，client.key可能需要你进行修改。将内容修改成这三个文件的实际位置。然后保存即可。 </p>
+<h1 id="连接OpenVPN"><a href="#连接OpenVPN" class="headerlink" title="连接OpenVPN"></a>连接OpenVPN</h1><p>　　在配置好.ovpn文件后，执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn /etc/openvpn/client.ovpn</div></pre></td></tr></table></figure>
+<p>　　即可连接服务器了（注意该目录下对应文件的权限）。注意，上面的参数应该换成你的配置文件实际位置。</p>
+<p>　　此时，终端会回显很多连接日志。如果连接不成功，则可以通过这些日志来确定出错位置。如果要断开，只需要通过Ctrl+C强制终止即可。</p>
+<p>　　上面的命令在实际中并不方便，因为它要占用一个独立的终端。在测试成功后，使用以下命令即可在后台连接OpenVPN：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn /etc/openvpn/client.ovpn &gt; /dev/null &amp;</div></pre></td></tr></table></figure>
+<p>　　值得称赞的是，openvpn非常智能，在连接异常中断、无法连接服务器、断网的情况下，它会自动重连。因此，如果希望开机即自动连接OpenVPN，或者是VPN常年在线，则可将上述命令行加入 <code>/etc/rc.local</code> 中。注意，命令末尾的&amp;符号不能省略，否则将可能阻塞系统的正常启动。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;安装OpenVPN&quot;&gt;&lt;a href=&quot;#安装OpenVPN&quot; class=&quot;headerlink&quot; title=&quot;安装OpenVPN&quot;&gt;&lt;/a&gt;安装OpenVPN&lt;/h1&gt;&lt;p&gt;　　首先需要安装OpenVPN客户端。一般来说直接使用apt-get即可。执行如下命令安装：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;[root@www ~]&lt;span class=&quot;comment&quot;&gt;# apt-get install openvpn&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;　　稍等片刻将自动安装好openvpn需要的软件包。安装完成后，应该出现 &lt;code&gt;/etc/openvpn/&lt;/code&gt; 文件夹。 &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="service" scheme="http://www.unix-like.com/categories/service/"/>
+    
+    
+      <category term="openvpn" scheme="http://www.unix-like.com/tags/openvpn/"/>
+    
+  </entry>
   
   <entry>
     <title>kvm部署及虚拟机安装</title>
@@ -1147,51 +1307,6 @@
     
     
       <category term="字符集" scheme="http://www.unix-like.com/tags/%E5%AD%97%E7%AC%A6%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bash历史中执行过的每一项命令设置时间和日期.md</title>
-    <link href="http://www.unix-like.com/2017/05/25/system/Bash%E5%8E%86%E5%8F%B2%E4%B8%AD%E6%89%A7%E8%A1%8C%E8%BF%87%E7%9A%84%E6%AF%8F%E4%B8%80%E9%A1%B9%E5%91%BD%E4%BB%A4%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F/"/>
-    <id>http://www.unix-like.com/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/</id>
-    <published>2017-05-25T04:21:42.000Z</published>
-    <updated>2017-05-26T02:29:21.261Z</updated>
-    
-    <content type="html"><![CDATA[<p>在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 <code>~/.bash_history</code> 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 <code>history</code> 命令这样的选项来看他或她自己的命令历史。<br><a id="more"></a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@l-webdb-docker-dev ~]<span class="comment"># history </span></div><div class="line">    1  vim /gotwo_data/scripts/cronjob/sync_mysql_online.sh</div><div class="line">    2  <span class="built_in">exit</span></div><div class="line">    3  ps -ef | grep 4004</div><div class="line">    4  <span class="built_in">exit</span></div><div class="line">    5  mysql</div><div class="line">    6  mysqldump -uroot -p db_ad &gt; /tmp/db_ad.sql</div><div class="line">    7  vim /tmp/db_ad.sql </div><div class="line">    8  mysqldump -uroot -p db_ad &gt; /tmp/db_ad.sql</div></pre></td></tr></table></figure>
-<p>从上面<code>history</code>命令的输出可知，命令被执行的日期和时间并没有显示出来。基本上所有的 Linux 发行版的默认设置都是这样的。</p>
-<p>在这篇文章里，我们将解释当在 Bash 中执行<code>history</code>命令显示每个命令时，如何配置显示时间戳信息。</p>
-<p>每个命令相关的日期和时间可以记录到历史文件中，用 <code>HISTTIMEFORMAT</code> 环境变量的设置作为命令历史的备注记录。</p>
-<p>这里有两种可行的方式来达到目的：一种是暂时的效果，一种是永久的效果。</p>
-<p>要临时设置 <code>HISTTIMEFORMAT</code>环境变量，在命令行这样输出它：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">export</span> HISTTIMEFORMAT=<span class="string">'%F %T '</span></div></pre></td></tr></table></figure></p>
-<p>在上面的输出命令当中，时间戳格式如下：</p>
-<ol>
-<li><p><code>％F</code>－展开为完整日期，即<code>％Y-％m-％d</code>（年-月-日）。</p>
-</li>
-<li><p><code>％T</code>－展开为时间，即<code>％H:％M:％S</code>（时:分:秒）。</p>
-</li>
-</ol>
-<p>通读 date 命令的 man 手册来获得更多使用说明：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">man date</div></pre></td></tr></table></figure>
-<p>（LCTT 译注：注意：这个功能只能用在当 HISTTIMEFORMAT 这个环境变量被设置之后，之后的那些新执行的 bash 命令才会被打上正确的时间戳。在此之前的所有命令，都将会显示成设置 HISTTIMEFORMAT 变量的时间。）</p>
-<p>然而，如果你想永久地配置该变量，用你最喜欢的编辑器打开文件 <code>~/.bashrc</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi ~/.bashrc</div></pre></td></tr></table></figure>
-<p>然后在下方添加（用注释将其标记为你自己的配置）：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 我的配置</span></div><div class="line"><span class="built_in">export</span> HISTTIMEFORMAT=<span class="string">'%F %T '</span></div></pre></td></tr></table></figure>
-<p>保存文件并退出，然后，运行下面的命令以便改动当即生效：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 &lt;code&gt;~/.bash_history&lt;/code&gt; 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 &lt;code&gt;history&lt;/code&gt; 命令这样的选项来看他或她自己的命令历史。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="system" scheme="http://www.unix-like.com/categories/system/"/>
-    
-    
-      <category term="bash" scheme="http://www.unix-like.com/tags/bash/"/>
     
   </entry>
   

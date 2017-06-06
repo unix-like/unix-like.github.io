@@ -8,19 +8,19 @@
   
 
   
-  <title>使用命令行生成高强度密码 | Linux运维装逼指南</title>
+  <title>Ubuntu下OpenVPN客户端配置 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设置一个高强度的密码是非常重要的，这样才能够很好的保护自己的账号或者服务器以及确保自己的数据的安全。通常来说，一个高强度密码至少有 14 个字符，包括大小写字母、数字和特殊字符，并且要牢记永远不用那些字典中的单词。使用长密码比短密码要来的安全，因为密码越长越难猜测。在本文中，我将给你介绍几个不同方法，让你可以在 Linux 命令行下生成一个高强度密码。">
-<meta name="keywords" content="shell">
+  <meta name="description" content="安装OpenVPN　　首先需要安装OpenVPN客户端。一般来说直接使用apt-get即可。执行如下命令安装： 1[root@www ~]# apt-get install openvpn 　　稍等片刻将自动安装好openvpn需要的软件包。安装完成后，应该出现 /etc/openvpn/ 文件夹。">
+<meta name="keywords" content="openvpn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用命令行生成高强度密码">
-<meta property="og:url" content="http://www.unix-like.com/2017/06/02/system/使用命令行生成高强度密码/index.html">
+<meta property="og:title" content="Ubuntu下OpenVPN客户端配置">
+<meta property="og:url" content="http://www.unix-like.com/2017/06/06/service/Ubuntu下OpenVPN客户端配置/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="设置一个高强度的密码是非常重要的，这样才能够很好的保护自己的账号或者服务器以及确保自己的数据的安全。通常来说，一个高强度密码至少有 14 个字符，包括大小写字母、数字和特殊字符，并且要牢记永远不用那些字典中的单词。使用长密码比短密码要来的安全，因为密码越长越难猜测。在本文中，我将给你介绍几个不同方法，让你可以在 Linux 命令行下生成一个高强度密码。">
-<meta property="og:updated_time" content="2017-06-02T01:55:23.376Z">
+<meta property="og:description" content="安装OpenVPN　　首先需要安装OpenVPN客户端。一般来说直接使用apt-get即可。执行如下命令安装： 1[root@www ~]# apt-get install openvpn 　　稍等片刻将自动安装好openvpn需要的软件包。安装完成后，应该出现 /etc/openvpn/ 文件夹。">
+<meta property="og:updated_time" content="2017-06-06T05:39:23.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用命令行生成高强度密码">
-<meta name="twitter:description" content="设置一个高强度的密码是非常重要的，这样才能够很好的保护自己的账号或者服务器以及确保自己的数据的安全。通常来说，一个高强度密码至少有 14 个字符，包括大小写字母、数字和特殊字符，并且要牢记永远不用那些字典中的单词。使用长密码比短密码要来的安全，因为密码越长越难猜测。在本文中，我将给你介绍几个不同方法，让你可以在 Linux 命令行下生成一个高强度密码。">
+<meta name="twitter:title" content="Ubuntu下OpenVPN客户端配置">
+<meta name="twitter:description" content="安装OpenVPN　　首先需要安装OpenVPN客户端。一般来说直接使用apt-get即可。执行如下命令安装： 1[root@www ~]# apt-get install openvpn 　　稍等片刻将自动安装好openvpn需要的软件包。安装完成后，应该出现 /etc/openvpn/ 文件夹。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -268,11 +268,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-system/使用命令行生成高强度密码" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-service/Ubuntu下OpenVPN客户端配置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/06/02/system/使用命令行生成高强度密码/" class="article-date">
-      <time datetime="2017-06-02T01:54:11.000Z" itemprop="datePublished">2017-06-02</time>
+      <a rel="external nofollow" href="/2017/06/06/service/Ubuntu下OpenVPN客户端配置/" class="article-date">
+      <time datetime="2017-06-06T05:37:35.000Z" itemprop="datePublished">2017-06-06</time>
 </a>
 
     </div>
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用命令行生成高强度密码
+      Ubuntu下OpenVPN客户端配置
     </h1>
   
 
@@ -296,13 +296,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
+    <a class="article-category-link" href="/categories/service/">service</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openvpn/">openvpn</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -312,37 +312,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>设置一个高强度的密码是非常重要的，这样才能够很好的保护自己的账号或者服务器以及确保自己的数据的安全。通常来说，一个高强度密码至少有 14 个字符，包括大小写字母、数字和特殊字符，并且要牢记永远不用那些字典中的单词。使用长密码比短密码要来的安全，因为密码越长越难猜测。在本文中，我将给你介绍几个不同方法，让你可以在 Linux 命令行下生成一个高强度密码。</p>
+        <h1 id="安装OpenVPN"><a href="#安装OpenVPN" class="headerlink" title="安装OpenVPN"></a>安装OpenVPN</h1><p>　　首先需要安装OpenVPN客户端。一般来说直接使用apt-get即可。执行如下命令安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@www ~]<span class="comment"># apt-get install openvpn</span></div></pre></td></tr></table></figure>
+<p>　　稍等片刻将自动安装好openvpn需要的软件包。安装完成后，应该出现 <code>/etc/openvpn/</code> 文件夹。 </p>
 <a id="more"></a>
-<h1 id="使用-openssl-生成高强度密码"><a href="#使用-openssl-生成高强度密码" class="headerlink" title="使用 openssl 生成高强度密码"></a>使用 openssl 生成高强度密码</h1><p>这里使用 openssl 的 rand 方法，它会生成一个 14 位字符的随机字符：</p>
-<pre><code>openssl rand -base64 14
-</code></pre><h1 id="使用-urandom-生成高强度密码"><a href="#使用-urandom-生成高强度密码" class="headerlink" title="使用 urandom 生成高强度密码"></a>使用 urandom 生成高强度密码</h1><p>这里我们将使用 tr 条件来过滤 /dev/urandom 的输出，从而删掉那些不想要的字符，并打印出第一个出现的 14 位字符。</p>
-<pre><code>&lt; /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo
-</code></pre><h1 id="使用-pwgen-生成高强度密码"><a href="#使用-pwgen-生成高强度密码" class="headerlink" title="使用 pwgen 生成高强度密码"></a>使用 pwgen 生成高强度密码</h1><p>pwgen 是一个生成随机、无特殊含义但可以正常拼读的密码。</p>
-<p>安装 pwgen，运行：</p>
-<pre><code>sudo apt-get install pwgen
-</code></pre><p>安装好之后，使用以下命令来生成一个 14 位随机字符：</p>
-<pre><code>pwgen 14 1
-</code></pre><p>你也可以使用以下标记：</p>
-<ul>
-<li>-c 或 –capitalize 生成的密码中至少包含一个大写字母</li>
-<li>-A 或 –no-capitalize 生成的密码中不含大写字母</li>
-<li>-n 或 –numerals 生成的密码中至少包含一个数字</li>
-<li>-0 或 –no-numerals 生成的密码中不含数字</li>
-<li>-y 或 –symbols 生成的密码中至少包含一个特殊字符</li>
-<li>-s 或 –secure 生成一个完全随机的密码</li>
-<li>-B 或 –ambiguous 生成的密码中不含易混淆字符</li>
-<li>-h 或 –help 输出帮助信息</li>
-<li>-H 或 –sha1=path/to/file[#seed] 使用指定文件的 sha1 哈希值作为随机生成器</li>
-<li>-C 按列输出生成的密码</li>
-<li>-1 不按列输出生成的密码</li>
-<li>-v 或 –no-vowels 不使用任何元音，以免意外生成让人讨厌的单词</li>
-</ul>
-<h1 id="使用-gpg-生成高强度密码"><a href="#使用-gpg-生成高强度密码" class="headerlink" title="使用 gpg 生成高强度密码"></a>使用 gpg 生成高强度密码</h1><p>我们也可以使用 gpg 工具来生成一个 14 位字符的密码：</p>
-<pre><code>gpg --gen-random --armor 1 14
-</code></pre><h1 id="其它方法"><a href="#其它方法" class="headerlink" title="其它方法"></a>其它方法</h1><p>当然，可能还有很多方法可以生成一个高强度密码。比方说，你可以添加以下 bash shell 方法到 ~/.bashrc 文件：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">genpasswd</span></span>() &#123; </div><div class="line">    strings /dev/urandom | grep -o <span class="string">'[[:alnum:]]'</span> | head -n 14 | tr <span class="_">-d</span> <span class="string">'\n'</span>; <span class="built_in">echo</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当你想要生成一个高强度的随机密码时，运行<code>genpasswd</code>就好了。</p>
+<h1 id="配置OpenVPN"><a href="#配置OpenVPN" class="headerlink" title="配置OpenVPN"></a>配置OpenVPN</h1><p>　　作为客户端，OpenVPN并没有特定的配置文件，而是由服务器提供方给出一个配置文件。对于认证，OpenVPN提供了两种认证方法：基于用户名/密码的认证与SSL证书认证。用户名/密码的认证方法无法（或较难）限制一个账号同时连接多个客户端，而采用证书，则可保证同一证书同一时间只能有一个 客户端连接。当然，这些都是由服务器端决定的，不需要客户端进行选择。</p>
+<p>　　首先将OpenVPN服务器提供商发给你的配置文件解压，并将所有文件都复制到 /etc/openvpn/中。</p>
+<p>这些文件中至少包含一个.ovpn文件，需要手动创建该文件，如：client.ovpn；如果服务器需要证书认证，则应该还存在另外三个证书文件。</p>
+<p>　　看懂OpenVPN配置格式。下面是一个.ovpn配置示例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tap</div><div class="line">proto tcp-client</div><div class="line">remote 192.168.135.75 1194</div><div class="line">resolv-retry infinite</div><div class="line">nobind</div><div class="line">mute-replay-warnings</div><div class="line">redirect-gateway</div><div class="line">ca /etc/openvpn/ca.crt</div><div class="line">cert /etc/openvpn/client.crt</div><div class="line">key /etc/openvpn/client.key</div><div class="line">comp-lzo</div><div class="line">verb 4</div></pre></td></tr></table></figure>
+<p>　　一般来说，ca.crt，client.crt，client.key可能需要你进行修改。将内容修改成这三个文件的实际位置。然后保存即可。 </p>
+<h1 id="连接OpenVPN"><a href="#连接OpenVPN" class="headerlink" title="连接OpenVPN"></a>连接OpenVPN</h1><p>　　在配置好.ovpn文件后，执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn /etc/openvpn/client.ovpn</div></pre></td></tr></table></figure>
+<p>　　即可连接服务器了（注意该目录下对应文件的权限）。注意，上面的参数应该换成你的配置文件实际位置。</p>
+<p>　　此时，终端会回显很多连接日志。如果连接不成功，则可以通过这些日志来确定出错位置。如果要断开，只需要通过Ctrl+C强制终止即可。</p>
+<p>　　上面的命令在实际中并不方便，因为它要占用一个独立的终端。在测试成功后，使用以下命令即可在后台连接OpenVPN：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn /etc/openvpn/client.ovpn &gt; /dev/null &amp;</div></pre></td></tr></table></figure>
+<p>　　值得称赞的是，openvpn非常智能，在连接异常中断、无法连接服务器、断网的情况下，它会自动重连。因此，如果希望开机即自动连接OpenVPN，或者是VPN常年在线，则可将上述命令行加入 <code>/etc/rc.local</code> 中。注意，命令末尾的&amp;符号不能省略，否则将可能阻塞系统的正常启动。</p>
 
       
     </div>
@@ -351,13 +337,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/02/system/使用命令行生成高强度密码/">使用命令行生成高强度密码</a></p>
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/06/service/Ubuntu下OpenVPN客户端配置/">Ubuntu下OpenVPN客户端配置</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年06月02日 - 09时54分</p>
-        <p><span>最后更新:</span>2017年06月02日 - 09时55分</p>
+        <p><span>发布时间:</span>2017年06月06日 - 13时37分</p>
+        <p><span>最后更新:</span>2017年06月06日 - 13时39分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/02/system/使用命令行生成高强度密码/" title="使用命令行生成高强度密码">http://www.unix-like.com/2017/06/02/system/使用命令行生成高强度密码/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/02/system/使用命令行生成高强度密码/　　作者: Linux运维装逼指南" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/06/service/Ubuntu下OpenVPN客户端配置/" title="Ubuntu下OpenVPN客户端配置">http://www.unix-like.com/2017/06/06/service/Ubuntu下OpenVPN客户端配置/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/06/service/Ubuntu下OpenVPN客户端配置/　　作者: Linux运维装逼指南" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -368,18 +354,18 @@
 
 <nav id="article-nav">
   
-    <a rel="external nofollow" href="/2017/06/04/service/KVM部署及虚拟机安装/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a rel="external nofollow" href="/2017/06/06/service/在Ubuntu15.04上配置OpenVPN服务器和客户端/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          kvm部署及虚拟机安装
+          Ubuntu 15.04 上配置 OpenVPN 服务器和客户端
         
       </div>
     </a>
   
   
-    <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LINUX下解决netstat查看TIME_WAIT状态过多问题</div>
+    <a rel="external nofollow" href="/2017/06/04/service/KVM部署及虚拟机安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kvm部署及虚拟机安装</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -391,7 +377,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-openssl-生成高强度密码"><span class="toc-number">1.</span> <span class="toc-text">使用 openssl 生成高强度密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-urandom-生成高强度密码"><span class="toc-number">2.</span> <span class="toc-text">使用 urandom 生成高强度密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-pwgen-生成高强度密码"><span class="toc-number">3.</span> <span class="toc-text">使用 pwgen 生成高强度密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-gpg-生成高强度密码"><span class="toc-number">4.</span> <span class="toc-text">使用 gpg 生成高强度密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其它方法"><span class="toc-number">5.</span> <span class="toc-text">其它方法</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装OpenVPN"><span class="toc-number">1.</span> <span class="toc-text">安装OpenVPN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置OpenVPN"><span class="toc-number">2.</span> <span class="toc-text">配置OpenVPN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#连接OpenVPN"><span class="toc-number">3.</span> <span class="toc-text">连接OpenVPN</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -445,13 +431,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a rel="external nofollow" href="/2017/06/04/service/KVM部署及虚拟机安装/" title="上一篇: kvm部署及虚拟机安装">
+            <a rel="external nofollow" href="/2017/06/06/service/在Ubuntu15.04上配置OpenVPN服务器和客户端/" title="上一篇: Ubuntu 15.04 上配置 OpenVPN 服务器和客户端">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" title="下一篇: LINUX下解决netstat查看TIME_WAIT状态过多问题">
+            <a rel="external nofollow" href="/2017/06/04/service/KVM部署及虚拟机安装/" title="下一篇: kvm部署及虚拟机安装">
                 <i class="fa fa-angle-right"></i>
             </a>
         
