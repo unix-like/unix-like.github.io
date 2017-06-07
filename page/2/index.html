@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -270,6 +270,76 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-service/ Windows与Linux共享文件夹互相访问 " class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" class="article-date">
+      <time datetime="2017-05-29T13:56:20.000Z" itemprop="datePublished">2017-05-29</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="首先安装并配置软件samba"><a href="#首先安装并配置软件samba" class="headerlink" title="首先安装并配置软件samba"></a>首先安装并配置软件samba</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sudo yum install samba samba-client  </div><div class="line">vim /etc/samba/smb.conf  </div><div class="line">      </div><div class="line">找到security这行并将<span class="comment">#注释符号去掉改成  </span></div><div class="line">security = share     <span class="comment">#共享模式  </span></div><div class="line">      </div><div class="line">添加如下代码：  </div><div class="line">      </div><div class="line">[share]  </div><div class="line">comment = share  </div><div class="line">path = /home/<span class="built_in">test</span>          <span class="comment">#设置共享文件夹目录  </span></div><div class="line">browseable = yes  </div><div class="line">guest ok = yes  </div><div class="line">writable = yes  </div><div class="line"></div><div class="line">service smb start  </div><div class="line">service smbd start   (ubuntu)</div></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/service/">service</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/samba/">samba</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-life/系统运维工程师装逼完全指南" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -894,76 +964,6 @@
       
         <p class="article-more-link">
           <a rel="external nofollow"  href="/2017/05/25/database/redis模糊删除key/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/Linux查看文件编码格式及文件编码转换" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/" class="article-date">
-      <time datetime="2017-05-25T04:27:28.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符集/">字符集</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
