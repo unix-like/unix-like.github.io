@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-06-08T02:29:56.491Z</updated>
+  <updated>2017-06-08T08:52:50.707Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux下添加redis扩展</title>
+    <link href="http://www.unix-like.com/2017/06/08/service/linux%E4%B8%8B%E6%B7%BB%E5%8A%A0redis%E6%89%A9%E5%B1%95/"/>
+    <id>http://www.unix-like.com/2017/06/08/service/linux下添加redis扩展/</id>
+    <published>2017-06-08T08:33:32.000Z</published>
+    <updated>2017-06-08T08:52:50.707Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文是安装redis扩展，但其他扩展的安装方式也是如此，具有通用性。</p>
+<a id="more"></a>
+<h1 id="下载扩展"><a href="#下载扩展" class="headerlink" title="下载扩展"></a>下载扩展</h1><p>到<a href="http://pecl.php.net下载扩展" target="_blank" rel="external">http://pecl.php.net下载扩展</a></p>
+<h1 id="解压并进入包目录"><a href="#解压并进入包目录" class="headerlink" title="解压并进入包目录"></a>解压并进入包目录</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -xvf redis-2.2.7.tar </div><div class="line"><span class="built_in">cd</span> redis-2.2.7</div></pre></td></tr></table></figure>
+<h1 id="使用php扩展添加信息"><a href="#使用php扩展添加信息" class="headerlink" title="使用php扩展添加信息"></a>使用php扩展添加信息</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/data/apps/php/bin/phpize</div></pre></td></tr></table></figure>
+<h1 id="添加PHP配置信息"><a href="#添加PHP配置信息" class="headerlink" title="添加PHP配置信息"></a>添加PHP配置信息</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure --with-php-config=/data/apps/php/bin/php-config</div></pre></td></tr></table></figure>
+<h1 id="编译生成扩展库"><a href="#编译生成扩展库" class="headerlink" title="编译生成扩展库"></a>编译生成扩展库</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">make </div><div class="line">sudo make install</div></pre></td></tr></table></figure>
+<h1 id="查看扩展库生成"><a href="#查看扩展库生成" class="headerlink" title="查看扩展库生成"></a>查看扩展库生成</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /goto_data/Application/php/lib/php/extensions/no-debug-non-zts-20090626/</div><div class="line">ls    <span class="comment">#是否有redis.so</span></div></pre></td></tr></table></figure>
+<h1 id="修改php-ini"><a href="#修改php-ini" class="headerlink" title="修改php.ini"></a>修改php.ini</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /data/apps/php/etc/</div><div class="line">sudo vim php.ini</div></pre></td></tr></table></figure>
+<p>文件末尾添加 extension=redis.so 即可。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文是安装redis扩展，但其他扩展的安装方式也是如此，具有通用性。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="service" scheme="http://www.unix-like.com/categories/service/"/>
+    
+    
+      <category term="php" scheme="http://www.unix-like.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>Tomcat环境搭建及配置规范</title>
@@ -96,15 +128,16 @@
   </entry>
   
   <entry>
-    <title>mysql线上线下同步备份脚步.sql</title>
+    <title>mysql线上线下同步备份脚步</title>
     <link href="http://www.unix-like.com/2017/06/08/database/mysql%E7%BA%BF%E4%B8%8A%E7%BA%BF%E4%B8%8B%E5%90%8C%E6%AD%A5%E5%A4%87%E4%BB%BD%E8%84%9A%E6%AD%A5/"/>
     <id>http://www.unix-like.com/2017/06/08/database/mysql线上线下同步备份脚步/</id>
     <published>2017-06-08T01:39:35.000Z</published>
-    <updated>2017-06-08T01:57:07.633Z</updated>
+    <updated>2017-06-08T02:31:43.753Z</updated>
     
     <content type="html"><![CDATA[<p>将线上多个数据库同步并导入到线下一个数据库中。</p>
 <a id="more"></a>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="comment"># 本地mysql数据库登录账号</span></div><div class="line">user=<span class="string">'xxx'</span></div><div class="line"><span class="comment"># 本地mysql数据库登录密码</span></div><div class="line">pass=<span class="string">'xxx'</span></div><div class="line"></div><div class="line"><span class="comment"># db_test1库</span></div><div class="line">db1=<span class="string">'db_test1'</span></div><div class="line"></div><div class="line"><span class="comment"># db_test2库</span></div><div class="line">db2=<span class="string">'db_test2'</span></div><div class="line"></div><div class="line"><span class="comment"># db_test3库</span></div><div class="line">db3=<span class="string">'db_test3'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 数据库在线上的备份服务器IP </span></div><div class="line">server1=<span class="string">'1.1.1.1'</span></div><div class="line">server2=<span class="string">'2.2.2.2'</span></div><div class="line"></div><div class="line"><span class="comment"># 删除老数据库备份，下载最新数据库备份</span></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">rsync_db</span></span>() &#123;</div><div class="line">  showMsg <span class="string">"开始同步数据库<span class="variable">$2</span>..."</span></div><div class="line">  file=`rsync --port 30004 --list-only --password-file=/etc/rsync.passwd backup@<span class="variable">$1</span>::mysql_backup/<span class="variable">$2</span>/ | tail -1 | awk <span class="string">'&#123;print $5&#125;'</span>`</div><div class="line">  path=<span class="string">"/gotwo_data/backup/mysql/<span class="variable">$2</span>/"</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> [ ! <span class="_">-f</span> <span class="variable">$&#123;path&#125;</span><span class="variable">$&#123;file&#125;</span> ]</div><div class="line">  <span class="keyword">then</span></div><div class="line">    showMsg <span class="string">"删除老数据库备份..."</span></div><div class="line">    rm <span class="variable">$&#123;path&#125;</span>*.* 2&gt;/dev/null</div><div class="line">    showMsg <span class="string">"下载最新的数据库备份..."</span></div><div class="line">    rsync -av --port 30004 --password-file=/etc/rsync.passwd backup@<span class="variable">$1</span>::mysql_backup/<span class="variable">$2</span>/<span class="variable">$&#123;file&#125;</span> <span class="variable">$&#123;path&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">else</span></div><div class="line">    showMsg <span class="variable">$&#123;path&#125;</span><span class="variable">$&#123;file&#125;</span><span class="string">"文件已存在！"</span></div><div class="line">  <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#导入数据库</span></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">restore_db</span></span>() &#123;</div><div class="line">    showMsg <span class="string">"开始同步数据库<span class="variable">$1</span>..."</span></div><div class="line">    file=`ls /gotwo_data/backup/mysql/<span class="variable">$1</span>`</div><div class="line">    path=<span class="string">"/gotwo_data/backup/mysql/<span class="variable">$1</span>/"</span></div><div class="line"></div><div class="line">    showMsg <span class="string">"将最新的<span class="variable">$&#123;1&#125;</span>数据库备份导入测试数据库..."</span></div><div class="line">    gzip <span class="_">-d</span> &lt; <span class="variable">$&#123;path&#125;</span><span class="variable">$&#123;file&#125;</span> | mysql -u<span class="variable">$&#123;user&#125;</span> -p<span class="variable">$&#123;pass&#125;</span> --socket=/gotwo_data/mysql/my40003/socket/mysqld.sock <span class="variable">$1</span> 2&gt;/dev/null</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># 格式化输出日志</span></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">showMsg</span></span>() &#123;</div><div class="line">  <span class="built_in">echo</span> <span class="string">"`date +%Y-%m-%d\ %H:%M:%S`    <span class="variable">$1</span>"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">showMsg <span class="string">"开始同步数据库！"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># db_test1同步</span></div><div class="line">rsync_db <span class="variable">$server1</span> <span class="variable">$db1</span></div><div class="line"></div><div class="line"><span class="comment"># db_test2同步</span></div><div class="line">rsync_db <span class="variable">$server1</span> <span class="variable">$db2</span></div><div class="line"></div><div class="line"><span class="comment"># db_test3同步</span></div><div class="line">rsync_db <span class="variable">$server2</span> <span class="variable">$db3</span></div><div class="line"></div><div class="line">showMsg <span class="string">"开始导入数据库！"</span></div><div class="line"></div><div class="line"><span class="comment"># db_test1导入</span></div><div class="line">restore_db db_test1 &amp;</div><div class="line"></div><div class="line"><span class="comment"># db_test2 导入</span></div><div class="line">restore_db db_test2 &amp;</div><div class="line"></div><div class="line"><span class="comment"># db_test3导入</span></div><div class="line">restore_db db_test3 &amp;</div><div class="line"></div><div class="line">showMsg <span class="string">"备份恢复脚本执行完成！"</span></div></pre></td></tr></table></figure>]]></content>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="comment"># 本地mysql数据库登录账号</span></div><div class="line">user=<span class="string">'xxx'</span></div><div class="line"><span class="comment"># 本地mysql数据库登录密码</span></div><div class="line">pass=<span class="string">'xxx'</span></div><div class="line"></div><div class="line"><span class="comment"># db_test1库</span></div><div class="line">db1=<span class="string">'db_test1'</span></div><div class="line"></div><div class="line"><span class="comment"># db_test2库</span></div><div class="line">db2=<span class="string">'db_test2'</span></div><div class="line"></div><div class="line"><span class="comment"># db_test3库</span></div><div class="line">db3=<span class="string">'db_test3'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 数据库在线上的备份服务器IP </span></div><div class="line">server1=<span class="string">'1.1.1.1'</span></div><div class="line">server2=<span class="string">'2.2.2.2'</span></div><div class="line"></div><div class="line"><span class="comment"># 删除老数据库备份，下载最新数据库备份</span></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">rsync_db</span></span>() &#123;</div><div class="line">  showMsg <span class="string">"开始同步数据库<span class="variable">$2</span>..."</span></div><div class="line">  file=`rsync --port 30004 --list-only --password-file=/etc/rsync.passwd backup@<span class="variable">$1</span>::mysql_backup/<span class="variable">$2</span>/ | tail -1 | awk <span class="string">'&#123;print $5&#125;'</span>`</div><div class="line">  path=<span class="string">"/gotwo_data/backup/mysql/<span class="variable">$2</span>/"</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> [ ! <span class="_">-f</span> <span class="variable">$&#123;path&#125;</span><span class="variable">$&#123;file&#125;</span> ]</div><div class="line">  <span class="keyword">then</span></div><div class="line">    showMsg <span class="string">"删除老数据库备份..."</span></div><div class="line">    rm <span class="variable">$&#123;path&#125;</span>*.* 2&gt;/dev/null</div><div class="line">    showMsg <span class="string">"下载最新的数据库备份..."</span></div><div class="line">    rsync -av --port 30004 --password-file=/etc/rsync.passwd backup@<span class="variable">$1</span>::mysql_backup/<span class="variable">$2</span>/<span class="variable">$&#123;file&#125;</span> <span class="variable">$&#123;path&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">else</span></div><div class="line">    showMsg <span class="variable">$&#123;path&#125;</span><span class="variable">$&#123;file&#125;</span><span class="string">"文件已存在！"</span></div><div class="line">  <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#导入数据库</span></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">restore_db</span></span>() &#123;</div><div class="line">    showMsg <span class="string">"开始同步数据库<span class="variable">$1</span>..."</span></div><div class="line">    file=`ls /gotwo_data/backup/mysql/<span class="variable">$1</span>`</div><div class="line">    path=<span class="string">"/gotwo_data/backup/mysql/<span class="variable">$1</span>/"</span></div><div class="line"></div><div class="line">    showMsg <span class="string">"将最新的<span class="variable">$&#123;1&#125;</span>数据库备份导入测试数据库..."</span></div><div class="line">    gzip <span class="_">-d</span> &lt; <span class="variable">$&#123;path&#125;</span><span class="variable">$&#123;file&#125;</span> | mysql -u<span class="variable">$&#123;user&#125;</span> -p<span class="variable">$&#123;pass&#125;</span> --socket=/gotwo_data/mysql/my40003/socket/mysqld.sock <span class="variable">$1</span> 2&gt;/dev/null</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># 格式化输出日志</span></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">showMsg</span></span>() &#123;</div><div class="line">  <span class="built_in">echo</span> <span class="string">"`date +%Y-%m-%d\ %H:%M:%S`    <span class="variable">$1</span>"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">showMsg <span class="string">"开始同步数据库！"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># db_test1同步</span></div><div class="line">rsync_db <span class="variable">$server1</span> <span class="variable">$db1</span></div><div class="line"></div><div class="line"><span class="comment"># db_test2同步</span></div><div class="line">rsync_db <span class="variable">$server1</span> <span class="variable">$db2</span></div><div class="line"></div><div class="line"><span class="comment"># db_test3同步</span></div><div class="line">rsync_db <span class="variable">$server2</span> <span class="variable">$db3</span></div><div class="line"></div><div class="line">showMsg <span class="string">"开始导入数据库！"</span></div><div class="line"></div><div class="line"><span class="comment"># db_test1导入</span></div><div class="line">restore_db db_test1 &amp;</div><div class="line"></div><div class="line"><span class="comment"># db_test2 导入</span></div><div class="line">restore_db db_test2 &amp;</div><div class="line"></div><div class="line"><span class="comment"># db_test3导入</span></div><div class="line">restore_db db_test3 &amp;</div><div class="line"></div><div class="line">showMsg <span class="string">"备份恢复脚本执行完成！"</span></div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -1145,87 +1178,6 @@
     
     
       <category term="rsync" scheme="http://www.unix-like.com/tags/rsync/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pdflush进程详解与优化</title>
-    <link href="http://www.unix-like.com/2017/05/25/system/pdflush%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3%E4%B8%8E%E4%BC%98%E5%8C%96/"/>
-    <id>http://www.unix-like.com/2017/05/25/system/pdflush进程详解与优化/</id>
-    <published>2017-05-25T08:38:28.000Z</published>
-    <updated>2017-05-26T05:20:14.661Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。</p>
-<a id="more"></a>
-<p>在以下两种情况发生时，脏页被写回磁盘：</p>
-<ul>
-<li>当空闲内存低于一个特定的阈值时，内核必须将脏页写回磁盘，以便释放内存。</li>
-<li>当脏页在内存中驻留时间超过一个特定的阈值时，内核必须将超时的脏页写回磁盘，以确保脏页不会无限期地驻留在内存中。</li>
-</ul>
-<p>　　上面两种工作的目的完全不同。实际上，在老内核中，这是由两个独立的内核线程分别完成的。但是在2.6内核中，由一群内核线程—pdflush后台回写例程—统一执行两种工作。</p>
-<p>　　我们来看看这两个目标是如何具体实现的。首先，当系统中的空闲内存低于一个特定的阈值时，pdflush线程将脏页刷新回磁盘。该后台回写例程的目的在于在可用物理内存过低时，释放脏页以重新获得内存。特定的内存阈值可以通过<code>dirty_background_ratio</code>参数设置。当空闲内存比阈值<code>dirty_ background_ratio</code>还低时，内核便会调用函数<code>wakeup_bdflush()</code>唤醒一个pdflush线程，随后pdflush线程进一步调用函数<code>background_writeout()</code>开始将脏页写回磁盘。函数<code>background_ writeout()</code>需要一个长整型参数，该参数指定试图回写的页面数目。</p>
-<p>　　函数<code>background_writeout()</code>会连续地写出数据，直到满足以下两个条件：</p>
-<ul>
-<li>已经有指定的最小数目的页被写出到磁盘。</li>
-<li>空闲内存数已经回升，超过了阈值dirty_background_ratio。</li>
-</ul>
-<p>　　上述条件确保了pdflush操作可以减轻系统中内存不足的压力。回写操作不会在达到这两个条件前停止，除非pdflush写回了所有的脏页，没有剩下的脏页可再被写回了。</p>
-<p>　　要满足第二个目标，pdflush后台例程会被周期性唤醒（和空闲内存是否过低无关），将那些在内存中驻留时间过长的脏页写出，确保内存中不会有长期存在的脏页。假如系统发生崩溃，则内存会处于混乱之中，而那些在内存中还没来得及写回磁盘的脏页就会丢失，所以周期性同步回写非常重要。</p>
-<p>　　在系统启动时，内核初始化一个定时器，让它周期地唤醒pdflush线程，随后使其运行函数<code>wb_kupdate()</code>。该函数将把所有驻留时间超过百分之<code>dirty_expire_centisecs</code>秒的脏页写回。然后定时器将再次被初始化为百分之<code>dirty_expire_ centisecs</code>秒后唤醒pdflush线程。</p>
-<p>　　总而言之，pdflush线程周期地被唤醒并且把超过特定期限的脏页写回磁盘。</p>
-<h1 id="二、proc下的相关控制参数"><a href="#二、proc下的相关控制参数" class="headerlink" title="二、proc下的相关控制参数"></a>二、proc下的相关控制参数</h1><p>　　系统管理员可以在/proc/sys/vm中设置回写相关的参数，也可以通过sysctl系统调用设置它们。</p>
-<ul>
-<li>/proc/sys/vm/dirty_ratio</li>
-</ul>
-<p>　　这个参数控制一个进程在文件系统中的文件系统写缓冲区的大小，单位是百分比，表示系统内存的百分比，表示当一个进程中写缓冲使用到系统内存多少的时候，再有磁盘写操作时开始向磁盘写出数据。增大之会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是 40。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 30 &gt;/proc/sys/vm/dirty_ratio</div></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>/proc/sys/vm/dirty_background_ratio</li>
-</ul>
-<p>　　这个参数控制文件系统的pdflush进程，在何时刷新磁盘。单位是百分比，表示系统总内存的百分比，意思是当磁盘的脏数据缓冲到系统内存多少的时候，pdflush开始把脏数据刷新到磁盘。增大会使用更多系统内存用于磁盘写缓冲，也可以极大提高系统的写性能。但是，当你需要持续、恒定的写入场合时，应该降低其数值.一般缺省是10。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 8 &gt;/proc/sys/vm/dirty_background_ratio</div></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>/proc/sys/vm/dirty_writeback_centisecs</li>
-</ul>
-<p>　　Pdflush写后台进程每隔多久被唤醒并执行把脏数据写出到硬盘。单位是 1/100 秒。如果你的系统是持续地写入动作，那么实际上还是降低这个数值比较好，这样可以把尖峰的写操作削平成多次写操作。缺省数值是500，也就是 5 秒。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 200 &gt;/proc/sys/vm/dirty_writeback_centisecs</div></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>/proc/sys/vm/dirty_expire_centisecs</li>
-</ul>
-<p>　　这个参数声明Linux内核写缓冲区里面的脏数据多“旧”了之后，pdflush 进程就开始考虑写到磁盘中去。单位是 1/100秒。对于特别重载的写操作来说，这个值适当缩小也是好的，但也不能缩小太多，因为缩小太多也会导致IO提高太快。缺省是 30000，也就是 30 秒的数据就算旧了，将会刷新磁盘。建议设置为 1500，也就是15秒算旧。设置方法如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 1500 &gt;/proc/sys/vm/dirty_expire_centisecs</div></pre></td></tr></table></figure>
-<hr>
-<h1 id="三、内核参数修改后的生效"><a href="#三、内核参数修改后的生效" class="headerlink" title="三、内核参数修改后的生效"></a>三、内核参数修改后的生效</h1><p>　　Linux在系统运行时修改内核参数(/proc/sys与/etc/sysctl.conf)，而不需要重新引导系统，这个功能是通过/proc虚拟文件系统实现的。</p>
-<p>　　在/proc/sys目录下存放着大多数的内核参数，并且设计成可以在系统运行的同时进行更改,可以通过更改/proc/sys中内核参数对应的文件达到修改内核参数的目的(修改过后，保存配置文件就马上自动生效)，不过重新启动机器后之前修改的参数值会失效，所以只能是一种临时参数变更方案。(适合调试内核参数优化值的时候使用，如果设置值有问题，重启服务器还原原来的设置参数值了。简单方便。)</p>
-<p>　　但是如果调试内核参数优化值结束后，需要永久保存参数值，就要通过修改/etc/sysctl.conf内的内核参数来永久保存更改。但只是修改sysctl文件内的参数值，确认保存修改文件后，设定的参数值并不会马上生效，如果想使参数值修改马上生效，并且不重启服务器，可以执行下面的命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –p</div></pre></td></tr></table></figure>
-<hr>
-<p>　　下面介绍一下/proc/sys下内核文件与配置文件sysctl.conf中变量的对应关系：</p>
-<p>　　由于可以修改的内核参数都在/proc/sys目录下，所以sysctl.conf的变量名省略了目录的前面部分（/proc/sys）。即将/proc/sys中的文件转换成sysctl中的变量依据下面两个简单的规则：</p>
-<ol>
-<li>去掉前面部分/proc/sys</li>
-<li>将文件名中的斜杠变为点</li>
-</ol>
-<p>　　这两条规则可以将/proc/sys中的任一文件名转换成sysctl中的变量名。</p>
-<p>　　例如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/proc/sys/net/ipv4/ip_forward =&gt; net.ipv4.ip_forward</div><div class="line">/proc/sys/kernel/hostname =&gt;  kernel.hostname</div></pre></td></tr></table></figure>
-<p>　　可以使用下面命令查询所有可修改的变量名</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl –a</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;p&gt;　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="system" scheme="http://www.unix-like.com/categories/system/"/>
-    
-    
-      <category term="调优" scheme="http://www.unix-like.com/tags/%E8%B0%83%E4%BC%98/"/>
     
   </entry>
   

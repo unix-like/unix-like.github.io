@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -270,6 +270,76 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-service/logrotate切割日志nginx和php配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" class="article-date">
+      <time datetime="2017-05-31T03:25:18.000Z" itemprop="datePublished">2017-05-31</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/31/service/logrotate切割日志nginx和php配置/">logrotate切割日志nginx和php配置</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/gotwo_data/logs/nginx/2mm.cn/*.log &#123;</div><div class="line">        daily</div><div class="line">        missingok</div><div class="line">        rotate 52</div><div class="line">        compress</div><div class="line">        delaycompress</div><div class="line">        notifempty</div><div class="line">        create 644 nginx nginx</div><div class="line">        sharedscripts</div><div class="line">        postrotate</div><div class="line">                [ <span class="_">-f</span> /gotwo_data/logs/nginx/nginx.pid ] &amp;&amp; <span class="built_in">kill</span> -USR1 `cat /gotwo_data/logs/nginx/nginx.pid`</div><div class="line">        endscript</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/service/">service</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logrotate/">logrotate</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/05/31/service/logrotate切割日志nginx和php配置/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-service/nginx常见问题" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -892,76 +962,6 @@
       
         <p class="article-more-link">
           <a rel="external nofollow"  href="/2017/05/26/service/rsync安装配置实例/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/pdflush进程详解与优化" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/" class="article-date">
-      <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>　　由于页高速缓存的缓存作用，写操作实际上会被延迟。当页高速缓存中的数据比后台存储的数据更新时，那么该数据就被称做脏数据。在内存中累积起来的脏页最终必须被写回磁盘。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/25/system/pdflush进程详解与优化/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
