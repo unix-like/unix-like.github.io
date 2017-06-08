@@ -4,8 +4,68 @@
 
     
   <url>
+    <loc>http://www.unix-like.com/2017/06/08/service/tomcat%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2017-06-08T02:29:56.491Z</lastmod>
+    <data>
+        <display>
+        <title>Tomcat环境搭建及配置规范</title>
+        <pubTime>2017-06-08T02:11:56.000Z</pubTime>
+        
+        <tag>tomcat</tag>
+         
+         
+           
+             
+              <breadCrumb title="service" url="http://www.unix-like.com/categories/service/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.unix-like.com/2017/06/08/database/mongodb%E7%BA%BF%E4%B8%8A%E7%BA%BF%E4%B8%8B%E5%90%8C%E6%AD%A5%E5%A4%87%E4%BB%BD%E8%84%9A%E6%AD%A5/</loc>
+    <lastmod>2017-06-08T02:03:05.178Z</lastmod>
+    <data>
+        <display>
+        <title>mongodb线上线下同步备份脚步</title>
+        <pubTime>2017-06-08T02:00:28.000Z</pubTime>
+        
+        <tag>mongodb</tag>
+         
+         
+           
+             
+              <breadCrumb title="database" url="http://www.unix-like.com/categories/database/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.unix-like.com/2017/06/08/database/mysql%E7%BA%BF%E4%B8%8A%E7%BA%BF%E4%B8%8B%E5%90%8C%E6%AD%A5%E5%A4%87%E4%BB%BD%E8%84%9A%E6%AD%A5/</loc>
+    <lastmod>2017-06-08T01:57:07.633Z</lastmod>
+    <data>
+        <display>
+        <title>mysql线上线下同步备份脚步.sql</title>
+        <pubTime>2017-06-08T01:39:35.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+             
+              <breadCrumb title="database" url="http://www.unix-like.com/categories/database/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.unix-like.com/2017/06/07/service/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8iptables%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2017-06-07T07:33:19.183Z</lastmod>
+    <lastmod>2017-06-07T07:41:25.486Z</lastmod>
     <data>
         <display>
         <title>Linux服务器iptables配置</title>

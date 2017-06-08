@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -270,6 +270,223 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-database/MongoDB归档及压缩工具" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/database/MongoDB归档及压缩工具/" class="article-date">
+      <time datetime="2017-05-25T08:02:28.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>　　原文地址：<a href="http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html" target="_blank" rel="external">http://t.dbdao.com/archives/archiving-and-compression-in-mongodb-tools.html</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>　　我在MongoDB World 2015做的演讲“Putting the Go in MongoDB”，重点是关于MongoDB工具的重写，从C ++到Go，这在可用性以及性能方面得到了一些改进，但是这里我只简要的说两个方面的新功能，(planned for the 3.2 release) – 归档和压缩。</p>
+<p>　　在本文中，我将对mongodump和mongorestore提供更详细的归档和压缩特性说明，并探索使用这些特性的可行用例。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/database/">database</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/05/25/database/MongoDB归档及压缩工具/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-system/Linux下清空或删除大文件内容的5种方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/" class="article-date">
+      <time datetime="2017-05-25T06:02:28.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>编译自：<a href="http://www.tecmint.com/empty-delete-file-content-linux/" target="_blank" rel="external">http://www.tecmint.com/empty-delete-file-content-linux/</a> 作者： Aaron Kili</p>
+<p>原创：LCTT <a href="https://linux.cn/article-8024-1.html" target="_blank" rel="external">https://linux.cn/article-8024-1.html</a> 译者： FSSlc </p>
+<p>在 Linux 终端下处理文件时，有时我们想直接清空文件的内容但又不必使用任何 Linux 命令行编辑器 去打开这些文件。那怎样才能达到这个目的呢？在这篇文章中，我们将介绍几种借助一些实用的命令来清空文件内容的方法。</p>
+<p><strong>注意：</strong> 在我们进一步深入了解这些方法之前，请记住: 由于在 Linux 中一切皆文件，你需要时刻注意，确保你将要清空的文件不是重要的用户文件或者系统文件。清空重要的系统文件或者配置文件可能会引发严重的应用失败或者系统错误。</p>
+<p>前面已经说道，下面的这些方法都是从命令行中达到清空文件的目的。</p>
+<p><strong>提示：</strong> 在下面的示例中，我们将使用名为 access.log 的文件来作为示例样本。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/system/">system</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-database/redis模糊删除key" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/05/25/database/redis模糊删除key/" class="article-date">
+      <time datetime="2017-05-25T05:58:41.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Redis keys命令支持模式匹配，但是del命令不支持模式匹配，有时候需要根据一定的模式来模糊删除key，这时只能结合shell命令来完成了。 具体命令是：</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/database/">database</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/05/25/database/redis模糊删除key/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-system/Linux查看文件编码格式及文件编码转换" class="article article-type-post" itemscope itemprop="blogPost">
   

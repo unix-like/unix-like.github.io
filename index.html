@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
+                        <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/kvm/" style="font-size: 10px;">kvm</a> <a href="/tags/logrotate/" style="font-size: 10px;">logrotate</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openvpn/" style="font-size: 15px;">openvpn</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/samba/" style="font-size: 10px;">samba</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tc/" style="font-size: 10px;">tc</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/字符集/" style="font-size: 10px;">字符集</a> <a href="/tags/数据恢复/" style="font-size: 10px;">数据恢复</a> <a href="/tags/职业/" style="font-size: 15px;">职业</a> <a href="/tags/调优/" style="font-size: 20px;">调优</a>
                     </div>
                 </section>
                 
@@ -270,6 +270,221 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-service/tomcat软件部署及项目部署脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/06/08/service/tomcat软件部署及项目部署脚本/" class="article-date">
+      <time datetime="2017-06-08T02:11:56.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/06/08/service/tomcat软件部署及项目部署脚本/">Tomcat环境搭建及配置规范</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="软件版本及安装路径"><a href="#软件版本及安装路径" class="headerlink" title="软件版本及安装路径"></a>软件版本及安装路径</h1><p>JDK的版本1.7.0_79 </p>
+<p>Tomcat的版本7.0.65</p>
+<p>JDK的安装路径: /gotwo_data/Application </p>
+<p>Tomcat的安装路径: /gotwo_data/Application</p>
+<p>tomcat目录的命名规则:tomcat+对外提供服务的web端口号，比如tomcat18080。 </p>
+<p>Tomcat目录及其内部的子目录和文件权限:<code>chown -R tomcat.tomcat tomcat18080;chmod -R 775 tomcat18080</code></p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/service/">service</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/06/08/service/tomcat软件部署及项目部署脚本/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-database/mongodb线上线下同步备份脚步" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/06/08/database/mongodb线上线下同步备份脚步/" class="article-date">
+      <time datetime="2017-06-08T02:00:28.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/06/08/database/mongodb线上线下同步备份脚步/">mongodb线上线下同步备份脚步</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>同步线上线下mongodb。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/database/">database</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/06/08/database/mongodb线上线下同步备份脚步/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-database/mysql线上线下同步备份脚步" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/06/08/database/mysql线上线下同步备份脚步/" class="article-date">
+      <time datetime="2017-06-08T01:39:35.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a rel="external nofollow" class="article-title" href="/2017/06/08/database/mysql线上线下同步备份脚步/">mysql线上线下同步备份脚步.sql</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>将线上多个数据库同步并导入到线下一个数据库中。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/database/">database</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a rel="external nofollow"  href="/2017/06/08/database/mysql线上线下同步备份脚步/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-service/Linux服务器iptables配置" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -746,221 +961,6 @@
       
         <p class="article-more-link">
           <a rel="external nofollow"  href="/2017/05/31/service/logrotate切割日志nginx和php配置/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-service/nginx常见问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/31/service/nginx常见问题/" class="article-date">
-      <time datetime="2017-05-31T03:01:53.000Z" itemprop="datePublished">2017-05-31</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/31/service/nginx常见问题/">nginx常见问题</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1-错误日志：warn：an-upstream-response-is-buffered-to-a-temporary-file"><a href="#1-错误日志：warn：an-upstream-response-is-buffered-to-a-temporary-file" class="headerlink" title="1.错误日志：warn：an upstream response is buffered to a temporary file"></a>1.错误日志：warn：an upstream response is buffered to a temporary file</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">解决办法：增加fastcgi_buffers 8 4K;     fastcgi_buffer_size 4K;</div></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/31/service/nginx常见问题/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/恢复linux被误删文件" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/30/system/恢复linux被误删文件/" class="article-date">
-      <time datetime="2017-05-30T10:31:56.000Z" itemprop="datePublished">2017-05-30</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、首先我们先来了解下文件删除原理："><a href="#一、首先我们先来了解下文件删除原理：" class="headerlink" title="一、首先我们先来了解下文件删除原理："></a>一、首先我们先来了解下文件删除原理：</h1><ul>
-<li>1）linux是通过link的数量来控制文件删除的，只有当一个文件不存在任何link的时候，这个文件才会被删除。一般来说，每个文件都有2个link计数器：i_count和i_nlink。</li>
-<li>2）当进程打开了某个文件时，只要该进程保持打开该文件，即使将其删除，它依然存在于磁盘中。这意味着，进程并不知道文件已经被删除，它仍然可以向打开该文件时提供给它的文件描述符进行读取和写入。除了该进程之外，这个文件是不可见的，因为已经删除了其相应的目录索引节点。</li>
-<li>3）当你发现你误删除了文件后，要做的第一件事是马上卸载被误删除文件所在的分区，或者以只读的方式来挂载该分区。原因大家都很清楚，文件被删除后，文件中的数据还存在磁盘上，除非存放这些数据的数据块又被操作系统分配出去了。我们这一步就是尽量降低数据块中数据被覆盖的风险，以提高恢复数据成功的比率。</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据恢复/">数据恢复</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/30/system/恢复linux被误删文件/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-service/修改PHP上传文件大小限制" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/30/service/修改PHP上传文件大小限制/" class="article-date">
-      <time datetime="2017-05-30T01:56:54.000Z" itemprop="datePublished">2017-05-30</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/30/service/修改PHP上传文件大小限制/">修改PHP上传文件大小限制</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一-配置php-ini文件-（以上传500M以下大小的文件为例）"><a href="#一-配置php-ini文件-（以上传500M以下大小的文件为例）" class="headerlink" title="一.配置php.ini文件 （以上传500M以下大小的文件为例）"></a>一.配置php.ini文件 （以上传500M以下大小的文件为例）</h1><p>　　查找以下选项并修改:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">file_uploads = On ;打开文件上传选项</div><div class="line">upload_max_filesize = 500M ;上传文件上限</div></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/30/service/修改PHP上传文件大小限制/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>

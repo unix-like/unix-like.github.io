@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.unix-like.com/2017/06/08/service/tomcat%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</loc>
+    
+    <lastmod>2017-06-08T02:29:56.491Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.unix-like.com/2017/06/08/database/mongodb%E7%BA%BF%E4%B8%8A%E7%BA%BF%E4%B8%8B%E5%90%8C%E6%AD%A5%E5%A4%87%E4%BB%BD%E8%84%9A%E6%AD%A5/</loc>
+    
+    <lastmod>2017-06-08T02:03:05.178Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.unix-like.com/2017/06/08/database/mysql%E7%BA%BF%E4%B8%8A%E7%BA%BF%E4%B8%8B%E5%90%8C%E6%AD%A5%E5%A4%87%E4%BB%BD%E8%84%9A%E6%AD%A5/</loc>
+    
+    <lastmod>2017-06-08T01:57:07.633Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.unix-like.com/2017/06/07/service/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8iptables%E9%85%8D%E7%BD%AE/</loc>
     
-    <lastmod>2017-06-07T07:33:19.183Z</lastmod>
+    <lastmod>2017-06-07T07:41:25.486Z</lastmod>
     
   </url>
   

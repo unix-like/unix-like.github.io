@@ -8,17 +8,19 @@
   
 
   
-  <title>Archives: 2017 | Linux运维装逼指南</title>
+  <title>mongodb线上线下同步备份脚步 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Linux运维装逼指南">
-<meta property="og:url" content="http://www.unix-like.com/archives/2017/page/2/index.html">
+  <meta name="description" content="同步线上线下mongodb。">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb线上线下同步备份脚步">
+<meta property="og:url" content="http://www.unix-like.com/2017/06/08/database/mongodb线上线下同步备份脚步/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta property="og:description" content="同步线上线下mongodb。">
+<meta property="og:updated_time" content="2017-06-08T02:03:05.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维装逼指南">
-<meta name="twitter:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta name="twitter:title" content="mongodb线上线下同步备份脚步">
+<meta name="twitter:description" content="同步线上线下mongodb。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -43,8 +45,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: true
@@ -266,397 +268,193 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-database/mongodb线上线下同步备份脚步" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a rel="external nofollow" href="/2017/06/08/database/mongodb线上线下同步备份脚步/" class="article-date">
+      <time datetime="2017-06-08T02:00:28.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mongodb线上线下同步备份脚步
+    </h1>
+  
+
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/database/">database</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a rel="external nofollow" href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/31/service/nginx常见问题/" class="archive-article-date">
-      <time datetime="2017-05-31T03:01:53.000Z" itemprop="datePublished">05-31</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/31/service/nginx常见问题/">nginx常见问题</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
+        <p>同步线上线下mongodb。</p>
+<a id="more"></a>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#bin/bash</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">restore</span></span>()&#123;</div><div class="line">	FILE=`/usr/bin/rsync --port 40004 --list-only --password-file=/etc/rsyncd.secrets backup@<span class="variable">$1</span>::mongodb_backup/ | 	  /usr/bin/tail -1 | /bin/awk <span class="string">'&#123;print $5&#125;'</span>`</div><div class="line">	PATH=/gotwo_data/backup/mongodb</div><div class="line">	DATE=`/bin/date +%F`</div><div class="line">	/bin/rm -rf <span class="variable">$&#123;PATH&#125;</span>/<span class="variable">$2</span>/*</div><div class="line">	/usr/bin/rsync -avz --port 40004 --password-file=/etc/rsyncd.secrets backup@<span class="variable">$1</span>::mongodb_backup/<span class="variable">$&#123;FILE&#125;</span> <span class="variable">$&#123;PATH&#125;</span>/<span class="variable">$2</span>/</div><div class="line"></div><div class="line">	/usr/bin/mongorestore <span class="_">-d</span> <span class="variable">$2</span> --drop --gzip  <span class="variable">$&#123;PATH&#125;</span>/<span class="variable">$2</span>/<span class="variable">$&#123;DATE&#125;</span>/<span class="variable">$2</span>/</div><div class="line">&#125;</div><div class="line"></div><div class="line">restore 114.114.114.114  db_name</div></pre></td></tr></table></figure>
+      
     </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/08/database/mongodb线上线下同步备份脚步/">mongodb线上线下同步备份脚步</a></p>
+        <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
+        <p><span>发布时间:</span>2017年06月08日 - 10时00分</p>
+        <p><span>最后更新:</span>2017年06月08日 - 10时03分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/08/database/mongodb线上线下同步备份脚步/" title="mongodb线上线下同步备份脚步">http://www.unix-like.com/2017/06/08/database/mongodb线上线下同步备份脚步/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/08/database/mongodb线上线下同步备份脚步/　　作者: Linux运维装逼指南" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a rel="external nofollow" href="/2017/06/08/service/tomcat软件部署及项目部署脚本/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Tomcat环境搭建及配置规范
+        
+      </div>
+    </a>
+  
+  
+    <a rel="external nofollow" href="/2017/06/08/database/mysql线上线下同步备份脚步/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql线上线下同步备份脚步.sql</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
 </article>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
     
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/30/system/恢复linux被误删文件/" class="archive-article-date">
-      <time datetime="2017-05-30T10:31:56.000Z" itemprop="datePublished">05-30</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a>
-    </h1>
-  
 
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a rel="external nofollow" href="/2017/06/08/service/tomcat软件部署及项目部署脚本/" title="上一篇: Tomcat环境搭建及配置规范">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a rel="external nofollow" href="/2017/06/08/database/mysql线上线下同步备份脚步/" title="下一篇: mysql线上线下同步备份脚步.sql">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/service/tomcat软件部署及项目部署脚本/">Tomcat环境搭建及配置规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/database/mongodb线上线下同步备份脚步/">mongodb线上线下同步备份脚步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/database/mysql线上线下同步备份脚步/">mysql线上线下同步备份脚步.sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/07/service/Linux服务器iptables配置/">Linux服务器iptables配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/06/service/在Ubuntu15.04上配置OpenVPN服务器和客户端/">Ubuntu 15.04 上配置 OpenVPN 服务器和客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/06/service/Ubuntu下OpenVPN客户端配置/">Ubuntu下OpenVPN客户端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/service/KVM部署及虚拟机安装/">kvm部署及虚拟机安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/system/使用命令行生成高强度密码/">使用命令行生成高强度密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/">LINUX下解决netstat查看TIME_WAIT状态过多问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/logrotate切割日志nginx和php配置/">logrotate切割日志nginx和php配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/nginx常见问题/">nginx常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/service/修改PHP上传文件大小限制/">修改PHP上传文件大小限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
+    <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据恢复/">数据恢复</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/30/service/修改PHP上传文件大小限制/" class="archive-article-date">
-      <time datetime="2017-05-30T01:56:54.000Z" itemprop="datePublished">05-30</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/30/service/修改PHP上传文件大小限制/">修改PHP上传文件大小限制</a>
-    </h1>
-  
 
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /" class="archive-article-date">
-      <time datetime="2017-05-29T13:56:20.000Z" itemprop="datePublished">05-29</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/samba/">samba</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/life/系统运维工程师装逼完全指南/" class="archive-article-date">
-      <time datetime="2017-05-28T10:49:44.000Z" itemprop="datePublished">05-28</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/life/运维人装逼指南大全/" class="archive-article-date">
-      <time datetime="2017-05-28T10:27:19.000Z" itemprop="datePublished">05-28</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/life/">life</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/职业/">职业</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/" class="archive-article-date">
-      <time datetime="2017-05-28T05:18:20.000Z" itemprop="datePublished">05-28</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tc/">tc</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/27/system/Linux上ssd优化/" class="archive-article-date">
-      <time datetime="2017-05-27T15:18:28.000Z" itemprop="datePublished">05-27</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/26/service/rsync安装配置实例/" class="archive-article-date">
-      <time datetime="2017-05-26T02:48:58.000Z" itemprop="datePublished">05-26</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/service/">service</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsync/">rsync</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a rel="external nofollow" href="/2017/05/25/system/pdflush进程详解与优化/" class="archive-article-date">
-      <time datetime="2017-05-25T08:38:28.000Z" itemprop="datePublished">05-25</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="archive-article-title" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/">Next &raquo;</a>
-    </nav>
-  
-
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
@@ -723,17 +521,6 @@
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 开关</button>
-    <script src="/js/require-2.1.6-jquery-1.9.1.min.js">
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 
 <script async src="/js/busuanzi.pure.mini.js">
