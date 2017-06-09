@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://www.unix-like.com/2017/06/09/database/%E7%94%A8innobackup%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8Dmysql/</loc>
+    <lastmod>2017-06-09T12:57:21.432Z</lastmod>
+    <data>
+        <display>
+        <title>用innobackup备份恢复mysql</title>
+        <pubTime>2017-06-09T12:54:42.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+             
+              <breadCrumb title="database" url="http://www.unix-like.com/categories/database/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.unix-like.com/2017/06/08/service/linux%E4%B8%8B%E6%B7%BB%E5%8A%A0redis%E6%89%A9%E5%B1%95/</loc>
     <lastmod>2017-06-08T08:52:50.707Z</lastmod>
     <data>
