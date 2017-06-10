@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.unix-like.com/2017/06/08/database/%E4%BF%AE%E5%A4%8Dmysql%E4%B8%BB%E4%BB%8E%E4%B8%8D%E4%B8%80%E8%87%B4/</loc>
+    
+    <lastmod>2017-06-10T11:36:33.207Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.unix-like.com/2017/06/09/database/%E7%94%A8innobackup%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8Dmysql/</loc>
     
     <lastmod>2017-06-09T12:57:21.432Z</lastmod>

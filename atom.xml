@@ -52,6 +52,36 @@
   </entry>
   
   <entry>
+    <title>修复mysql主从不一致</title>
+    <link href="http://www.unix-like.com/2017/06/08/database/%E4%BF%AE%E5%A4%8Dmysql%E4%B8%BB%E4%BB%8E%E4%B8%8D%E4%B8%80%E8%87%B4/"/>
+    <id>http://www.unix-like.com/2017/06/08/database/修复mysql主从不一致/</id>
+    <published>2017-06-08T11:35:28.000Z</published>
+    <updated>2017-06-10T11:36:33.207Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="修复主键冲突"><a href="#修复主键冲突" class="headerlink" title="修复主键冲突"></a>修复主键冲突</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pt-slave-restart --user=root --password=xxxxxx --socket=/gotwo_data/mysqlGo2/my40005/socket/mysqld.sock --error-numbers=1062</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="同步不一致的表"><a href="#同步不一致的表" class="headerlink" title="同步不一致的表"></a>同步不一致的表</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pt-table-sync  —<span class="built_in">print</span> --execute --sync-to-master h=192.168.10.41,P=40005,u=root,p=XcQVr8CmHhs4FVN2  --databases=db_go2 --tables=ln_user2seller</div></pre></td></tr></table></figure>
+<p>需要在主库上面执行</p>
+<p>h= 是从库的IP</p>
+<p>P=是从库的端口</p>
+<p>–tables= 可以是多个表用逗号分隔</p>
+<p>注意使用账户的权限，是否可以登录从库并执行命令</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;修复主键冲突&quot;&gt;&lt;a href=&quot;#修复主键冲突&quot; class=&quot;headerlink&quot; title=&quot;修复主键冲突&quot;&gt;&lt;/a&gt;修复主键冲突&lt;/h1&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;pt-slave-restart --user=root --password=xxxxxx --socket=/gotwo_data/mysqlGo2/my40005/socket/mysqld.sock --error-numbers=1062&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="database" scheme="http://www.unix-like.com/categories/database/"/>
+    
+    
+      <category term="mysql" scheme="http://www.unix-like.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>linux下添加redis扩展</title>
     <link href="http://www.unix-like.com/2017/06/08/service/linux%E4%B8%8B%E6%B7%BB%E5%8A%A0redis%E6%89%A9%E5%B1%95/"/>
     <id>http://www.unix-like.com/2017/06/08/service/linux下添加redis扩展/</id>
@@ -1068,61 +1098,6 @@
     
     
       <category term="tc" scheme="http://www.unix-like.com/tags/tc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux上ssd优化</title>
-    <link href="http://www.unix-like.com/2017/05/27/system/Linux%E4%B8%8Assd%E4%BC%98%E5%8C%96/"/>
-    <id>http://www.unix-like.com/2017/05/27/system/Linux上ssd优化/</id>
-    <published>2017-05-27T15:18:28.000Z</published>
-    <updated>2017-05-27T15:19:32.199Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、修改默认的固态硬盘-SSD-柱面大小"><a href="#一、修改默认的固态硬盘-SSD-柱面大小" class="headerlink" title="一、修改默认的固态硬盘(SSD)柱面大小"></a>一、修改默认的固态硬盘(SSD)柱面大小</h1><p>　　提升Linux下固态硬盘的使用率，在安装Linux操作系统前就应该做相关工作。系统会先在磁盘上创建分区，通常创建的分区包含固定数量的柱面，而默认情况下，每个柱面由16065512个字节的扇区组成。</p>
-<a id="more"></a>
-<p>　　现在的问题是，当默认柱面空间大小被完全使用后，固态硬盘就不能发挥最佳性能。因为要固态硬盘读这个操作需要使用4KB的字节块，而固态硬盘控制器删除操 作则需要512KB的字节块。问题是，有了通常用于Linux上的默认分区，分区的开始没必要也是一个4KB新分区的开始。结果，一次读取或写入操作也许 需要SSD设备上的两个不同的区块，这也减缓了SSD磁盘的性能。</p>
-<p>　　为了避免这种问题，可以采用fdisk方式来创建分区，配置三个选项来指定使用柱面及拍面大小。具体的命令如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fdisk -H 32 -C 32 –c /dev/sdb</div></pre></td></tr></table></figure>
-<h1 id="二、配置固态硬盘-SSD-的文件系统"><a href="#二、配置固态硬盘-SSD-的文件系统" class="headerlink" title="二、配置固态硬盘(SSD)的文件系统"></a>二、配置固态硬盘(SSD)的文件系统</h1><h3 id="1-创建文件系统"><a href="#1-创建文件系统" class="headerlink" title="1.创建文件系统"></a>1.创建文件系统</h3><p>　　接着需要关注的就是文件系统。想要优化文件系统删除字节区块的效率，就必须确保小于512K的文件分布在不同的删除字节区块上。要做到这一点，必须确保在创建可扩展文件系统时指定了需要使用的条带的宽度和幅度。这些值在页面中指定，默认大小为4KB。要创建一个最佳的可扩展文件系统，应该使用如下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkfs.ext4 -E stride=128,stripe-width=128 /dev/sda1</div></pre></td></tr></table></figure>
-<p>　　如果要修改现有的文件系统的参数，可以使用tune2fs实用程序：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tune2fs -E stride=128,stripe-width=128 /dev/sda1</div></pre></td></tr></table></figure>
-<h3 id="2-文件系统日志"><a href="#2-文件系统日志" class="headerlink" title="2.文件系统日志"></a>2.文件系统日志</h3><p>　　关闭日志功能，可以延长SSD寿命，但是突然断电容易造成文件损坏</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tune2fs -O ^has_journal /dev/sda2  关闭日志；</div></pre></td></tr></table></figure>
-<p>　　然后执行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e2fsck <span class="_">-f</span> /dev/sda2；</div></pre></td></tr></table></figure>
-<p>　　检查日志是否关闭成功：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dmesg | grep EXT4</div></pre></td></tr></table></figure>
-<p>　　如果显示 “EXT4-fs (sda2): mounted filesystem without journal”  说明关闭日志成功；否则显示 “mounted filesystem with ordered data mode”</p>
-<p>　　要打开日志</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tune2fs -O has_journal /dev/sda2</div></pre></td></tr></table></figure>
-<h3 id="3-设置noatime"><a href="#3-设置noatime" class="headerlink" title="3.设置noatime"></a>3.设置noatime</h3><p>　　不记录文件访问时间，该选项保证了文件的访问时间不会因为每次读取而更新，从而降低对文件系统的写入次数。</p>
-<p>　　在fstb 中加入noatime　选项</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/dev/sda1 / ext4 discard,defaults  改为  /dev/sda1 / ext4 noatime,defaults</div></pre></td></tr></table></figure>
-<h1 id="三、配置固态硬盘-SSD-的I-O调度程序"><a href="#三、配置固态硬盘-SSD-的I-O调度程序" class="headerlink" title="三、配置固态硬盘(SSD)的I/O调度程序"></a>三、配置固态硬盘(SSD)的I/O调度程序</h1><p>　　优化的第三个部分涉及到I/O调度程序。该模块是一个决定如何处理I/O请求的核心组件。默认情况下就是非常公平的排队，对于普通的磁盘驱动器来说，这是很好的方案，但对于以期限调度为优势的固态硬盘来说，这并不是最好的。</p>
-<p>　　如果你想在系统中对所有磁盘采用期限调度，可以在内核加载时把<code>elevator=deadline</code>这句话加入到系统引导管理器(GURB)中;如果你只是想针对某一个磁盘，就应该在rc.local文件中加入类似如下实例的一句话，那么每次当系统重启，期限调度就会应用到指定的磁盘。如下实例将会对 /dev/sdb磁盘采用期限调度。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> deadline &gt; /sys/block/xvda/queue/scheduler</div></pre></td></tr></table></figure>
-<p>　　给IO的算法修改成 noop,操作系统本身不做处理,让 ssd 本身处理.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> noop &gt;  /sys/block/sda/queue/scheduler</div></pre></td></tr></table></figure>
-<h1 id="四、清理固态硬盘-SSD-中的数据块"><a href="#四、清理固态硬盘-SSD-中的数据块" class="headerlink" title="四、清理固态硬盘(SSD)中的数据块"></a>四、清理固态硬盘(SSD)中的数据块</h1><p>　　最后一个重要的步骤称为“清理”，该操作可以确保在删除文件后相应的数据块真正清空，然后在创建新的文件时才能有可用的数据块。如果没有清理操作，一旦数 据块空间填满，固态硬盘的性能就会下降。如果使用丢弃挂载选项，当文件删除后，数据块也会被相应地清除，这样可以显著提高固态硬盘的性能。2.6.33以 上的内核已经支持清理操作。</p>
-<p>　　Linux内核从2.6.33开始提供TRIM支持，所以先运行“uname -a”命令，查看自己的内核版本，如果内核版本低于2.6.33的，请先升级内核。然后运行“hdparm -I /dev/sda”查看自己的硬盘支不支持TRIM技术，如果支持，你会看到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* Data Set Management TRIM supported</div></pre></td></tr></table></figure>
-<p>　　注意：如果SSD组RAID0后，将失去Trim功能</p>
-<p>　　如果上面两个条件都满足了，就可以在fstab中添加discard来开启TRIM功能，如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">原始的UUID=2f6be0cf-2f54-4646-b8c6-5fb0aa01ef23 / ext4 defaults,errors=remount-ro 0 1</div><div class="line">改后的UUID=2f6be0cf-2f54-4646-b8c6-5fb0aa01ef23 / ext4 discard,defaults,errors=remount-ro,noatime 0 1</div></pre></td></tr></table></figure>
-<p>　　在fasab配置文件中完成对文件系统的这些修改后，重启计算机，或者通知文件系统重新读取其配置，然后使用/etc/fstab文件中包含的mount -o remount命令重新安装每个文件系统。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、修改默认的固态硬盘-SSD-柱面大小&quot;&gt;&lt;a href=&quot;#一、修改默认的固态硬盘-SSD-柱面大小&quot; class=&quot;headerlink&quot; title=&quot;一、修改默认的固态硬盘(SSD)柱面大小&quot;&gt;&lt;/a&gt;一、修改默认的固态硬盘(SSD)柱面大小&lt;/h1&gt;&lt;p&gt;　　提升Linux下固态硬盘的使用率，在安装Linux操作系统前就应该做相关工作。系统会先在磁盘上创建分区，通常创建的分区包含固定数量的柱面，而默认情况下，每个柱面由16065512个字节的扇区组成。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="system" scheme="http://www.unix-like.com/categories/system/"/>
-    
-    
-      <category term="调优" scheme="http://www.unix-like.com/tags/%E8%B0%83%E4%BC%98/"/>
     
   </entry>
   
