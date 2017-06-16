@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://www.unix-like.com/2017/06/16/security/tcpdump%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-06-16T08:26:56.307Z</lastmod>
+    <data>
+        <display>
+        <title>tcpdump命令详解</title>
+        <pubTime>2017-06-16T06:41:20.000Z</pubTime>
+        
+        <tag>Kali linux渗透测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="security" url="http://www.unix-like.com/categories/security/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.unix-like.com/2017/06/16/security/netcat-nc/</loc>
-    <lastmod>2017-06-16T02:05:54.930Z</lastmod>
+    <lastmod>2017-06-16T02:33:16.900Z</lastmod>
     <data>
         <display>
         <title>netcat-nc</title>
