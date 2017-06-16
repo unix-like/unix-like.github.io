@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.unix-like.com/2017/06/16/security/netcat-nc/</loc>
+    
+    <lastmod>2017-06-16T02:05:54.930Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.unix-like.com/2017/06/12/service/nginx%E5%AE%89%E8%A3%85/</loc>
     
     <lastmod>2017-06-12T14:33:31.130Z</lastmod>

