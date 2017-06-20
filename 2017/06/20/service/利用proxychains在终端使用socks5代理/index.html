@@ -8,17 +8,19 @@
   
 
   
-  <title>Linux运维装逼指南</title>
+  <title>利用proxychains在终端使用socks5代理 | Linux运维装逼指南</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Linux运维装逼指南">
-<meta property="og:url" content="http://www.unix-like.com/page/4/index.html">
+  <meta name="description" content="最近用各种脚本下载东西的时候发现有的站点需要当地IP才能下，比如…..nico, youtube等；所以就找了下能在终端用socks5代理的工具，最后找到了proxychains，从此再无压力。">
+<meta name="keywords" content="proxy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用proxychains在终端使用socks5代理">
+<meta property="og:url" content="http://www.unix-like.com/2017/06/20/service/利用proxychains在终端使用socks5代理/index.html">
 <meta property="og:site_name" content="Linux运维装逼指南">
-<meta property="og:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta property="og:description" content="最近用各种脚本下载东西的时候发现有的站点需要当地IP才能下，比如…..nico, youtube等；所以就找了下能在终端用socks5代理的工具，最后找到了proxychains，从此再无压力。">
+<meta property="og:updated_time" content="2017-06-20T03:03:17.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维装逼指南">
-<meta name="twitter:description" content="我是一名Linux运维工程师，在这里分享工作中遇到的一些问题，博客中的文章有网上收集的内容也有自己的经验，希望能帮助到遇到同样问题的朋友。">
+<meta name="twitter:title" content="利用proxychains在终端使用socks5代理">
+<meta name="twitter:description" content="最近用各种脚本下载东西的时候发现有的站点需要当地IP才能下，比如…..nico, youtube等；所以就找了下能在终端用socks5代理的工具，最后找到了proxychains，从此再无压力。">
   
     <link rel="alternative" href="/atom.xml" title="Linux运维装逼指南" type="application/atom+xml">
   
@@ -32,9 +34,6 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-    
-    
-  
   
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
@@ -45,8 +44,8 @@
       var yiliaConfig = {
           fancybox: true,
           animate: true,
-          isHome: true,
-          isPost: false,
+          isHome: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -269,13 +268,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-system/Linux查看文件编码格式及文件编码转换" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-service/利用proxychains在终端使用socks5代理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/" class="article-date">
-      <time datetime="2017-05-25T04:27:28.000Z" itemprop="datePublished">2017-05-25</time>
+      <a rel="external nofollow" href="/2017/06/20/service/利用proxychains在终端使用socks5代理/" class="article-date">
+      <time datetime="2017-06-20T02:23:10.000Z" itemprop="datePublished">2017-06-20</time>
 </a>
 
     </div>
@@ -288,118 +285,123 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a>
+    <h1 class="article-title" itemprop="name">
+      利用proxychains在终端使用socks5代理
     </h1>
   
 
 
       </header>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>如果你需要在Linux 中操作windows下的文件，那么你可能会经常遇到文件编码转换的问题。Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。下面介绍一下，在Linux中如何查看文件的编码及如何进行对文件进行编码转换。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符集/">字符集</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-system/Bash历史中执行过的每一项命令设置时间和日期" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a rel="external nofollow" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/" class="article-date">
-      <time datetime="2017-05-25T04:21:42.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="article-info article-info-post">
         
-  
-    <h1 itemprop="name">
-      <a rel="external nofollow" class="article-title" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a>
-    </h1>
-  
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/service/">service</a>
+    </div>
 
 
-      </header>
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/proxy/">proxy</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>在默认情况下，所有通过 Bash 在命令行中执行过的命令都被存储在历史缓存区或者一个叫做 <code>~/.bash_history</code> 的文件里。这意味着系统管理员可以看到系统上用户执行过的命令清单，或者用户可以通过像 <code>history</code> 命令这样的选项来看他或她自己的命令历史。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/system/">system</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
-    </div>
+        <p>最近用各种脚本下载东西的时候发现有的站点需要当地IP才能下，比如…..nico, youtube等；所以就找了下能在终端用socks5代理的工具，最后找到了proxychains，从此再无压力。</p>
+<a id="more"></a>
+<h1 id="proxychains安装"><a href="#proxychains安装" class="headerlink" title="proxychains安装"></a>proxychains安装</h1><p>ubuntu下安装:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install proxychains</div></pre></td></tr></table></figure>
+<p>编译安装:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/rofl0r/proxychains-ng.git</div><div class="line"><span class="built_in">cd</span> proxychains-ng</div><div class="line">./configure</div><div class="line">make</div><div class="line">sudo make install</div><div class="line">sudo cp ./src/proxychains.conf /etc/proxychians.conf</div><div class="line"><span class="built_in">cd</span> .. &amp;&amp; rm -rf proxychains-ng</div></pre></td></tr></table></figure>
+<h1 id="编辑proxychains配置"><a href="#编辑proxychains配置" class="headerlink" title="编辑proxychains配置"></a>编辑proxychains配置</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/proxychains.conf</div></pre></td></tr></table></figure>
+<p>将socks4 127.0.0.1 9095改为</p>
+<p>socks5  127.0.0.1 1080  //1080改为你自己的端口</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>在需要代理的命令前加上 <code>proxychains</code> ，如：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxychains wget http://xxx.com/xxx.zip</div></pre></td></tr></table></figure>
 
       
-        <p class="article-more-link">
-          <a rel="external nofollow"  href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a rel="external nofollow" href="/2017/06/20/service/利用proxychains在终端使用socks5代理/">利用proxychains在终端使用socks5代理</a></p>
+        <p><span>文章作者:</span><a rel="external nofollow" href="/" title="访问 Linux运维装逼指南 的个人博客">Linux运维装逼指南</a></p>
+        <p><span>发布时间:</span>2017年06月20日 - 10时23分</p>
+        <p><span>最后更新:</span>2017年06月20日 - 11时03分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/20/service/利用proxychains在终端使用socks5代理/" title="利用proxychains在终端使用socks5代理">http://www.unix-like.com/2017/06/20/service/利用proxychains在终端使用socks5代理/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.unix-like.com/2017/06/20/service/利用proxychains在终端使用socks5代理/　　作者: Linux运维装逼指南" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a rel="external nofollow" href="/2017/06/16/security/tcpdump命令详解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tcpdump命令详解</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
 </article>
 
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#proxychains安装"><span class="toc-number">1.</span> <span class="toc-text">proxychains安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编辑proxychains配置"><span class="toc-number">2.</span> <span class="toc-text">编辑proxychains配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用方法"><span class="toc-number">3.</span> <span class="toc-text">使用方法</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
 
 
 
@@ -408,14 +410,49 @@
 
 
 
+    
 
 
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
-  
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a rel="external nofollow" href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a rel="external nofollow" href="/2017/06/16/security/tcpdump命令详解/" title="下一篇: tcpdump命令详解">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/service/利用proxychains在终端使用socks5代理/">利用proxychains在终端使用socks5代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/security/tcpdump命令详解/">tcpdump命令详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/security/netcat-nc/">netcat-nc</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/service/nginx安装/">nginx安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/database/用innobackup备份恢复mysql/">用innobackup备份恢复mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/database/修复mysql主从不一致/">修复mysql主从不一致</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/service/linux下添加redis扩展/">linux下添加redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/service/tomcat软件部署及项目部署脚本/">Tomcat环境搭建及配置规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/database/mongodb线上线下同步备份脚步/">mongodb线上线下同步备份脚步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/database/mysql线上线下同步备份脚步/">mysql线上线下同步备份脚步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/07/service/Linux服务器iptables配置/">Linux服务器iptables配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/06/service/在Ubuntu15.04上配置OpenVPN服务器和客户端/">Ubuntu 15.04 上配置 OpenVPN 服务器和客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/06/service/Ubuntu下OpenVPN客户端配置/">Ubuntu下OpenVPN客户端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/service/KVM部署及虚拟机安装/">kvm部署及虚拟机安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/system/使用命令行生成高强度密码/">使用命令行生成高强度密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/system/LINUX下解决netstat查看TIME-WAIT状态过多问题/">LINUX下解决netstat查看TIME_WAIT状态过多问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/logrotate切割日志nginx和php配置/">logrotate切割日志nginx和php配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/service/nginx常见问题/">nginx常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/system/恢复linux被误删文件/">恢复linux被误删文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/service/修改PHP上传文件大小限制/">修改PHP上传文件大小限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/29/service/ Windows与Linux共享文件夹互相访问 /">Windows与Linux共享文件夹互相访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/系统运维工程师装逼完全指南/">系统运维工程师装逼完全指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/life/运维人装逼指南大全/">运维人装逼指南大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/28/service/tc命令Linux基于IP进行流量限速/">tc命令——Linux基于IP进行流量限速</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/system/Linux上ssd优化/">Linux上ssd优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/26/service/rsync安装配置实例/">rsync安装配置实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/pdflush进程详解与优化/">pdflush进程详解与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/MongoDB归档及压缩工具/">MongoDB归档及压缩工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux下清空或删除大文件内容的5种方法/">Linux下清空或删除大文件内容的5种方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/database/redis模糊删除key/">redis模糊删除key</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Linux查看文件编码格式及文件编码转换/">Linux查看文件编码格式及文件编码转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/system/Bash历史中执行过的每一项命令设置时间和日期/">Bash历史中执行过的每一项命令设置时间和日期.md</a></li></ul>
+    <script src="/js/require-2.1.6-jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
