@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.unix-like.com/"/>
-  <updated>2017-06-20T03:03:17.737Z</updated>
+  <updated>2017-07-31T03:33:43.456Z</updated>
   <id>http://www.unix-like.com/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小米13寸指纹版笔记本在ubuntu16.04下安装nvidia显卡驱动</title>
+    <link href="http://www.unix-like.com/2017/07/31/system/%E5%B0%8F%E7%B1%B313%E5%AF%B8%E6%8C%87%E7%BA%B9%E7%89%88%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%9C%A8ubuntu16-04%E4%B8%8B%E5%AE%89%E8%A3%85nvidia%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/"/>
+    <id>http://www.unix-like.com/2017/07/31/system/小米13寸指纹版笔记本在ubuntu16-04下安装nvidia显卡驱动/</id>
+    <published>2017-07-31T03:09:44.000Z</published>
+    <updated>2017-07-31T03:33:43.456Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前(2017-7-31)nvidia已经推出了，mx150的驱动，但ubuntu官方源里面还没有收录，所以先添加PPA：</p>
+<a id="more"></a>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:graphics-drivers/ppa</div><div class="line">sudo apt update</div></pre></td></tr></table></figure>
+<p>此时再看 附加驱动 应用里面已经有对应的驱动啦，可以选择安装，也可以用命令行安装，这里先用命令行安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install nvidia-settings nvidia-opencl-icd-384 nvidia-prime nvidia-384</div></pre></td></tr></table></figure>
+<p>安装完成后重启系统，nvidia显卡就在启用了，打开 NVIDIA SETTINGS 应用可以查看详细信息。</p>
+<p>为了能够更方便的切换显卡，可以安装显卡切换指示器，具体如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:nilarimogard/webupd8</div><div class="line">sudo apt-get update</div><div class="line">sudo apt install prime-indicator-plus</div></pre></td></tr></table></figure>
+<p>重启后可在系统任务栏上看到。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前(2017-7-31)nvidia已经推出了，mx150的驱动，但ubuntu官方源里面还没有收录，所以先添加PPA：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="system" scheme="http://www.unix-like.com/categories/system/"/>
+    
+    
+      <category term="desktop" scheme="http://www.unix-like.com/tags/desktop/"/>
+    
+  </entry>
   
   <entry>
     <title>利用proxychains在终端使用socks5代理</title>
@@ -1226,36 +1257,6 @@
     
     
       <category term="数据恢复" scheme="http://www.unix-like.com/tags/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>修改PHP上传文件大小限制</title>
-    <link href="http://www.unix-like.com/2017/05/30/service/%E4%BF%AE%E6%94%B9PHP%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6/"/>
-    <id>http://www.unix-like.com/2017/05/30/service/修改PHP上传文件大小限制/</id>
-    <published>2017-05-30T01:56:54.000Z</published>
-    <updated>2017-06-02T01:56:49.133Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一-配置php-ini文件-（以上传500M以下大小的文件为例）"><a href="#一-配置php-ini文件-（以上传500M以下大小的文件为例）" class="headerlink" title="一.配置php.ini文件 （以上传500M以下大小的文件为例）"></a>一.配置php.ini文件 （以上传500M以下大小的文件为例）</h1><p>　　查找以下选项并修改:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">file_uploads = On ;打开文件上传选项</div><div class="line">upload_max_filesize = 500M ;上传文件上限</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>　　如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">post_max_size = 500M ;post上限</div><div class="line">max_execution_time = 1800 ; Maximum execution time of each script, <span class="keyword">in</span> seconds脚本最大执行时间</div><div class="line">max_input_time = 1800 ; Maximum amount of time each script may spend parsing request data</div><div class="line">memory_limit = 128M ; Maximum amount of memory a script may consume (128MB)内存上限</div></pre></td></tr></table></figure>
-<h1 id="二-修改nginx配置"><a href="#二-修改nginx配置" class="headerlink" title="二.修改nginx配置"></a>二.修改nginx配置</h1><p>　　需要在对应的虚拟主机配置中修改　<code>client_max_body_size</code> 参数的值</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">client_max_body_size 500m;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一-配置php-ini文件-（以上传500M以下大小的文件为例）&quot;&gt;&lt;a href=&quot;#一-配置php-ini文件-（以上传500M以下大小的文件为例）&quot; class=&quot;headerlink&quot; title=&quot;一.配置php.ini文件 （以上传500M以下大小的文件为例）&quot;&gt;&lt;/a&gt;一.配置php.ini文件 （以上传500M以下大小的文件为例）&lt;/h1&gt;&lt;p&gt;　　查找以下选项并修改:&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;file_uploads = On ;打开文件上传选项&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;upload_max_filesize = 500M ;上传文件上限&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="service" scheme="http://www.unix-like.com/categories/service/"/>
-    
-    
-      <category term="php" scheme="http://www.unix-like.com/tags/php/"/>
     
   </entry>
   
